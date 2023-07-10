@@ -10,6 +10,7 @@ from personalityTest.models import Result as PersonalityResult
 from riasec.models import Result as CareerResult
 from iqtest.models import Result as IQResult
 from administration.views import Is_Counselor
+from .forms import IQStatForm
 
 User = get_user_model()
 
@@ -76,28 +77,9 @@ class Statistics(LoginRequiredMixin, Is_Counselor, TemplateView):
         context["personality_senior_count"] = PersonalityResult.objects.filter(user__profile__educationlevel__name="Senior Highschool").count()
         context["personality_junior_count"] = PersonalityResult.objects.filter(user__profile__educationlevel__name="Junior Highschool").count()
         context["personality_grade_count"] = PersonalityResult.objects.filter(user__profile__educationlevel__name="Grade School").count()
-
-        return context
-        # context = super().get_context_data(**kwargs)
-        # education_level = ["College", "Grade School", "Junior Highschool", "Senior Highschool"]
-        # sex = ["Male", "Female"]
-
-        # riasec_aggregates = {}
-        # personality_aggregates = {}
-        # count_data = {}
-
-        # for category, field in [("education_level", "educationlevel"), ("sex", "sex")]:
-        #     for value in locals()[category]:
-        #         filter = Q(**{'user__profile__{}__name'.format(field): value}) if category == "education_level" else Q(user__profile__sex=value)
-        #         career_results = CareerResult.objects.filter(filter)
-        #         riasec_aggregates[f"{category}_{value.lower()}"] = career_results.aggregate(*riasec_avg)
-        #         count_data[f"career_{value.lower()}_count"] = career_results.count()
-        #         personality_aggregates[f"personality_{value.lower()}"] = PersonalityResult.objects.filter(filter).aggregate(*personality_avg)
-        #         count_data[f"personality_{value.lower()}_count"] = PersonalityResult.objects.filter(filter).count()
-
-        # context.update(riasec_aggregates)
-        # context.update(personality_aggregates)
-        # context.update(count_data)
+        
+        iqStatForm = IQStatForm()
+        context["iqStatForm"] = iqStatForm
 
         return context
 
@@ -105,20 +87,19 @@ class IQStats(TemplateView):
     template_name = 'statistics/iq_stat.html'
 
     def get(self, request, *args, **kwargs):
-        sample = IQResult.objects.annotate(poor=poor)
-        exceptional1 = distinct_iq_result.filter(Q(result__gte=36) & Q(result__lte=40)).count()
+        info = self.request.GET
+        print(info)
+        # print(IQStatForm(info or None))
+        exceptional = distinct_iq_result.filter(Q(result__gte=36) & Q(result__lte=40)).count()
         excellent = distinct_iq_result.filter(Q(result__gte=31) & Q(result__lte=35)).count()
         verygood = distinct_iq_result.filter(Q(result__gte=25) & Q(result__lte=30)).count()
         good = distinct_iq_result.filter(Q(result__gte=19) & Q(result__lte=24)).count()
         average = distinct_iq_result.filter(Q(result__gte=15) & Q(result__lte=18)).count()
-        poor1 = distinct_iq_result.filter(Q(result__gte=0) & Q(result__lte=14)).count()
-        print(sample[1].poor)
+        poor = distinct_iq_result.filter(Q(result__gte=0) & Q(result__lte=14)).count()
         data = {}
         data['labels'] = IQResult.labelTextChoices.labels
-        print(data['labels'])
-        data['avg'] = [exceptional1, excellent, verygood, good, average, poor1]
+        data['avg'] = [exceptional, excellent, verygood, good, average, poor]
         data['total'] = IQResult.objects.all().count()
-        print(data["avg"])
         return JsonResponse(data)
 
 

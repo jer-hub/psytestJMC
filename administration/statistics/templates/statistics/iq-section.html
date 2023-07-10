@@ -1,26 +1,32 @@
 <div class="tab-pane fade show" id="v-pills-iq" role="tabpanel" aria-labelledby="v-pills-iq-tab">
 
     <div class="d-flex justify-content-end my-2">
-        <div class="text-end" style="width: 250px;">
-            <label for="personality_category">Category</label>
-            <select name="personality_category"
-                id="personality_category" 
-                class="form-select" 
-                hx-get="{% url 'administration:statistics_personality_category' %}"
-                hx-trigger="change"
-                hx-swap="innerHTML"
-                hx-target="#personality-section"                
-                >
-                <option value="1">All</option>
-                <option value="2">Sex</option>
-                <option value="3">College</option>
-                <option value="4">Senior Highschool</option>
-                <option value="5">Junior Highschool</option>
-                <option value="6">Grade School</option>
-            </select>
+
+        <form hx-get="{% url 'administration:iq-stats' %}" hx-trigger="change, changed">
+          <div class="d-flex align-items-center">
+            <label for="" class="m-2">Sex</label>
+            <div>{{iqStatForm.sex}}</div>
+            <label for="" class="m-2">Education Level</label>
+            <div>{{iqStatForm.educationlevel}}</div>
+            <label for="" class="m-2">Year Level</label>
+            <div>{{iqStatForm.year}}</div>
+          </div>
+          <div class="d-flex align-items-center">
+            <label for="" class="m-2">Department</label>
+            <div>{{iqStatForm.department}}</div>
+            <label for="" class="m-2">Program</label>
+            <div>{{iqStatForm.program}}</div>
+            <div>{{iqStatForm.result}}</div>
+            <div>{{iqStatForm.start_date}}</div>
+            <div>{{iqStatForm.end_date}}</div>
+            <!-- <input type="number" name="" id=""> -->
+            
+            
         </div>
+        </form>
     </div>
 
     <div id="iq-section">
         {% include 'statistics/partials/iq_stat.html' %}
+    </div>
 </div>
