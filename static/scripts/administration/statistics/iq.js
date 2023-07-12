@@ -1,5 +1,6 @@
 $(document).ready(() => {
   $.get("iq_stats/", function (response) {
+    
     var $data = response.avg;
     var $labels = response.labels;
 

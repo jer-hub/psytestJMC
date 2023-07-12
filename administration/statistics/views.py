@@ -11,6 +11,7 @@ from riasec.models import Result as CareerResult
 from iqtest.models import Result as IQResult
 from administration.views import Is_Counselor
 from .forms import IQStatForm
+import datetime
 
 User = get_user_model()
 
@@ -32,13 +33,12 @@ personality_avg = (
 )
 
 distinct_iq_result = IQResult.objects.all().distinct("user")
-exceptional = Count("result", filter=Q(result__gte=36) & Q(result__lte=40))
-excellent = Count("result", filter=Q(result__gte=31) & Q(result__lte=35))
-verygood = Count("result", filter=Q(result__gte=25) & Q(result__lte=30))
-good = Count("result", filter=Q(result__gte=19) & Q(result__lte=24))
-average = Count("result", filter=Q(result__gte=15) & Q(result__lte=18))
-poor = Count("result", filter=Q(result__gte=0) & Q(result__lte=14))
-iq_result = distinct_iq_result.annotate()
+exceptional = distinct_iq_result.filter(Q(result__gte=36) & Q(result__lte=40))
+excellent = distinct_iq_result.filter(Q(result__gte=31) & Q(result__lte=35))
+verygood = distinct_iq_result.filter(Q(result__gte=25) & Q(result__lte=30))
+good = distinct_iq_result.filter(Q(result__gte=19) & Q(result__lte=24))
+average = distinct_iq_result.filter(Q(result__gte=15) & Q(result__lte=18))
+poor = distinct_iq_result.filter(Q(result__gte=0) & Q(result__lte=14))
 
 
 
@@ -80,25 +80,68 @@ class Statistics(LoginRequiredMixin, Is_Counselor, TemplateView):
         
         iqStatForm = IQStatForm()
         context["iqStatForm"] = iqStatForm
-
-        return context
-
-class IQStats(TemplateView):
-    template_name = 'statistics/iq_stat.html'
-
-    def get(self, request, *args, **kwargs):
-        info = self.request.GET
-        print(info)
-        # print(IQStatForm(info or None))
+        context["iq_exceptional"] = distinct_iq_result.filter(Q(result__gte=36) & Q(result__lte=40)).count()
+        context["iq_excellent"] = distinct_iq_result.filter(Q(result__gte=31) & Q(result__lte=35)).count()
+        context["iq_verygood"] = distinct_iq_result.filter(Q(result__gte=25) & Q(result__lte=30)).count()
+        context["iq_good"] = distinct_iq_result.filter(Q(result__gte=19) & Q(result__lte=24)).count()
+        context["iq_average"] = distinct_iq_result.filter(Q(result__gte=15) & Q(result__lte=18)).count()
+        context["iq_poor"] = distinct_iq_result.filter(Q(result__gte=0) & Q(result__lte=14)).count()
+        context['iq_labels'] = IQResult.labelTextChoices.labels
         exceptional = distinct_iq_result.filter(Q(result__gte=36) & Q(result__lte=40)).count()
         excellent = distinct_iq_result.filter(Q(result__gte=31) & Q(result__lte=35)).count()
         verygood = distinct_iq_result.filter(Q(result__gte=25) & Q(result__lte=30)).count()
         good = distinct_iq_result.filter(Q(result__gte=19) & Q(result__lte=24)).count()
         average = distinct_iq_result.filter(Q(result__gte=15) & Q(result__lte=18)).count()
         poor = distinct_iq_result.filter(Q(result__gte=0) & Q(result__lte=14)).count()
+        context['iq_avg'] = [exceptional, excellent, verygood, good, average, poor]
+
+        return context
+
+def parse_keyword_query(keyword_dict):
+
+    q = Q()
+    for key, value in keyword_dict.items():
+        if value:
+            if "start_date" not in key and "end_date" not in key:
+                q &= Q(**{"user__"+key: value})
+    return q
+
+class IQStats(TemplateView):
+    template_name = 'statistics/iq_stat.html'
+
+    def get(self, request, *args, **kwargs):
+        # iq_exceptional = poor.filter(Q(result=1))
+        start_date = None
+        end_date = None
+        if self.request.GET:
+            if (self.request.GET["start_date_year"] and self.request.GET["start_date_month"] and self.request.GET["start_date_day"] and self.request.GET["end_date_year"]) and self.request.GET["end_date_month"] and self.request.GET["end_date_day"]:
+                start_date = datetime.date(int(self.request.GET["start_date_year"]), 
+                                           int(self.request.GET["start_date_month"]), 
+                                           int(self.request.GET["start_date_day"]))
+                end_date = datetime.date(int(self.request.GET["end_date_year"]), 
+                                           int(self.request.GET["end_date_month"]), 
+                                           int(self.request.GET["end_date_day"]))
+                
+
+            q = parse_keyword_query(self.request.GET)
+            print(q)
+            if start_date and end_date:
+                get_poor = poor.filter(q & Q(date_created__range=[start_date,end_date]))
+            else:
+                get_poor = poor.filter(q)
+            print(get_poor)
+            # for key in self.request.GET:
+            #    if self.request.GET[key]:
+            # Q(user__department=self.request.GET["department"] or None),
+            # Q(user__program=self.request.GET["program"] or None),
+            # date_created__range=(start_date,end_date) or None
+            # )
+        
+        # print(get_poor)
+            
         data = {}
         data['labels'] = IQResult.labelTextChoices.labels
-        data['avg'] = [exceptional, excellent, verygood, good, average, poor]
+        data['avg'] = [exceptional.count(), excellent.count(), verygood.count(), good.count(), average.count(), poor.count()]
         data['total'] = IQResult.objects.all().count()
         return JsonResponse(data)
 
