@@ -1,0 +1,34 @@
+{% load static %}
+<div class="row mb-5">
+    <div class="col-sm-3 col-xs-6 align-self-center">
+        <div class="m-3">
+            <h4>College Category</h4>
+            <small class="text-muted p-0 m-0">total of: {{career_count|default:0}} </small>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="bg-color-a p-2">Realistic</span> = {{ career_avg.realistic__avg|floatformat:1|default:0}}
+            </li>
+            <li class="list-group-item">
+                <span class="bg-color-b p-2">Investigative</span> = {{career_avg.investigative__avg|floatformat:1|default:0}}
+            </li>
+            <li class="list-group-item">
+                <span class="bg-color-c p-2">Artistic</span> = {{ career_avg.artistic__avg|floatformat:1|default:0}}
+            </li>
+            <li class="list-group-item">
+                <span class="bg-color-d p-2">Social</span> = {{ career_avg.social__avg|floatformat:1|default:0}}
+            </li>
+            <li class="list-group-item">
+                <span class="bg-color-e p-2">Enterprising</span> = {{career_avg.enterprising__avg|floatformat:1|default:0}}
+            </li>
+            <li class="list-group-item">
+                <span class="bg-color-f p-2">Conventional</span> = {{career_avg.conventional__avg|floatformat:1|default:0}}
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-xs-6 py-3">
+        <div class="chart-container mx-auto" style="height: 400px; width: 100%">
+            <canvas id="careerChart"></canvas>
+        </div>
+    </div>
+</div>

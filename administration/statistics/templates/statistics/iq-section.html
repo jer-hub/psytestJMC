@@ -8,7 +8,8 @@
     <form
       hx-get="{% url 'administration:iq-stats' %}"
       hx-trigger="change"
-      hx-swap="none"
+      hx-swap="outerHTML"
+      hx-target="#iq_scripts"
     >
       <div class="d-flex flex-wrap m-1">
         <label for="" class="m-2">Sex</label>
@@ -35,3 +36,57 @@
 
   <div id="iq-section">{% include 'statistics/partials/iq_stat.html' %}</div>
 </div>
+
+{% block iq_scripts %}
+<script id="iq_scripts">
+  $(document).ready(() => {
+    var $data = [{% for avg in iq_avg %}'{{avg}}',{% endfor %}];
+    var $labels = [{% for label in iq_labels %}'{{label}}',{% endfor %}];
+
+    let IQChart = new Chart(iqChart, {
+      type: "line", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data: {
+        labels: $labels,
+        datasets: [
+          {
+            data: $data,
+            backgroundColor: [
+              "rgba(66, 141, 239, 0.6)",
+              "rgba(54, 162, 235, 0.6)",
+              "rgba(255, 206, 86, 0.6)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)",
+              "rgba(255, 159, 64, 0.6)",
+              "rgba(255, 99, 132, 0.6)",
+            ],
+            borderWidth: 1,
+            borderColor: "#777",
+            hoverBorderWidth: 3,
+            hoverBorderColor: "#000",
+          },
+        ],
+      },
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+        legend: {
+          display: false,
+        },
+        tooltips: {
+          enabled: true,
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
+      },
+    });
+  });
+</script>
+
+{% endblock %}
