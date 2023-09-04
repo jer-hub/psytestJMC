@@ -1,0 +1,11 @@
+id,name,code,educationlevel_id
+2,College of Information Technology,CITE,4
+3,College of Arts and Sciences Education,CASE,4
+4,IBED-Senior Highschool Department,SHS-IBED,3
+5,IBED-Grade School Department,GRD-IBED,1
+1,IBED-Junior Highschool Department,JH-IBED,2
+6,College of Allied Health Sciences Education,CAHSE,4
+7,College of Business Education,COBE,4
+8,College of Criminal Justice Education,CCJE,4
+9,College of Teachers Education,CTE,4
+10,College of Engineering Education,CEE,4

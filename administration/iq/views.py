@@ -33,6 +33,7 @@ def add_question(request):
     context = {}
     form = AddIQQuestionForm(request.POST or None)
     if form.is_valid():
+        print(form.cleaned_data["question"])
         question = form.save()
         context['add_question_form'] = AddIQQuestionForm()
         questions = Question.objects.all().order_by('id')

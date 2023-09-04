@@ -40,6 +40,10 @@
 {% block iq_scripts %}
 <script id="iq_scripts">
   $(document).ready(() => {
+
+    const count = $('#iq_count')
+    count.text("total of: {{ iq_count|default:0 }}")
+
     var $data = [{% for avg in iq_avg %}'{{avg}}',{% endfor %}];
     var $labels = [{% for label in iq_labels %}'{{label}}',{% endfor %}];
 

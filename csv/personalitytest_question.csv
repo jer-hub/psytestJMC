@@ -1,0 +1,51 @@
+id,question,slug,created,category,key
+1,Am the life of the party,am-the-life-of-the-party,2023-02-15 18:40:59.343113+08,EXT,1
+2,Feel little concern for others,feel-little-concern-for-others,2023-02-15 18:40:59.343113+08,AGR,0
+3,Am always prepared,am-always-prepared,2023-02-15 18:40:59.343113+08,CSN,1
+4,Get stressed out easily,get-stressed-out-easily,2023-02-15 18:40:59.343113+08,EST,0
+5,Have a rich vocabulary,have-a-rich-vocabulary,2023-02-15 18:40:59.343113+08,OPN,1
+6,Don't talk a lot,dont-talk-a-lot,2023-02-15 18:40:59.343113+08,EXT,0
+7,Am interested in people,am-interested-in-people,2023-02-15 18:40:59.343113+08,AGR,1
+8,Leave my belongings around,leave-my-belongings-around,2023-02-15 18:40:59.343113+08,CSN,0
+9,Am relaxed most of the time,am-relaxed-most-of-the-time,2023-02-15 18:40:59.343113+08,EST,1
+10,Have difficulty understanding abstract ideas,have-difficulty-understanding-abstract-ideas,2023-02-15 18:40:59.343113+08,OPN,0
+11,Feel comfortable around people,feel-comfortable-around-people,2023-02-15 18:40:59.343113+08,EXT,1
+12,Insult people,insult-people,2023-02-15 18:40:59.343113+08,AGR,0
+13,Pay attention to details,pay-attention-to-details,2023-02-15 18:40:59.343113+08,CSN,1
+14,Worry about things,worry-about-things,2023-02-15 18:40:59.343113+08,EST,0
+15,Have a vivid imagination,have-a-vivid-imagination,2023-02-15 18:40:59.343113+08,OPN,1
+16,Keep in the background,keep-in-the-background,2023-02-15 18:40:59.343113+08,EXT,0
+17,Sympathize with others' feelings,sympathize-with-others-feelings,2023-02-15 18:40:59.343113+08,AGR,1
+18,Make a mess of things,make-a-mess-of-things,2023-02-15 18:40:59.343113+08,CSN,0
+19,Seldom feel blue,seldom-feel-blue,2023-02-15 18:40:59.343113+08,EST,1
+20,Am not interested in abstract ideas,am-not-interested-in-abstract-ideas,2023-02-15 18:40:59.343113+08,OPN,0
+21,Start conversations,start-conversations,2023-02-15 18:40:59.343113+08,EXT,1
+22,Am not interested in other people's problems,am-not-interested-in-other-peoples-problems,2023-02-15 18:40:59.343113+08,AGR,0
+23,Get chores done right away,get-chores-done-right-away,2023-02-15 18:40:59.343113+08,CSN,1
+24,Am easily disturbed,am-easily-disturbed,2023-02-15 18:40:59.343113+08,EST,0
+25,Have excellent ideas,have-excellent-ideas,2023-02-15 18:40:59.343113+08,OPN,1
+26,Have little to say,have-little-to-say,2023-02-15 18:40:59.343113+08,EXT,0
+27,Have a soft heart,have-a-soft-heart,2023-02-15 18:40:59.343113+08,AGR,1
+28,Often forget to put things back in their proper place,often-forget-to-put-things-back-in-their-proper-pl,2023-02-15 18:40:59.343113+08,CSN,0
+29,Get upset easily,get-upset-easily,2023-02-15 18:40:59.343113+08,EST,0
+30,Do not have a good imagination,do-not-have-a-good-imagination,2023-02-15 18:40:59.343113+08,OPN,0
+31,Talk to a lot of different people at parties,talk-to-a-lot-of-different-people-at-parties,2023-02-15 18:40:59.343113+08,EXT,1
+32,Am not really interested in others,am-not-really-interested-in-others,2023-02-15 18:40:59.343113+08,AGR,0
+33,Like order,like-order,2023-02-15 18:40:59.343113+08,CSN,1
+34,Change my mood a lot,change-my-mood-a-lot,2023-02-15 18:40:59.343113+08,EST,0
+35,Am quick to understand things,am-quick-to-understand-things,2023-02-15 18:40:59.343113+08,OPN,1
+36,Don't like to draw attention to myself,dont-like-to-draw-attention-to-myself,2023-02-15 18:40:59.343113+08,EXT,0
+37,Take time out for others,take-time-out-for-others,2023-02-15 18:40:59.343113+08,AGR,1
+38,Shirk my duties,shirk-my-duties,2023-02-15 18:40:59.343113+08,CSN,0
+39,Have frequent mood swings,have-frequent-mood-swings,2023-02-15 18:40:59.343113+08,EST,0
+40,Use difficult words,use-difficult-words,2023-02-15 18:40:59.343113+08,OPN,1
+41,Don't mind being the center of attention,dont-mind-being-the-center-of-attention,2023-02-15 18:40:59.343113+08,EXT,1
+42,Feel others' emotions,feel-others-emotions,2023-02-15 18:40:59.343113+08,AGR,1
+43,Follow a schedule,follow-a-schedule,2023-02-15 18:40:59.343113+08,CSN,1
+44,Get irritated easily,get-irritated-easily,2023-02-15 18:40:59.343113+08,EST,0
+45,Spend time reflecting on things,spend-time-reflecting-on-things,2023-02-15 18:40:59.343113+08,OPN,1
+46,Am quiet around strangers,am-quiet-around-strangers,2023-02-15 18:40:59.343113+08,EXT,0
+47,Make people feel at ease,make-people-feel-at-ease,2023-02-15 18:40:59.343113+08,AGR,1
+48,Am exacting in my work,am-exacting-in-my-work,2023-02-15 18:40:59.343113+08,CSN,1
+49,Often feel blue,often-feel-blue,2023-02-15 18:40:59.343113+08,EST,0
+50,Am full of ideas,am-full-of-ideas,2023-02-15 18:40:59.343113+08,OPN,1

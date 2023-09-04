@@ -1,0 +1,43 @@
+id,question,slug,created,category
+1,I like to work on cars,i-like-to-work-on-cars,2023-02-15 16:51:56.265302+08,R
+2,I like to do puzzles,i-like-to-do-puzzles,2023-02-15 16:58:24.49262+08,I
+3,I am good at working independently,i-am-good-at-working-independently,2023-02-15 16:59:38.338846+08,A
+4,I like to work in teams,I-like-to-work-in-teams,2023-02-15 16:59:38.338846+08,S
+5,"I am an ambitious person, I set goals for myself","I-am-an-ambitious-person,-I-set-goals-for-myself",2023-02-15 16:59:38.338846+08,E
+6,"I like to organize things, (files, desks/offices)","I-like-to-organize-things,-(files,-desks/offices)",2023-02-15 16:59:38.338846+08,C
+7,I like to build things,I-like-to-build-things,2023-02-15 16:59:38.338846+08,R
+8,I like to read about art and music,I-like-to-read-about-art-and-music,2023-02-15 16:59:38.338846+08,A
+9,I like to have clear instructions to follow,I-like-to-have-clear-instructions-to-follow,2023-02-15 16:59:38.338846+08,C
+10,I like to try to influence or persuade people,I-like-to-try-to-influence-or-persuade-people,2023-02-15 16:59:38.338846+08,E
+11,I like to do experiments,I-like-to-do-experiments,2023-02-15 16:59:38.338846+08,I
+12,I like to teach or train people,I-like-to-teach-or-train-people,2023-02-15 16:59:38.338846+08,S
+13,I like trying to help people solve their problems,I-like-trying-to-help-people-solve-their-problems,2023-02-15 16:59:38.338846+08,S
+14,I like to take care of animals,I-like-to-take-care-of-animals,2023-02-15 16:59:38.338846+08,R
+15,I wouldn not mind working 8 hours per day in an office,I-would-not-mind-working-8-hours-per-day-in-an-office,2023-02-15 16:59:38.338846+08,C
+16,I like selling things,I-like-selling-things,2023-02-15 16:59:38.338846+08,E
+17,I enjoy creative writing,I-enjoy-creative-writing,2023-02-15 16:59:38.338846+08,A
+18,I enjoy science,I-enjoy-science,2023-02-15 16:59:38.338846+08,I
+19,I am quick to take on new responsibilities,I-am-quick-to-take-on-new-responsibilities,2023-02-15 16:59:38.338846+08,E
+20,I am interested in healing people,I-am-interested-in-healing-people,2023-02-15 16:59:38.338846+08,S
+21,I enjoy trying to figure out how things work,I-enjoy-trying-to-figure-out-how-things-work,2023-02-15 16:59:38.338846+08,I
+22,I like putting things together or assembling things,I-like-putting-things-together-or-assembling-things,2023-02-15 16:59:38.338846+08,R
+23,I am a creative person,I-am-a-creative-person,2023-02-15 16:59:38.338846+08,A
+24,I pay attention to details,I-pay-attention-to-details,2023-02-15 16:59:38.338846+08,C
+25,I like to do filing or typing,I-like-to-do-filing-or-typing,2023-02-15 16:59:38.338846+08,C
+26,I like to analyze things (problems/ situations,I-like-to-analyze-things-(problems/-situations,2023-02-15 16:59:38.338846+08,I
+27,I like to play instruments or sing,I-like-to-play-instruments-or-sing,2023-02-15 16:59:38.338846+08,A
+28,I enjoy learning about other cultures,I-enjoy-learning-about-other-cultures,2023-02-15 16:59:38.338846+08,S
+29,I would like to start my own business,I-would-like-to-start-my-own-business,2023-02-15 16:59:38.338846+08,E
+30,I like to cook,I-like-to-cook,2023-02-15 16:59:38.338846+08,R
+31,I like acting in plays,I-like-acting-in-plays,2023-02-15 16:59:38.338846+08,A
+32,I am a practical person,I-am-a-practical-person,2023-02-15 16:59:38.338846+08,R
+33,I like working with numbers or charts,I-like-working-with-numbers-or-charts,2023-02-15 16:59:38.338846+08,I
+34,I like to get into discussions about issues,I-like-to-get-into-discussions-about-issues,2023-02-15 16:59:38.338846+08,S
+35,I am good at keeping records of my work,I-am-good-at-keeping-records-of-my-work,2023-02-15 16:59:38.338846+08,C
+36,I like to lead,I-like-to-lead,2023-02-15 16:59:38.338846+08,E
+37,I like working outdoors,I-like-working-outdoors,2023-02-15 16:59:38.338846+08,R
+38,I would like to work in an office,I-would-like-to-work-in-an-office,2023-02-15 16:59:38.338846+08,C
+39,I am good at math,I-am-good-at-math,2023-02-15 16:59:38.338846+08,I
+40,I like helping people,I-like-helping-people,2023-02-15 16:59:38.338846+08,S
+41,I like to draw,I-like-to-draw,2023-02-15 16:59:38.338846+08,A
+42,I like to give speeches,I-like-to-give-speeches,2023-02-15 16:59:38.338846+08,E

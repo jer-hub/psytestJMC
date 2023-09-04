@@ -32,6 +32,10 @@
 {% block personality_script %}
 <script id="personality_script">
   $(document).ready(() => {
+
+    const count = $('#personality_count')
+    count.text("total of: {{ personality_count|default:0 }}")
+
     var $data = [{% for avg in personality_avg_list %}'{{avg}}',{% endfor %}];
     var $labels = [{% for label in personality_labels %}'{{label}}',{% endfor %}];
 

@@ -22,8 +22,8 @@ class Question(models.Model):
         ('1', 'Positive'),
         ('0', 'Negative')
     ]
-    question=models.TextField(null=True, blank=True)
-    slug=models.SlugField(null=True, blank=True)
+    question=models.TextField(max_length=128,null=True, blank=True)
+    slug=models.SlugField(max_length=256,null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=100, choices=category_choices)
     key = models.CharField(max_length=10, null=True, blank=True, choices=key_choices)

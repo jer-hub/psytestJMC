@@ -1,0 +1,18 @@
+id,name,department_id,code
+1,Science Technology Engineering Mathematics,4,STEM
+2,Technology Vocational Livelihood,4,TVL
+3,Humanities and Social Sciences,4,HUMMS
+4,Accountancy  Business and Management,4,ABM
+5,Bachelor of Science in Information Technology,2,BSIT
+6,Bachelor of Science in Psychology,3,BSP
+7,Bachelor of Science in Social Work,3,BSSW
+8,Bachelor of Science in Medical Technology,6,BSMT
+9,Bachelor of Science in Radiologic Technology,6,BSRT
+10,Bachelor of Science in Accountancy,7,BSA
+11,Bachelor of Science in Management Accounting,7,BSMA
+12,Bachelor of Science in Business Administration,7,BSBA
+13,Bachelor of Science in Criminology,8,BSC
+14,Bachelor of Elementary Education,9,BEEd  
+15,Bachelor of Secondary Education,9,BSEd
+16,Bachelor of Science in Civil Engineering,10,BSCE
+17,Bachelor of Science in Entertainment and Multimedia Computing,2,BSEMC

@@ -6,7 +6,6 @@ $(document).ready(() => {
     }, 2000);
   });
 
-  // Delete Question
   var $deletebtn = $("#delete_question_btn");
   $deletebtn.click((e) => {
     var $url = "/administration/iq/delete/question/";

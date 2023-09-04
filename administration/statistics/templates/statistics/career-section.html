@@ -31,6 +31,10 @@
 {% block career_script %}
 <script id="career_script">
   $(document).ready(() => {
+
+    const count = $('#career_count')
+    count.text("total of: {{ career_count|default:0 }}")
+
     var $data = [{% for avg in career_avg_list %}'{{avg}}',{% endfor %}];
     var $labels = [{% for label in career_labels %}'{{label}}',{% endfor %}];
 

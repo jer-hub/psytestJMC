@@ -4,7 +4,7 @@ from datetime import datetime
 from accounts.models import Profile
 
 class Command(BaseCommand):
-    help = 'populate age in Profile model'
+    help = 'populate is_result in Profile model'
 
 
     def handle(self, *args, **options):
