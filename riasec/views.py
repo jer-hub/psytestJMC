@@ -15,7 +15,8 @@ from datetime import datetime
 
 @login_required(login_url="accounts:login")
 def testPage(request):
-    if not len(Question.objects.filter(category__in=["R", "I", "A", "S", "E", "C"]).order_by("category").distinct("category")) == 6:
+    categories = Question.objects.filter(category__in=["R", "I", "A", "S", "E", "C"]).values("category").annotate(count=Count("category"))
+    if len(categories) != 6:
         return HttpResponse("Not available")
     if (request.user.profile.department):
         return render(request,"riasec/test.html")
