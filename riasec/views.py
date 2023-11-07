@@ -3,11 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.db import transaction
-from django.db.models import Q
 
 from accounts.models import Profile
 from riasec.models import Question, Result as RResult, Answer
-from personalityTest.models import Result as PResult
 
 from datetime import datetime
 # Create your views here.
@@ -15,7 +13,7 @@ from datetime import datetime
 
 @login_required(login_url="accounts:login")
 def testPage(request):
-    categories = Question.objects.filter(category__in=["R", "I", "A", "S", "E", "C"]).values("category").annotate(count=Count("category"))
+    categories = set(Question.objects.filter(category__in=["R", "I", "A", "S", "E", "C"]).values_list("category", flat=True))
     if len(categories) != 6:
         return HttpResponse("Not available")
     if (request.user.profile.department):

@@ -21,11 +21,7 @@ class TestView(LoginRequiredMixin, TemplateView):
     ml_model = joblib.load("models/personality_career_dt.sav")
 
     def get(self, *args, **kwargs):
-        categories = set(
-            Question.objects.filter(
-                category__in=["EXT", "EST", "AGR", "CSN", "OPN"]
-            ).values_list("category", flat=True)
-        )
+        categories = set(Question.objects.filter(category__in=["EXT", "EST", "AGR", "CSN", "OPN"]).values_list("category", flat=True))
         if len(categories) != 5:
             return HttpResponse("Not available")
         context = self.get_context_data(**kwargs)
