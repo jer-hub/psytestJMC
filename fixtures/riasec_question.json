@@ -1,0 +1,422 @@
+[
+{
+  "model": "riasec.question",
+  "pk": 1,
+  "fields": {
+    "question": "I like to work on cars",
+    "slug": "i-like-to-work-on-cars",
+    "created": "2023-11-08T03:10:33.386Z",
+    "category": "R"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 2,
+  "fields": {
+    "question": "I like to do puzzles",
+    "slug": "i-like-to-do-puzzles",
+    "created": "2023-11-08T03:10:33.392Z",
+    "category": "I"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 3,
+  "fields": {
+    "question": "I am good at working independently",
+    "slug": "i-am-good-at-working-independently",
+    "created": "2023-11-08T03:10:33.397Z",
+    "category": "A"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 4,
+  "fields": {
+    "question": "I like to work in teams",
+    "slug": "i-like-to-work-in-teams",
+    "created": "2023-11-08T03:10:33.402Z",
+    "category": "S"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 5,
+  "fields": {
+    "question": "I am an ambitious person, I set goals for myself",
+    "slug": "i-am-an-ambitious-person-i-set-goals-for-myself",
+    "created": "2023-11-08T03:10:33.406Z",
+    "category": "E"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 6,
+  "fields": {
+    "question": "I like to organize things, (files, desks/offices)",
+    "slug": "i-like-to-organize-things-files-desksoffices",
+    "created": "2023-11-08T03:10:33.411Z",
+    "category": "C"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 7,
+  "fields": {
+    "question": "I like to build things",
+    "slug": "i-like-to-build-things",
+    "created": "2023-11-08T03:10:33.415Z",
+    "category": "R"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 8,
+  "fields": {
+    "question": "I like to read about art and music",
+    "slug": "i-like-to-read-about-art-and-music",
+    "created": "2023-11-08T03:10:33.419Z",
+    "category": "A"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 9,
+  "fields": {
+    "question": "I like to have clear instructions to follow",
+    "slug": "i-like-to-have-clear-instructions-to-follow",
+    "created": "2023-11-08T03:10:33.424Z",
+    "category": "C"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 10,
+  "fields": {
+    "question": "I like to try to influence or persuade people",
+    "slug": "i-like-to-try-to-influence-or-persuade-people",
+    "created": "2023-11-08T03:10:33.428Z",
+    "category": "E"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 11,
+  "fields": {
+    "question": "I like to do experiments",
+    "slug": "i-like-to-do-experiments",
+    "created": "2023-11-08T03:10:33.433Z",
+    "category": "I"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 12,
+  "fields": {
+    "question": "I like to teach or train people",
+    "slug": "i-like-to-teach-or-train-people",
+    "created": "2023-11-08T03:10:33.437Z",
+    "category": "S"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 13,
+  "fields": {
+    "question": "I like trying to help people solve their problems",
+    "slug": "i-like-trying-to-help-people-solve-their-problems",
+    "created": "2023-11-08T03:10:33.441Z",
+    "category": "S"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 14,
+  "fields": {
+    "question": "I like to take care of animals",
+    "slug": "i-like-to-take-care-of-animals",
+    "created": "2023-11-08T03:10:33.446Z",
+    "category": "R"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 15,
+  "fields": {
+    "question": "I wouldn not mind working 8 hours per day in an office",
+    "slug": "i-wouldn-not-mind-working-8-hours-per-day-in-an-office",
+    "created": "2023-11-08T03:10:33.451Z",
+    "category": "C"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 16,
+  "fields": {
+    "question": "I like selling things",
+    "slug": "i-like-selling-things",
+    "created": "2023-11-08T03:10:33.455Z",
+    "category": "E"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 17,
+  "fields": {
+    "question": "I enjoy creative writing",
+    "slug": "i-enjoy-creative-writing",
+    "created": "2023-11-08T03:10:33.460Z",
+    "category": "A"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 18,
+  "fields": {
+    "question": "I enjoy science",
+    "slug": "i-enjoy-science",
+    "created": "2023-11-08T03:10:33.465Z",
+    "category": "I"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 19,
+  "fields": {
+    "question": "I am quick to take on new responsibilities",
+    "slug": "i-am-quick-to-take-on-new-responsibilities",
+    "created": "2023-11-08T03:10:33.469Z",
+    "category": "E"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 20,
+  "fields": {
+    "question": "I am interested in healing people",
+    "slug": "i-am-interested-in-healing-people",
+    "created": "2023-11-08T03:10:33.473Z",
+    "category": "S"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 21,
+  "fields": {
+    "question": "I enjoy trying to figure out how things work",
+    "slug": "i-enjoy-trying-to-figure-out-how-things-work",
+    "created": "2023-11-08T03:10:33.478Z",
+    "category": "I"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 22,
+  "fields": {
+    "question": "I like putting things together or assembling things",
+    "slug": "i-like-putting-things-together-or-assembling-things",
+    "created": "2023-11-08T03:10:33.483Z",
+    "category": "R"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 23,
+  "fields": {
+    "question": "I am a creative person",
+    "slug": "i-am-a-creative-person",
+    "created": "2023-11-08T03:10:33.487Z",
+    "category": "A"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 24,
+  "fields": {
+    "question": "I pay attention to details",
+    "slug": "i-pay-attention-to-details",
+    "created": "2023-11-08T03:10:33.492Z",
+    "category": "C"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 25,
+  "fields": {
+    "question": "I like to do filing or typing",
+    "slug": "i-like-to-do-filing-or-typing",
+    "created": "2023-11-08T03:10:33.496Z",
+    "category": "C"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 26,
+  "fields": {
+    "question": "I like to analyze things (problems/ situations",
+    "slug": "i-like-to-analyze-things-problems-situations",
+    "created": "2023-11-08T03:10:33.500Z",
+    "category": "I"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 27,
+  "fields": {
+    "question": "I like to play instruments or sing",
+    "slug": "i-like-to-play-instruments-or-sing",
+    "created": "2023-11-08T03:10:33.505Z",
+    "category": "A"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 28,
+  "fields": {
+    "question": "I enjoy learning about other cultures",
+    "slug": "i-enjoy-learning-about-other-cultures",
+    "created": "2023-11-08T03:10:33.510Z",
+    "category": "S"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 29,
+  "fields": {
+    "question": "I would like to start my own business",
+    "slug": "i-would-like-to-start-my-own-business",
+    "created": "2023-11-08T03:10:33.514Z",
+    "category": "E"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 30,
+  "fields": {
+    "question": "I like to cook",
+    "slug": "i-like-to-cook",
+    "created": "2023-11-08T03:10:33.518Z",
+    "category": "R"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 31,
+  "fields": {
+    "question": "I like acting in plays",
+    "slug": "i-like-acting-in-plays",
+    "created": "2023-11-08T03:10:33.523Z",
+    "category": "A"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 32,
+  "fields": {
+    "question": "I am a practical person",
+    "slug": "i-am-a-practical-person",
+    "created": "2023-11-08T03:10:33.527Z",
+    "category": "R"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 33,
+  "fields": {
+    "question": "I like working with numbers or charts",
+    "slug": "i-like-working-with-numbers-or-charts",
+    "created": "2023-11-08T03:10:33.531Z",
+    "category": "I"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 34,
+  "fields": {
+    "question": "I like to get into discussions about issues",
+    "slug": "i-like-to-get-into-discussions-about-issues",
+    "created": "2023-11-08T03:10:33.536Z",
+    "category": "S"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 35,
+  "fields": {
+    "question": "I am good at keeping records of my work",
+    "slug": "i-am-good-at-keeping-records-of-my-work",
+    "created": "2023-11-08T03:10:33.540Z",
+    "category": "C"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 36,
+  "fields": {
+    "question": "I like to lead",
+    "slug": "i-like-to-lead",
+    "created": "2023-11-08T03:10:33.549Z",
+    "category": "E"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 37,
+  "fields": {
+    "question": "I like working outdoors",
+    "slug": "i-like-working-outdoors",
+    "created": "2023-11-08T03:10:33.554Z",
+    "category": "R"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 38,
+  "fields": {
+    "question": "I would like to work in an office",
+    "slug": "i-would-like-to-work-in-an-office",
+    "created": "2023-11-08T03:10:33.558Z",
+    "category": "C"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 39,
+  "fields": {
+    "question": "I am good at math",
+    "slug": "i-am-good-at-math",
+    "created": "2023-11-08T03:10:33.563Z",
+    "category": "I"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 40,
+  "fields": {
+    "question": "I like helping people",
+    "slug": "i-like-helping-people",
+    "created": "2023-11-08T03:10:33.567Z",
+    "category": "S"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 41,
+  "fields": {
+    "question": "I like to draw",
+    "slug": "i-like-to-draw",
+    "created": "2023-11-08T03:10:33.572Z",
+    "category": "A"
+  }
+},
+{
+  "model": "riasec.question",
+  "pk": 42,
+  "fields": {
+    "question": "I like to give speeches",
+    "slug": "i-like-to-give-speeches",
+    "created": "2023-11-08T03:10:33.576Z",
+    "category": "E"
+  }
+}
+]

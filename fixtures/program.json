@@ -1,0 +1,155 @@
+[
+{
+  "model": "accounts.program",
+  "pk": 1,
+  "fields": {
+    "department": 4,
+    "code": "STEM",
+    "name": "Science Technology Engineering Mathematics"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 2,
+  "fields": {
+    "department": 4,
+    "code": "TVL",
+    "name": "Technology Vocational Livelihood"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 3,
+  "fields": {
+    "department": 4,
+    "code": "HUMMS",
+    "name": "Humanities and Social Sciences"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 4,
+  "fields": {
+    "department": 4,
+    "code": "ABM",
+    "name": "Accountancy  Business and Management"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 5,
+  "fields": {
+    "department": 2,
+    "code": "BSIT",
+    "name": "Bachelor of Science in Information Technology"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 6,
+  "fields": {
+    "department": 3,
+    "code": "BSP",
+    "name": "Bachelor of Science in Psychology"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 7,
+  "fields": {
+    "department": 3,
+    "code": "BSSW",
+    "name": "Bachelor of Science in Social Work"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 8,
+  "fields": {
+    "department": 6,
+    "code": "BSMT",
+    "name": "Bachelor of Science in Medical Technology"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 9,
+  "fields": {
+    "department": 6,
+    "code": "BSRT",
+    "name": "Bachelor of Science in Radiologic Technology"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 10,
+  "fields": {
+    "department": 7,
+    "code": "BSA",
+    "name": "Bachelor of Science in Accountancy"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 11,
+  "fields": {
+    "department": 7,
+    "code": "BSMA",
+    "name": "Bachelor of Science in Management Accounting"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 12,
+  "fields": {
+    "department": 7,
+    "code": "BSBA",
+    "name": "Bachelor of Science in Business Administration"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 13,
+  "fields": {
+    "department": 8,
+    "code": "BSC",
+    "name": "Bachelor of Science in Criminology"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 14,
+  "fields": {
+    "department": 9,
+    "code": "BEEd  ",
+    "name": "Bachelor of Elementary Education"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 15,
+  "fields": {
+    "department": 9,
+    "code": "BSEd",
+    "name": "Bachelor of Secondary Education"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 16,
+  "fields": {
+    "department": 10,
+    "code": "BSCE",
+    "name": "Bachelor of Science in Civil Engineering"
+  }
+},
+{
+  "model": "accounts.program",
+  "pk": 17,
+  "fields": {
+    "department": 2,
+    "code": "BSEMC",
+    "name": "Bachelor of Science in Entertainment and Multimedia Computing"
+  }
+}
+]

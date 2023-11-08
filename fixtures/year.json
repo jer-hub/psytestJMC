@@ -1,0 +1,130 @@
+[
+{
+  "model": "accounts.year",
+  "pk": 1,
+  "fields": {
+    "educationlevel": 1,
+    "name": "Grade 1"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 2,
+  "fields": {
+    "educationlevel": 1,
+    "name": "Grade 2"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 3,
+  "fields": {
+    "educationlevel": 1,
+    "name": "Grade 3"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 4,
+  "fields": {
+    "educationlevel": 1,
+    "name": "Grade 4"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 5,
+  "fields": {
+    "educationlevel": 1,
+    "name": "Grade 5"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 6,
+  "fields": {
+    "educationlevel": 1,
+    "name": "Grade 6"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 7,
+  "fields": {
+    "educationlevel": 2,
+    "name": "Grade 7"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 8,
+  "fields": {
+    "educationlevel": 2,
+    "name": "Grade 8"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 9,
+  "fields": {
+    "educationlevel": 2,
+    "name": "Grade 9"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 10,
+  "fields": {
+    "educationlevel": 2,
+    "name": "Grade 10"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 11,
+  "fields": {
+    "educationlevel": 3,
+    "name": "Grade 11"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 12,
+  "fields": {
+    "educationlevel": 3,
+    "name": "Grade 12"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 13,
+  "fields": {
+    "educationlevel": 4,
+    "name": "1st Year"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 14,
+  "fields": {
+    "educationlevel": 4,
+    "name": "2nd Year"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 15,
+  "fields": {
+    "educationlevel": 4,
+    "name": "3rd Year"
+  }
+},
+{
+  "model": "accounts.year",
+  "pk": 16,
+  "fields": {
+    "educationlevel": 4,
+    "name": "4th Year"
+  }
+}
+]

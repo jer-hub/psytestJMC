@@ -15,6 +15,18 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'psytest',
+#     'USER': 'jer-hub',
+#     'PASSWORD': 'UoWmlw7j3dbq',
+#     'HOST': 'ep-crimson-mode-80245971.ap-southeast-1.aws.neon.tech',
+#     'PORT': '5432',
+#     'OPTIONS': {'sslmode': 'require'}, 
+#   }
+# }
+
 USE_TZ=True
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False

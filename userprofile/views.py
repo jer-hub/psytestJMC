@@ -13,7 +13,7 @@ from accounts.models import Profile
 from riasec.models import OfferedProgram, Result as CareerResult
 from personalityTest.models import RecommendedProgram, Result as PersonalityResult
 from iqtest.models import Result as IQResult
-
+from administration.views import Is_Counselor
 from psytests.forms import ContactForm
 
 
@@ -26,7 +26,7 @@ class UserDetailViewMixin(UserPassesTestMixin):
     def test_func(self):
         test = True
         obj = get_object_or_404(Profile, user=self.request.user)
-        if obj.user.is_superuser:
+        if obj.user.is_superuser or obj.user.groups.filter(name="Counselor").exists():
             test = True
         else:
             if obj.user.username != self.kwargs["username"]:

@@ -1,0 +1,552 @@
+[
+{
+  "model": "personalityTest.question",
+  "pk": 1,
+  "fields": {
+    "question": "Am the life of the party",
+    "slug": "am-the-life-of-the-party",
+    "created": "2023-11-08T03:08:53.686Z",
+    "category": "EXT",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 2,
+  "fields": {
+    "question": "Feel little concern for others",
+    "slug": "feel-little-concern-for-others",
+    "created": "2023-11-08T03:08:53.694Z",
+    "category": "AGR",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 3,
+  "fields": {
+    "question": "Am always prepared",
+    "slug": "am-always-prepared",
+    "created": "2023-11-08T03:08:53.701Z",
+    "category": "CSN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 4,
+  "fields": {
+    "question": "Get stressed out easily",
+    "slug": "get-stressed-out-easily",
+    "created": "2023-11-08T03:08:53.708Z",
+    "category": "EST",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 5,
+  "fields": {
+    "question": "Have a rich vocabulary",
+    "slug": "have-a-rich-vocabulary",
+    "created": "2023-11-08T03:08:53.715Z",
+    "category": "OPN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 6,
+  "fields": {
+    "question": "Don't talk a lot",
+    "slug": "dont-talk-a-lot",
+    "created": "2023-11-08T03:08:53.721Z",
+    "category": "EXT",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 7,
+  "fields": {
+    "question": "Am interested in people",
+    "slug": "am-interested-in-people",
+    "created": "2023-11-08T03:08:53.727Z",
+    "category": "AGR",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 8,
+  "fields": {
+    "question": "Leave my belongings around",
+    "slug": "leave-my-belongings-around",
+    "created": "2023-11-08T03:08:53.734Z",
+    "category": "CSN",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 9,
+  "fields": {
+    "question": "Am relaxed most of the time",
+    "slug": "am-relaxed-most-of-the-time",
+    "created": "2023-11-08T03:08:53.740Z",
+    "category": "EST",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 10,
+  "fields": {
+    "question": "Have difficulty understanding abstract ideas",
+    "slug": "have-difficulty-understanding-abstract-ideas",
+    "created": "2023-11-08T03:08:53.746Z",
+    "category": "OPN",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 11,
+  "fields": {
+    "question": "Feel comfortable around people",
+    "slug": "feel-comfortable-around-people",
+    "created": "2023-11-08T03:08:53.752Z",
+    "category": "EXT",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 12,
+  "fields": {
+    "question": "Insult people",
+    "slug": "insult-people",
+    "created": "2023-11-08T03:08:53.759Z",
+    "category": "AGR",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 13,
+  "fields": {
+    "question": "Pay attention to details",
+    "slug": "pay-attention-to-details",
+    "created": "2023-11-08T03:08:53.765Z",
+    "category": "CSN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 14,
+  "fields": {
+    "question": "Worry about things",
+    "slug": "worry-about-things",
+    "created": "2023-11-08T03:08:53.771Z",
+    "category": "EST",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 15,
+  "fields": {
+    "question": "Have a vivid imagination",
+    "slug": "have-a-vivid-imagination",
+    "created": "2023-11-08T03:08:53.778Z",
+    "category": "OPN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 16,
+  "fields": {
+    "question": "Keep in the background",
+    "slug": "keep-in-the-background",
+    "created": "2023-11-08T03:08:53.788Z",
+    "category": "EXT",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 17,
+  "fields": {
+    "question": "Sympathize with others' feelings",
+    "slug": "sympathize-with-others-feelings",
+    "created": "2023-11-08T03:08:53.794Z",
+    "category": "AGR",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 18,
+  "fields": {
+    "question": "Make a mess of things",
+    "slug": "make-a-mess-of-things",
+    "created": "2023-11-08T03:08:53.800Z",
+    "category": "CSN",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 19,
+  "fields": {
+    "question": "Seldom feel blue",
+    "slug": "seldom-feel-blue",
+    "created": "2023-11-08T03:08:53.806Z",
+    "category": "EST",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 20,
+  "fields": {
+    "question": "Am not interested in abstract ideas",
+    "slug": "am-not-interested-in-abstract-ideas",
+    "created": "2023-11-08T03:08:53.811Z",
+    "category": "OPN",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 21,
+  "fields": {
+    "question": "Start conversations",
+    "slug": "start-conversations",
+    "created": "2023-11-08T03:08:53.817Z",
+    "category": "EXT",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 22,
+  "fields": {
+    "question": "Am not interested in other people's problems",
+    "slug": "am-not-interested-in-other-peoples-problems",
+    "created": "2023-11-08T03:08:53.826Z",
+    "category": "AGR",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 23,
+  "fields": {
+    "question": "Get chores done right away",
+    "slug": "get-chores-done-right-away",
+    "created": "2023-11-08T03:08:53.832Z",
+    "category": "CSN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 24,
+  "fields": {
+    "question": "Am easily disturbed",
+    "slug": "am-easily-disturbed",
+    "created": "2023-11-08T03:08:53.838Z",
+    "category": "EST",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 25,
+  "fields": {
+    "question": "Have excellent ideas",
+    "slug": "have-excellent-ideas",
+    "created": "2023-11-08T03:08:53.844Z",
+    "category": "OPN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 26,
+  "fields": {
+    "question": "Have little to say",
+    "slug": "have-little-to-say",
+    "created": "2023-11-08T03:08:53.850Z",
+    "category": "EXT",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 27,
+  "fields": {
+    "question": "Have a soft heart",
+    "slug": "have-a-soft-heart",
+    "created": "2023-11-08T03:08:53.855Z",
+    "category": "AGR",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 28,
+  "fields": {
+    "question": "Often forget to put things back in their proper place",
+    "slug": "often-forget-to-put-things-back-in-their-proper-place",
+    "created": "2023-11-08T03:08:53.861Z",
+    "category": "CSN",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 29,
+  "fields": {
+    "question": "Get upset easily",
+    "slug": "get-upset-easily",
+    "created": "2023-11-08T03:08:53.867Z",
+    "category": "EST",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 30,
+  "fields": {
+    "question": "Do not have a good imagination",
+    "slug": "do-not-have-a-good-imagination",
+    "created": "2023-11-08T03:08:53.873Z",
+    "category": "OPN",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 31,
+  "fields": {
+    "question": "Talk to a lot of different people at parties",
+    "slug": "talk-to-a-lot-of-different-people-at-parties",
+    "created": "2023-11-08T03:08:53.879Z",
+    "category": "EXT",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 32,
+  "fields": {
+    "question": "Am not really interested in others",
+    "slug": "am-not-really-interested-in-others",
+    "created": "2023-11-08T03:08:53.886Z",
+    "category": "AGR",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 33,
+  "fields": {
+    "question": "Like order",
+    "slug": "like-order",
+    "created": "2023-11-08T03:08:53.891Z",
+    "category": "CSN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 34,
+  "fields": {
+    "question": "Change my mood a lot",
+    "slug": "change-my-mood-a-lot",
+    "created": "2023-11-08T03:08:53.898Z",
+    "category": "EST",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 35,
+  "fields": {
+    "question": "Am quick to understand things",
+    "slug": "am-quick-to-understand-things",
+    "created": "2023-11-08T03:08:53.904Z",
+    "category": "OPN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 36,
+  "fields": {
+    "question": "Don't like to draw attention to myself",
+    "slug": "dont-like-to-draw-attention-to-myself",
+    "created": "2023-11-08T03:08:53.915Z",
+    "category": "EXT",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 37,
+  "fields": {
+    "question": "Take time out for others",
+    "slug": "take-time-out-for-others",
+    "created": "2023-11-08T03:08:53.922Z",
+    "category": "AGR",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 38,
+  "fields": {
+    "question": "Shirk my duties",
+    "slug": "shirk-my-duties",
+    "created": "2023-11-08T03:08:53.928Z",
+    "category": "CSN",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 39,
+  "fields": {
+    "question": "Have frequent mood swings",
+    "slug": "have-frequent-mood-swings",
+    "created": "2023-11-08T03:08:53.935Z",
+    "category": "EST",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 40,
+  "fields": {
+    "question": "Use difficult words",
+    "slug": "use-difficult-words",
+    "created": "2023-11-08T03:08:53.941Z",
+    "category": "OPN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 41,
+  "fields": {
+    "question": "Don't mind being the center of attention",
+    "slug": "dont-mind-being-the-center-of-attention",
+    "created": "2023-11-08T03:08:53.947Z",
+    "category": "EXT",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 42,
+  "fields": {
+    "question": "Feel others' emotions",
+    "slug": "feel-others-emotions",
+    "created": "2023-11-08T03:08:53.953Z",
+    "category": "AGR",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 43,
+  "fields": {
+    "question": "Follow a schedule",
+    "slug": "follow-a-schedule",
+    "created": "2023-11-08T03:08:53.959Z",
+    "category": "CSN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 44,
+  "fields": {
+    "question": "Get irritated easily",
+    "slug": "get-irritated-easily",
+    "created": "2023-11-08T03:08:53.966Z",
+    "category": "EST",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 45,
+  "fields": {
+    "question": "Spend time reflecting on things",
+    "slug": "spend-time-reflecting-on-things",
+    "created": "2023-11-08T03:08:53.972Z",
+    "category": "OPN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 46,
+  "fields": {
+    "question": "Am quiet around strangers",
+    "slug": "am-quiet-around-strangers",
+    "created": "2023-11-08T03:08:53.978Z",
+    "category": "EXT",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 47,
+  "fields": {
+    "question": "Make people feel at ease",
+    "slug": "make-people-feel-at-ease",
+    "created": "2023-11-08T03:08:53.984Z",
+    "category": "AGR",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 48,
+  "fields": {
+    "question": "Am exacting in my work",
+    "slug": "am-exacting-in-my-work",
+    "created": "2023-11-08T03:08:53.991Z",
+    "category": "CSN",
+    "key": "1"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 49,
+  "fields": {
+    "question": "Often feel blue",
+    "slug": "often-feel-blue",
+    "created": "2023-11-08T03:08:53.997Z",
+    "category": "EST",
+    "key": "0"
+  }
+},
+{
+  "model": "personalityTest.question",
+  "pk": 50,
+  "fields": {
+    "question": "Am full of ideas",
+    "slug": "am-full-of-ideas",
+    "created": "2023-11-08T03:08:54.007Z",
+    "category": "OPN",
+    "key": "1"
+  }
+}
+]

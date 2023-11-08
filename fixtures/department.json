@@ -1,0 +1,92 @@
+[
+{
+  "model": "accounts.department",
+  "pk": 1,
+  "fields": {
+    "educationlevel": 2,
+    "code": "JH-IBED",
+    "name": "IBED-Junior Highschool Department"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 2,
+  "fields": {
+    "educationlevel": 4,
+    "code": "CITE",
+    "name": "College of Information Technology"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 3,
+  "fields": {
+    "educationlevel": 4,
+    "code": "CASE",
+    "name": "College of Arts and Sciences Education"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 4,
+  "fields": {
+    "educationlevel": 3,
+    "code": "SHS-IBED",
+    "name": "IBED-Senior Highschool Department"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 5,
+  "fields": {
+    "educationlevel": 1,
+    "code": "GRD-IBED",
+    "name": "IBED-Grade School Department"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 6,
+  "fields": {
+    "educationlevel": 4,
+    "code": "CAHSE",
+    "name": "College of Allied Health Sciences Education"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 7,
+  "fields": {
+    "educationlevel": 4,
+    "code": "COBE",
+    "name": "College of Business Education"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 8,
+  "fields": {
+    "educationlevel": 4,
+    "code": "CCJE",
+    "name": "College of Criminal Justice Education"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 9,
+  "fields": {
+    "educationlevel": 4,
+    "code": "CTE",
+    "name": "College of Teachers Education"
+  }
+},
+{
+  "model": "accounts.department",
+  "pk": 10,
+  "fields": {
+    "educationlevel": 4,
+    "code": "CEE",
+    "name": "College of Engineering Education"
+  }
+}
+]

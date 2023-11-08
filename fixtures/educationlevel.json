@@ -1,0 +1,30 @@
+[
+{
+  "model": "accounts.educationlevel",
+  "pk": 1,
+  "fields": {
+    "name": "Grade School"
+  }
+},
+{
+  "model": "accounts.educationlevel",
+  "pk": 2,
+  "fields": {
+    "name": "Junior Highschool"
+  }
+},
+{
+  "model": "accounts.educationlevel",
+  "pk": 3,
+  "fields": {
+    "name": "Senior Highschool"
+  }
+},
+{
+  "model": "accounts.educationlevel",
+  "pk": 4,
+  "fields": {
+    "name": "College"
+  }
+}
+]
