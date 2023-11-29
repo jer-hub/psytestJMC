@@ -1,12 +1,17 @@
+from typing import Any
+from django_htmx.http import retarget
+from django.shortcuts import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import user_passes_test
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.contrib import messages
 from administration.views import Is_Counselor
+from riasec.models import OfferedProgram
+from accounts.models import Program
 
-from .forms import AddCareerQuestionForm
+from .forms import AddCareerQuestionForm, AddOfferedProgramForm
 
 from riasec.models import Question
 
@@ -69,4 +74,48 @@ def delete_question(request):
             data = messages.success(request, 'Please select a question to delete' , extra_tags='danger')
 
     return JsonResponse(data, safe=False)
+
+class ManageInterestView(LoginRequiredMixin, Is_Counselor, TemplateView):
+    template_name = "career/manage_interest.html"
+
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
     
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["realistic_programs"] = OfferedProgram.objects.filter(interest=OfferedProgram.Interest.REALISTIC)
+        context["investigative_programs"] = OfferedProgram.objects.filter(interest=OfferedProgram.Interest.INVESTIGATIVE)
+        context["artistic_programs"] = OfferedProgram.objects.filter(interest=OfferedProgram.Interest.ARTISTIC)
+        context["social_programs"] = OfferedProgram.objects.filter(interest=OfferedProgram.Interest.SOCIAL)
+        context["enterprising_programs"] = OfferedProgram.objects.filter(interest=OfferedProgram.Interest.ENTERPRISING)
+        context["conventional_programs"] = OfferedProgram.objects.filter(interest=OfferedProgram.Interest.CONVENTIONAL)
+        context['addOfferedProgramForm'] = AddOfferedProgramForm()
+        return context
+
+class AddInterest(LoginRequiredMixin, Is_Counselor, TemplateView):
+    def get(self, request):
+        return super().get(request)
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        interest = self.request.POST["interest"]
+        program = Program.objects.get(id=self.request.POST["program"])
+        
+        instance, created = OfferedProgram.objects.get_or_create(interest=interest, program=program)
+        context["offeredPrograms"] = OfferedProgram.objects.filter(interest=interest)
+
+        return retarget(render(request, "career/partials/interest_list.html", context), f"#{interest}")
+
+class DeleteInterest(LoginRequiredMixin, Is_Counselor, TemplateView):
+    def get(self, request):
+        return super().get(request)
+    
+    def post(self, request, *args, **kwargs):
+        print("posting...")
+        checkedboxes = self.request.POST.getlist("checkedboxes[]")
+        print(checkedboxes)
+        for checkedbox in checkedboxes:
+            splitted_cb = checkedbox.split(":")
+            program = Program.objects.get(id=splitted_cb[1])
+            OfferedProgram.objects.get(interest=splitted_cb[0], program=program).delete()
+        return redirect("administration:manage-interest")

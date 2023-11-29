@@ -1,6 +1,6 @@
 
 from django import forms
-from riasec.models import Question
+from riasec.models import Question, OfferedProgram
 
 class AddCareerQuestionForm(forms.ModelForm):
     class Meta:
@@ -19,4 +19,18 @@ class AddCareerQuestionForm(forms.ModelForm):
         widgets = {
             'question': forms.TextInput(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-select'}, choices=category_choices),
+        }
+
+class AddOfferedProgramForm(forms.ModelForm):
+    class Meta:
+        model = OfferedProgram
+        fields = ("interest", "program")
+
+        widgets = {
+            'interest': forms.Select(attrs={
+                "class": "form-select"
+            }),
+            'program': forms.Select(attrs={
+                "class": "form-select"
+            }),
         }

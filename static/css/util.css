@@ -6968,3 +6968,16 @@ a.page-link:focus {
 .choice_display p {
   word-break: break-all;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #008080;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #008080;
+  text-decoration: none;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}

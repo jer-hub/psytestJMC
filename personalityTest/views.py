@@ -77,11 +77,16 @@ class TestView(LoginRequiredMixin, TemplateView):
                 if question.category == "OPN":
                     opn.append(score)
 
-        extroversion = 0 if len(ext) == 0 else float(sum(ext)) / len(ext)
-        neurotic = 0 if len(est) == 0 else float(sum(est))/ len(est)
-        agreeable = 0 if len(agr) == 0 else float(sum(agr)) / len(agr)
-        conscientious = 0 if len(csn) == 0 else float(sum(csn)) / len(csn)
-        openness = 0 if len(opn) == 0 else float(sum(opn)) / len(opn)
+        extroversion = 0 if len(ext) == 0 else int(((float(sum(ext)) / len(ext))/5) * 100)
+        print("Extroversion: ", extroversion)
+        neurotic = 0 if len(est) == 0 else int(((float(sum(est))/ len(est))/5) * 100)
+        print("Neurotic: ", neurotic)
+        agreeable = 0 if len(agr) == 0 else int(((float(sum(agr)) / len(agr))/5) * 100)
+        print("Agreeable: ", agreeable)
+        conscientious = 0 if len(csn) == 0 else int(((float(sum(csn)) / len(csn))/5) * 100)
+        print("Conscientious: ", conscientious)
+        openness = 0 if len(opn) == 0 else int(((float(sum(opn)) / len(opn))/5) * 100)
+        print("Openness: ", openness)
 
         # career_prediction = model.predict
         personality = [[extroversion, neurotic, agreeable, conscientious, openness]]

@@ -16,3 +16,6 @@ python manage.py loaddata fixtures/riasec_question.json
 python manage.py loaddata fixtures/riasec_offeredprogram.json
 python manage.py loaddata fixtures/iqtest_question.json
 python manage.py loaddata fixtures/choice.json
+
+python manage.py createsuperuser
+"create site url"

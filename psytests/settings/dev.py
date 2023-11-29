@@ -8,24 +8,24 @@ SECRET_KEY = 'django-insecure-enn_1_qy&r1^^fqcus4@s^mb5&5%bg1--mogq=b**8be^w)l$0
 
 SITE_ID = 2
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
-#   'default': {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': 'psytest',
-#     'USER': 'jer-hub',
-#     'PASSWORD': 'UoWmlw7j3dbq',
-#     'HOST': 'ep-crimson-mode-80245971.ap-southeast-1.aws.neon.tech',
-#     'PORT': '5432',
-#     'OPTIONS': {'sslmode': 'require'}, 
-#   }
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
 # }
+
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'psytest',
+    'USER': 'jer-hub',
+    'PASSWORD': 'UoWmlw7j3dbq',
+    'HOST': 'ep-crimson-mode-80245971.ap-southeast-1.aws.neon.tech',
+    'PORT': '5432',
+    'OPTIONS': {'sslmode': 'require'}, 
+  }
+}
 
 USE_TZ=True
 SESSION_COOKIE_SECURE = False

@@ -1,0 +1,6 @@
+{% for offeredProgram in offeredPrograms %}
+<li class="list-group-item">
+    <input type="checkbox" class="form-check-input" value="{{offeredProgram.interest}}:{{offeredProgram.program.id}}">
+    {{offeredProgram.program.name}}
+  </li>
+{% endfor %}

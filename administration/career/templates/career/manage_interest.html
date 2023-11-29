@@ -1,0 +1,165 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+
+{% block title %}Manage Career Interest{% endblock %}
+
+{% block content %}
+<main class="container-fluid">
+  <div class="d-flex justify-content-center">
+    <div class="col-sm-8 colxs-6 mt-3">
+      <div class="d-flex align-items-start justify-content-end gap-2">
+        <button class="btn btn-teal" data-bs-toggle="modal" data-bs-target="#program_modal">add program</button>
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete_modal">delete</button>
+        <div class="modal fade" id="program_modal" tabindex="-1" aria-labelledby="program_modal_label"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="program_modal_label">Add Program</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="add-form">
+                  {{addOfferedProgramForm.as_p}}
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" hx-post="{% url 'administration:add-interest' %}" class="btn btn-teal"
+                  hx-include="#add-form" data-bs-dismiss="modal">Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal_label" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="delete_modal_label">Delete Program</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Are you sure do you want to delete?</p>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="delete_interest_btn" class="btn btn-danger" data-bs-dismiss="modal"
+                  data-url="{% url 'administration:delete-interest' %}">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex align-items-start">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <button class="nav-link link-teal active" id="v-pills-realistic-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-realistic" type="button" role="tab" aria-controls="v-pills-realistic"
+            aria-selected="true">Realistic</button>
+          <button class="nav-link link-teal" id="v-pills-investigative-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-investigative" type="button" role="tab" aria-controls="v-pills-investigative"
+            aria-selected="false">Investigative</button>
+          <button class="nav-link link-teal" id="v-pills-artistic-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-artistic" type="button" role="tab" aria-controls="v-pills-artistic"
+            aria-selected="false">Artistic</button>
+          <button class="nav-link link-teal" id="v-pills-social-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-social" type="button" role="tab" aria-controls="v-pills-social"
+            aria-selected="false">Social</button>
+          <button class="nav-link link-teal" id="v-pills-enterprising-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-enterprising" type="button" role="tab" aria-controls="v-pills-enterprising"
+            aria-selected="false">Enterprising</button>
+          <button class="nav-link link-teal" id="v-pills-conventional-tab" data-bs-toggle="pill"
+            data-bs-target="#v-pills-conventional" type="button" role="tab" aria-controls="v-pills-conventional"
+            aria-selected="false">Conventional</button>
+        </div>
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-realistic" role="tabpanel"
+            aria-labelledby="v-pills-realistic-tab">
+            <div class="p-2">
+              <ul class="list-group list-group-flush" id="realistic">
+                {% for realistic_program in realistic_programs %}
+                <li class="list-group-item">
+                  <input type="checkbox" class="form-check-input"
+                    value="{{realistic_program.interest}}:{{realistic_program.program.id}}">
+                  {{realistic_program.program.name}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-investigative" role="tabpanel"
+            aria-labelledby="v-pills-investigative-tab">
+            <div class="p-2">
+              <ul class="list-group list-group-flush" id="investigative">
+                {% for investigative_program in investigative_programs %}
+                <li class="list-group-item">
+                  <input type="checkbox" class="form-check-input"
+                    value="{{investigative_program.interest}}:{{investigative_program.program.id}}">
+                  {{investigative_program.program.name}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-artistic" role="tabpanel" aria-labelledby="v-pills-artistic-tab">
+            <div class="p-2">
+              <ul class="list-group list-group-flush" id="artistic">
+                {% for artisitic_program in artistic_programs %}
+                <li class="list-group-item">
+                  <input type="checkbox" class="form-check-input"
+                    value="{{artistic_program.interest}}:{{artisitic_program.program.id}}">
+                  {{artisitic_program.program.name}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-social" role="tabpanel" aria-labelledby="v-pills-social-tab">
+            <div class="p-2">
+              <ul class="list-group list-group-flush" id="social">
+                {% for social_program in social_programs %}
+                <li class="list-group-item">
+                  <input type="checkbox" class="form-check-input"
+                    value="{{social_program.interest}}:{{social_program.program.id}}">
+                  {{social_program.program.name}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-enterprising" role="tabpanel"
+            aria-labelledby="v-pills-enterprising-tab">
+            <div class="p-2">
+              <ul class="list-group list-group-flush" id="enterprising">
+                {% for enterprising_program in enterprising_programs %}
+                <li class="list-group-item">
+                  <input type="checkbox" class="form-check-input"
+                    value="{{enterprising_program.interest}}:{{enterprising_program.program.id}}">
+                  {{enterprising_program.program.name}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="v-pills-conventional" role="tabpanel"
+            aria-labelledby="v-pills-conventional-tab">
+            <div class="p-2">
+              <ul class="list-group list-group-flush" id="conventional">
+                {% for conventional_program in conventional_programs %}
+                <li class="list-group-item">
+                  <input type="checkbox" class="form-check-input"
+                    value="{{conventional_program.interest}}:{{conventional_program.program.id}}">
+                  {{conventional_program.program.name}}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'scripts/administration/career.js' %}" defer></script>
+{% endblock %}
