@@ -1,5 +1,5 @@
 from typing import Any
-from django_htmx.http import retarget
+from django_htmx.http import retarget, reswap
 from django.shortcuts import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import user_passes_test
@@ -99,12 +99,15 @@ class AddInterest(LoginRequiredMixin, Is_Counselor, TemplateView):
     def post(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         interest = self.request.POST["interest"]
-        program = Program.objects.get(id=self.request.POST["program"])
-        
-        instance, created = OfferedProgram.objects.get_or_create(interest=interest, program=program)
-        context["offeredPrograms"] = OfferedProgram.objects.filter(interest=interest)
-
-        return retarget(render(request, "career/partials/interest_list.html", context), f"#{interest}")
+        program_id = self.request.POST["program"]
+        if not program_id == "" and not interest == "":
+            program = Program.objects.get(id=int(program_id))
+            instance, created = OfferedProgram.objects.get_or_create(interest=interest, program=program)
+            context["offeredPrograms"] = OfferedProgram.objects.filter(interest=interest)
+            return retarget(render(request, "career/partials/interest_list.html", context), f"#{interest}")
+        else:
+            print("invalid")
+            return reswap(HttpResponse("Invalid"), "none")
 
 class DeleteInterest(LoginRequiredMixin, Is_Counselor, TemplateView):
     def get(self, request):

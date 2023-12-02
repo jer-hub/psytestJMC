@@ -103,11 +103,11 @@
           <div class="tab-pane fade" id="v-pills-artistic" role="tabpanel" aria-labelledby="v-pills-artistic-tab">
             <div class="p-2">
               <ul class="list-group list-group-flush" id="artistic">
-                {% for artisitic_program in artistic_programs %}
+                {% for artistic_program in artistic_programs %}
                 <li class="list-group-item">
                   <input type="checkbox" class="form-check-input"
-                    value="{{artistic_program.interest}}:{{artisitic_program.program.id}}">
-                  {{artisitic_program.program.name}}
+                    value="{{artistic_program.interest}}:{{artistic_program.program.id}}">
+                  {{artistic_program.program.name}}
                 </li>
                 {% endfor %}
               </ul>

@@ -1,114 +1,10 @@
 [
 {
   "model": "riasec.offeredprogram",
-  "pk": 1,
-  "fields": {
-    "interest": "realistic",
-    "program": 8
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 2,
-  "fields": {
-    "interest": "realistic",
-    "program": 9
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 5,
-  "fields": {
-    "interest": "realistic",
-    "program": 16
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 6,
-  "fields": {
-    "interest": "realistic",
-    "program": 12
-  }
-},
-{
-  "model": "riasec.offeredprogram",
   "pk": 7,
   "fields": {
     "interest": "investigative",
     "program": 5
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 9,
-  "fields": {
-    "interest": "investigative",
-    "program": 8
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 10,
-  "fields": {
-    "interest": "investigative",
-    "program": 9
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 11,
-  "fields": {
-    "interest": "investigative",
-    "program": 13
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 12,
-  "fields": {
-    "interest": "artistic",
-    "program": 15
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 13,
-  "fields": {
-    "interest": "artistic",
-    "program": 16
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 14,
-  "fields": {
-    "interest": "realistic",
-    "program": 5
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 15,
-  "fields": {
-    "interest": "conventional",
-    "program": 5
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 16,
-  "fields": {
-    "interest": "investigative",
-    "program": 6
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 17,
-  "fields": {
-    "interest": "social",
-    "program": 6
   }
 },
 {
@@ -121,26 +17,10 @@
 },
 {
   "model": "riasec.offeredprogram",
-  "pk": 19,
-  "fields": {
-    "interest": "investigative",
-    "program": 10
-  }
-},
-{
-  "model": "riasec.offeredprogram",
   "pk": 20,
   "fields": {
     "interest": "conventional",
     "program": 10
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 21,
-  "fields": {
-    "interest": "conventional",
-    "program": 11
   }
 },
 {
@@ -161,15 +41,55 @@
 },
 {
   "model": "riasec.offeredprogram",
-  "pk": 24,
+  "pk": 31,
   "fields": {
-    "interest": "conventional",
-    "program": 12
+    "interest": "artistic",
+    "program": 17
   }
 },
 {
   "model": "riasec.offeredprogram",
-  "pk": 25,
+  "pk": 39,
+  "fields": {
+    "interest": "",
+    "program": 5
+  }
+},
+{
+  "model": "riasec.offeredprogram",
+  "pk": 46,
+  "fields": {
+    "interest": "investigative",
+    "program": 6
+  }
+},
+{
+  "model": "riasec.offeredprogram",
+  "pk": 47,
+  "fields": {
+    "interest": "investigative",
+    "program": 8
+  }
+},
+{
+  "model": "riasec.offeredprogram",
+  "pk": 48,
+  "fields": {
+    "interest": "realistic",
+    "program": 9
+  }
+},
+{
+  "model": "riasec.offeredprogram",
+  "pk": 49,
+  "fields": {
+    "interest": "conventional",
+    "program": 11
+  }
+},
+{
+  "model": "riasec.offeredprogram",
+  "pk": 50,
   "fields": {
     "interest": "social",
     "program": 13
@@ -177,15 +97,7 @@
 },
 {
   "model": "riasec.offeredprogram",
-  "pk": 26,
-  "fields": {
-    "interest": "conventional",
-    "program": 14
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 27,
+  "pk": 51,
   "fields": {
     "interest": "social",
     "program": 14
@@ -193,7 +105,7 @@
 },
 {
   "model": "riasec.offeredprogram",
-  "pk": 28,
+  "pk": 52,
   "fields": {
     "interest": "social",
     "program": 15
@@ -201,26 +113,10 @@
 },
 {
   "model": "riasec.offeredprogram",
-  "pk": 29,
-  "fields": {
-    "interest": "conventional",
-    "program": 15
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 30,
+  "pk": 53,
   "fields": {
     "interest": "realistic",
-    "program": 17
-  }
-},
-{
-  "model": "riasec.offeredprogram",
-  "pk": 31,
-  "fields": {
-    "interest": "artistic",
-    "program": 17
+    "program": 16
   }
 }
 ]
