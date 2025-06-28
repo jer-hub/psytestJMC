@@ -1,0 +1,51 @@
+# Local development files
+.env
+*.sqlite3
+db.sqlite3
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Development settings
+psytests/settings/dev.py
+psytests/settings/.env
+
+# Static files (will be generated during build)
+staticfiles/
+static/admin/
+
+# Media files (if any)
+media/
+
+# Log files
+*.log
+
+# Local models that might be large
+models/*.sav
+
+# CSV data files (if not needed in production)
+csv/
+
+# Test files
+**/tests.py
+test_*.py

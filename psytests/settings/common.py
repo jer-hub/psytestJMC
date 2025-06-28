@@ -14,6 +14,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    # project
+    "psytests",
     # local
     "accounts.apps.AccountsConfig",
     "administration.apps.AdministrationConfig",

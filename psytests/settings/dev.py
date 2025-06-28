@@ -18,12 +18,12 @@ SITE_ID = 2
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'psytest',
-    'USER': 'jer-hub',
-    'PASSWORD': 'UoWmlw7j3dbq',
-    'HOST': 'ep-crimson-mode-80245971.ap-southeast-1.aws.neon.tech',
+    'NAME': 'psytest_db',
+    'USER': 'postgres',
+    'PASSWORD': '123',
+    'HOST': 'localhost',
     'PORT': '5432',
-    'OPTIONS': {'sslmode': 'require'}, 
+    # 'OPTIONS': {'sslmode': 'require'}, 
   }
 }
 

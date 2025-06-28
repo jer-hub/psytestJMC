@@ -11,6 +11,11 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'psytests.settings.dev')
+# Use Vercel settings when deployed on Vercel, otherwise use dev settings
+settings_module = 'psytests.settings.vercel' if 'VERCEL' in os.environ else 'psytests.settings.dev'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings_module)
 
 application = get_wsgi_application()
+
+# Vercel compatibility
+app = application

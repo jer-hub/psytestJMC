@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
 from django.contrib.staticfiles.storage import staticfiles_storage
 from accounts.forms import CustomizedPasswordResetForm, CustomizedPasswordResetConfirmForm
-from psytests.views import Assessment, DataPrivacyConsent, HomePageView, Awesome
+from psytests.views import Assessment, DataPrivacyConsent, HomePageView, Awesome, HealthCheckView
 
 from django.contrib.auth import views as auth_views
 
@@ -28,6 +28,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('icons/favicon.ico'))),
     path('admin/', admin.site.urls),
+    path('health/', HealthCheckView.as_view(), name='health_check'),
     path('profile/', include('userprofile.urls')),
     path('evaluation/', include('evaluation.urls')),
     path('auth/', include('accounts.urls')), #Connects to psytest folder urls.py

@@ -11,6 +11,8 @@ from personalityTest.models import Result as PResult
 from riasec.models import Result as RResult
 from iqtest.models import Result as IQResult
 from psytests.forms import ContactForm
+from django.http import JsonResponse
+from django.views import View
 
 
 
@@ -77,4 +79,14 @@ class DataPrivacyConsent(LoginRequiredMixin, TemplateView):
         else:
             return render(request, self.template_name, {"test": self.kwargs["test"]})
             # return render(request, "testnotrdy.html")
+
+
+class HealthCheckView(View):
+    """Health check endpoint for Vercel deployment monitoring"""
+    def get(self, request):
+        return JsonResponse({
+            'status': 'healthy',
+            'service': 'psytest',
+            'version': '1.0.0'
+        })
 
