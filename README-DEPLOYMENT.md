@@ -1,6 +1,6 @@
 # Django Psytest - Vercel Deployment Guide
 
-This Django application has been configured for deployment on Vercel. Follow this guide to deploy your application successfully.
+This Django application has been configured for deployment on Vercel with Django 4.2 and Python 3.9 (Vercel's supported version).
 
 ## 📋 Prerequisites
 
@@ -41,6 +41,8 @@ In your Vercel dashboard, add these environment variables:
 
 #### Required Django Variables:
 - `SECRET_KEY` - Generate a new secure secret key for production
+
+#### Optional Email Variables (for notifications):
 - `EMAIL_HOST_USER` - Your email host user
 - `EMAIL_HOST_PASSWORD` - Your email host password
 
@@ -50,11 +52,30 @@ In your Vercel dashboard, add these environment variables:
 - `GOOGLE_CLIENT_ID` - Google OAuth client ID
 - `GOOGLE_SECRET_KEY` - Google OAuth secret key
 
-### 5. Redeploy
-After setting environment variables:
+### 5. Run Database Migrations
+After first deployment, run migrations using Vercel CLI or your database admin:
 ```bash
-vercel --prod
+# Option 1: Using Vercel CLI (if available)
+vercel env pull .env.production
+python manage.py migrate --settings=psytests.settings.vercel
+
+# Option 2: Run directly on Vercel (if shell access available)
+# Or use a database migration service
 ```
+
+## 🔧 What's Updated for Vercel
+
+### Package Updates:
+- **Django upgraded** from 3.2.7 to 4.2.5 for better compatibility
+- **Python runtime** specified as 3.9 in `runtime.txt` (Vercel's supported version)
+- **All packages updated** to Python 3.9 compatible versions
+- **Removed problematic packages** like `sklearn==0.0` and old `python-social-auth`
+
+### Settings Updates:
+- **STORAGES setting** updated for Django 4.2+ format
+- **Environment variables** made optional with `.get()` to prevent crashes
+- **Static files** properly configured for WhiteNoise + Vercel
+- **Database** configured for PostgreSQL with SSL
 
 ## 🔧 Local Testing
 
