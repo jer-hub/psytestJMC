@@ -178,23 +178,39 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
 
 QUILL_CONFIGS = {
-    'default':{
-        'theme': 'snow',
-        'modules': {
-            'syntax': True,
-            'toolbar': [
+    "default": {
+        "theme": "snow",
+        "modules": {
+            "syntax": True,
+            "toolbar": [
                 [
-                    {'font': []},
-                    {'header': []},
-                    {'align': []},
-                    'bold', 'italic', 'underline', 'strike', 'blockquote',
-                    {'color': []},
-                    {'background': []},
+                    {"font": []},
+                    {"header": []},
+                    {"align": []},
+                    "bold",
+                    "italic",
+                    "underline",
+                    "strike",
+                    "blockquote",
+                    {"color": []},
+                    {"background": []},
                 ],
-                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                ['code-block', 'link'],
-                ['clean'],
-            ]
-        }
+                [{"list": "ordered"}, {"list": "bullet"}],
+                ["code-block", "link", "image"],
+                ["clean"],
+            ],
+            "imageCompressor": {
+                "quality": 0.72,
+                "maxWidth": 900,
+                "maxHeight": 900,
+                "imageType": "image/jpeg",
+                "keepImageTypes": ["image/gif", "image/svg+xml"],
+                "ignoreImageTypes": ["image/gif", "image/svg+xml"],
+                "debug": False,
+            },
+            "resize": {
+                "locale": {},
+            },
+        },
     }
 }

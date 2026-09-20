@@ -1,48 +1,40 @@
 {% for yearlevel in yearlevels %}
 <tr>
-    <td>{{yearlevel.name}}</td>
-    <td></td>
-    <td>
-        <div class="text-center">
-            <input type="checkbox" name="yearlevel" class="form-check-input" value="{{yearlevel.id}}">
-        </div>
-    </td>
+  <td data-label="Year level">{{ yearlevel.name }}</td>
+  <td data-label=""></td>
+  <td data-label="Select" class="admin-org-table__check">
+    <input type="checkbox" name="yearlevel" class="form-check-input" value="{{ yearlevel.id }}">
+  </td>
 </tr>
 {% endfor %}
 
 {% if yearlevel_table %}
 <div id="yearlevels" hx-swap-oob="true">
-    <div class="d-flex justify-content-end mb-2">
-
-        <a href="#yearlevels_modal" class="d-flex link-dark gap-1 align-items-center" data-bs-toggle="modal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="green" class="bi bi-plus-square"
-                viewBox="0 0 16 16">
-                <path
-                    d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
-                <path
-                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-            </svg>
-            <small>
-                Add a year level
-            </small>
-        </a>
-    </div>
-    <ul>
-        {% for yearlevel in yearlevel_table %}
-        <li>{{yearlevel.name}}</li>
-        {% endfor %}
-    </ul>
+  <div class="admin-org-year-toolbar">
+    <a href="#yearlevels_modal" class="admin-manage-btn admin-manage-btn--ghost admin-org-btn-sm" data-bs-toggle="modal">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+      </svg>
+      Manage
+    </a>
+  </div>
+  <ul class="admin-org-year-list">
+    {% for yearlevel in yearlevel_table %}
+    <li>{{ yearlevel.name }}</li>
+    {% endfor %}
+  </ul>
 </div>
 {% endif %}
 
 {% if success %}
-<div id="add_yearlevel_msg" class="m-2 d-flex justify-content-center fade-me-in-out" hx-swap-oob="true">
-    <p class="text-success">added</p>
+<div id="add_yearlevel_msg" class="admin-org-msg admin-org-msg--ok fade-me-in-out" hx-swap-oob="true">
+  <p>Added</p>
 </div>
 {% endif %}
 
 {% if failed %}
-<div id="add_yearlevel_msg" class="m-2 fade-me-in-out" hx-swap-oob="true">
-    <p class="text-success">Already Existed</p>
+<div id="add_yearlevel_msg" class="admin-org-msg admin-org-msg--error fade-me-in-out" hx-swap-oob="true">
+  <p>Already existed</p>
 </div>
 {% endif %}

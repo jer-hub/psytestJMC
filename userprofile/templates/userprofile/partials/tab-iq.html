@@ -1,40 +1,37 @@
 {% if iq_result %}
-<div class="d-flex justify-content-between">
-    <div class="m-3">
-        <p class="text-muted">Test taken: {{iq_result.date_created}}</p>
-    </div>
-    {% if request.user.is_superuser %}
-    {% if profile.user.username != request.user.username %}
-    <button class="btn btn-danger m-3" type="button" data-bs-toggle="modal"
-        data-bs-target="#delete-personality-modal">Delete record</button>
+<section class="profile-panel result-panel">
+  <header class="result-toolbar">
+    <p class="result-meta">Test taken: {{ iq_result.date_created }}</p>
+    {% if request.user.is_superuser and profile.user.username != request.user.username %}
+    <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#delete-personality-modal">
+      Delete record
+    </button>
     {% include 'userprofile/partials/delete-personality-modal.html' %}
     {% endif %}
-    {% endif %}
-</div>
-<div class="text-center my-5">
-    <h2>Result</h2>
-</div>
-<div class="row justify-content-center">
-    <div class="col-sm-3 col-xs-6">
-        <ul class="list-group">
-            <li class="list-group-item bg-teal text-center text-white">Legend: </li>
-            <li class="list-group-item text-center">36-40 Exceptional</li>
-            <li class="list-group-item text-center">31-35 Excellent</li>
-            <li class="list-group-item text-center">25-30 Very good</li>
-            <li class="list-group-item text-center">19-24 Good</li>
-            <li class="list-group-item text-center">15-18 Average</li>
-            <li class="list-group-item text-center">0-14 Poor</li>
-          </ul>
-    </div>
-    <div class="col-6 text-center">
-        <p>Total score:</p>
-        <p class="fs-50">{{iq_result.result}}</p>
-        <p>Overall: {{iqresult_desc}}</p>
-    </divc>
-</div>
+  </header>
 
+  <h2 class="result-title">IQ Result</h2>
+
+  <div class="iq-result-layout">
+    <ul class="list-group iq-legend">
+      <li class="list-group-item bg-teal text-center text-white">Legend</li>
+      <li class="list-group-item text-center">36–40 Exceptional</li>
+      <li class="list-group-item text-center">31–35 Excellent</li>
+      <li class="list-group-item text-center">25–30 Very good</li>
+      <li class="list-group-item text-center">19–24 Good</li>
+      <li class="list-group-item text-center">15–18 Average</li>
+      <li class="list-group-item text-center">0–14 Poor</li>
+    </ul>
+    <div class="iq-score-card">
+      <p class="iq-score-label">Total score</p>
+      <p class="iq-score-value">{{ iq_result.result }}</p>
+      <p class="iq-score-overall">Overall: {{ iqresult_desc }}</p>
+    </div>
+  </div>
+</section>
 {% else %}
-<div class="m-3">
-    <p>No record found</p>
-</div>
+<section class="profile-panel result-empty">
+  <p>No IQ test record found.</p>
+  <a href="{% url 'consent' 'iq' %}" class="btn btn-teal">Take IQ Test</a>
+</section>
 {% endif %}

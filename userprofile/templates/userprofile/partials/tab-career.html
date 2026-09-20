@@ -1,101 +1,87 @@
 {% if riasec_result %}
-<div class="row">
-    <div class="d-flex justify-content-between">
-        <div class="m-3">
-            <p class="text-muted">Test taken: {{riasec_result.date_created}}</p>
-        </div>
-        {% if request.user.is_superuser %}
-        {% if profile.user.username != request.user.username %}
-        <button class="btn btn-danger m-3" type="button" data-bs-toggle="modal"
-            data-bs-target="#delete-career-modal">Delete record</button>
-        {% include 'userprofile/partials/delete-career-modal.html' %}
-        {% endif %}
-        {% endif %}
-    </div>
-    <div class="text-center m-2">
-        <h2>Result</h2>
-    </div>
-    <div class="col-sm-3 col-xs-6 align-self-center">
-        <p class="p-2" id="r"> <span class="bg-color-a p-2">Realistic</span> =
-            {{riasec_result.realistic|floatformat:1}}</p>
-        <p class="p-2" id="i"><span class="bg-color-b p-2">Investigative</span> =
-            {{riasec_result.investigative|floatformat:1}}</p>
-        <p class="p-2" id="a"><span class="bg-color-c p-2">Artistic</span> =
-            {{riasec_result.artistic|floatformat:1}}</p>
-        <p class="p-2" id="s"><span class="bg-color-d p-2">Social</span> =
-            {{riasec_result.social|floatformat:1}}</p>
-        <p class="p-2" id="e"><span class="bg-color-e p-2">Enterprising</span> =
-            {{riasec_result.enterprising|floatformat:1}}</p>
-        <p class="p-2" id="c"><span class="bg-color-f p-2">Conventional</span> =
-            {{riasec_result.conventional|floatformat:1}}</p>
-    </div>
-    <div class="col-sm-9 col-xs-6 py-3">
-        <div class="canva-100p mx-auto">
-            <canvas id="pieChart"></canvas>
-        </div>
-        {% include 'stats/riasec-scripts/piechart.html' %}
-    </div>
-</div>
-<div class="row justify-content-center">
-    <div class="canva-100p mx-auto">
-        <canvas id="barChart"></canvas>
-    </div>
-    {% include 'riasec/scripts/barchart.html' %}
+<section class="profile-panel result-panel">
+  <header class="result-toolbar">
+    <p class="result-meta">Test taken: {{ riasec_result.date_created }}</p>
+    {% if request.user.is_superuser and profile.user.username != request.user.username %}
+    <button class="btn btn-danger btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#delete-career-modal">
+      Delete record
+    </button>
+    {% include 'userprofile/partials/delete-career-modal.html' %}
+    {% endif %}
+  </header>
 
-</div>
-<div class="d-flex flex-wrap justify-content-evenly mb-5">
-    <div class="m-1">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Top 1</h5>
-                <ul>
-                    {% for obj in top1 %}
-                    <li>{{obj|title}}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
+  <h2 class="result-title">Career Result</h2>
+
+  <div class="result-layout">
+    <ul class="riasec-score-list">
+      <li><span class="bg-color-a score-pill">Realistic</span> {{ riasec_result.realistic|floatformat:1 }}</li>
+      <li><span class="bg-color-b score-pill">Investigative</span> {{ riasec_result.investigative|floatformat:1 }}</li>
+      <li><span class="bg-color-c score-pill">Artistic</span> {{ riasec_result.artistic|floatformat:1 }}</li>
+      <li><span class="bg-color-d score-pill">Social</span> {{ riasec_result.social|floatformat:1 }}</li>
+      <li><span class="bg-color-e score-pill">Enterprising</span> {{ riasec_result.enterprising|floatformat:1 }}</li>
+      <li><span class="bg-color-f score-pill">Conventional</span> {{ riasec_result.conventional|floatformat:1 }}</li>
+    </ul>
+    <div class="result-chart">
+      <canvas id="pieChart" aria-label="RIASEC pie chart"></canvas>
+      {% include 'stats/riasec-scripts/piechart.html' %}
     </div>
+  </div>
+
+  <div class="result-chart result-chart-wide">
+    <canvas id="barChart" aria-label="RIASEC bar chart"></canvas>
+    {% include 'riasec/scripts/barchart.html' %}
+  </div>
+
+  <div class="result-top-grid">
+    <article class="result-top-card">
+      <h3>Top 1</h3>
+      <ul>
+        {% for obj in top1 %}
+        <li>{{ obj|title }}</li>
+        {% empty %}
+        <li>—</li>
+        {% endfor %}
+      </ul>
+    </article>
     {% if top2 %}
-    <div class="m-1">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Top 2</h5>
-                {% for obj in top2 %}
-                <li>{{obj|title}}</li>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    <article class="result-top-card">
+      <h3>Top 2</h3>
+      <ul>
+        {% for obj in top2 %}
+        <li>{{ obj|title }}</li>
+        {% endfor %}
+      </ul>
+    </article>
     {% endif %}
     {% if top3 %}
-    <div class="m-1">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Top 3</h5>
-                {% for obj in top3 %}
-                <li>{{obj|title}}</li>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    <article class="result-top-card">
+      <h3>Top 3</h3>
+      <ul>
+        {% for obj in top3 %}
+        <li>{{ obj|title }}</li>
+        {% endfor %}
+      </ul>
+    </article>
     {% endif %}
-</div>
-{% include 'riasec/carousels/top1.html' %}
-{% include 'riasec/carousels/top2.html' %}
-{% include 'riasec/carousels/top3.html' %}
+  </div>
 
-<!-- messages -->
-{% if messages %}
-{% for message in messages %}
-<div id="career_alert" class="alert alert-{{message.extra_tags}} m-3" role="alert">
+  <div class="result-carousels">
+    {% include 'riasec/carousels/top1.html' %}
+    {% include 'riasec/carousels/top2.html' %}
+    {% include 'riasec/carousels/top3.html' %}
+  </div>
+
+  {% if messages %}
+  {% for message in messages %}
+  <div id="career_alert" class="alert alert-{{ message.extra_tags }} mt-3" role="alert">
     <span>{{ message }}</span>
-</div>
-{% endfor %}
-{% endif %}
-
+  </div>
+  {% endfor %}
+  {% endif %}
+</section>
 {% else %}
-<div class="m-3">
-    <p>No record found</p>
-</div>
+<section class="profile-panel result-empty">
+  <p>No career test record found.</p>
+  <a href="{% url 'consent' 'career' %}" class="btn btn-teal">Take Career Test</a>
+</section>
 {% endif %}

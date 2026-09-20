@@ -10,10 +10,15 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage
+from django.conf import settings
 from .forms import CreateUserForm
 from .models import Department, EducationLevel, Program, Year
 from django.db import transaction
-# Create your views here.
+from smtplib import SMTPException
+import logging
+import os
+
+logger = logging.getLogger(__name__)
 
 
 User = get_user_model()
@@ -60,19 +65,42 @@ def registerPage(request):
 
             if user.email:
                 current_site = get_current_site(request)
+                uid = urlsafe_base64_encode(force_bytes(user.pk))
+                token = default_token_generator.make_token(user)
+                activation_path = f"/auth/activate/{uid}/{token}/"
+                # Prefer public site domain in Docker (Host may be "web")
+                public_domain = os.environ.get("SITE_DOMAIN") or current_site.domain
+                activation_url = f"{request.scheme}://{public_domain}{activation_path}"
                 mail_subject = 'Activate your account.'
                 message = render_to_string('accounts/acc_active_email.html', {
                     'user': user,
-                    'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                    'token': default_token_generator.make_token(user),
+                    'domain': public_domain,
+                    'uid': uid,
+                    'token': token,
                 })
                 to_email = form.cleaned_data.get('email')
                 email = EmailMessage(
                     mail_subject, message, to=[to_email]
                 )
-                email.send()
-                return render(request, 'accounts/emailConfirmationView.html')
+                email_sent = False
+                email_error = None
+                using_console = "console.EmailBackend" in settings.EMAIL_BACKEND
+                try:
+                    email.send(fail_silently=False)
+                    email_sent = True
+                except (SMTPException, OSError) as exc:
+                    email_error = str(exc)
+                    logger.exception("Activation email failed for %s: %s", to_email, exc)
+
+                context = {
+                    'email_sent': email_sent and not using_console,
+                    'using_console': using_console,
+                    'email_error': email_error,
+                    'debug': settings.DEBUG,
+                    'activation_url': activation_url,
+                    'to_email': to_email,
+                }
+                return render(request, 'accounts/emailConfirmationView.html', context)
             else:
                 user.is_active = True
                 user.save()

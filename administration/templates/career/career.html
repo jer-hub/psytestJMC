@@ -3,43 +3,61 @@
 
 {% block title %}Manage Career Test{% endblock %}
 
-{% block content %}
-<main class="container-fluid">
-    <div class="d-flex justify-content-center">
-        <div class="col-sm-8 colxs-6 mt-3">
-            <div class="d-flex justify-content-between">
-                <div>
-                    <h3>Career Test Questions</h3>
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <div>
-                        <a class="btn btn-teal" href="{% url 'administration:manage-interest' %}">
-                            Manage Interest
-                        </a>
-                    </div>
-                    <a href="#" class="link-teal" data-bs-toggle="modal" data-bs-target="#add_question">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                            class="bi bi-plus-square-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z" />
-                        </svg>
-                    </a>
-                    {% include 'career/partials/add_question_modal.html' %}
-                    <div class="text-end">
-                        <button class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#delete_question">delete</button>
-                    </div>
-                    {% include 'career/partials/delete_question_modal.html' %}
-                </div>
-            </div>
+{% block breadcrumbs %}
+{{ block.super }}
+<li class="admin-breadcrumb__item" aria-current="page">
+  <span class="admin-breadcrumb__current">Career Test</span>
+</li>
+{% endblock %}
 
-            <div id="questions">
-                {% include 'career/questions.html' %}
-            </div>
+{% block content %}
+<main class="admin-manage-page">
+  <div class="admin-manage-shell">
+    <section class="admin-manage-card">
+      <header class="admin-manage-header">
+        <div class="admin-manage-header__copy">
+          <p class="admin-manage-eyebrow">Career assessment</p>
+          <h1>Career Test Questions</h1>
+          <p class="admin-manage-lead">Add, edit, or remove RIASEC items used in the career inventory.</p>
         </div>
-    </div>
+        <div class="admin-manage-actions">
+          <a class="admin-manage-btn admin-manage-btn--ghost" href="{% url 'administration:manage-interest' %}">
+            Manage Interest
+          </a>
+          <a
+            href="#"
+            class="admin-manage-btn admin-manage-btn--primary"
+            data-bs-toggle="modal"
+            data-bs-target="#add_question"
+            aria-label="Add question"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>
+            Add
+          </a>
+          <button
+            type="button"
+            class="admin-manage-btn admin-manage-btn--danger"
+            data-bs-toggle="modal"
+            data-bs-target="#delete_question"
+          >
+            Delete
+          </button>
+        </div>
+      </header>
+
+      {% include 'career/partials/add_question_modal.html' %}
+      {% include 'career/partials/delete_question_modal.html' %}
+
+      <div id="questions">
+        {% include 'career/questions.html' %}
+      </div>
+    </section>
+  </div>
 </main>
 {% endblock %}
+
 {% block scripts %}
 <script src="{% static 'scripts/administration/career.js' %}" defer></script>
 {% endblock %}

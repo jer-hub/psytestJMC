@@ -1,24 +1,29 @@
-<div class="modal fade" id="add-edu-modal" tabindex="-1" aria-labelledby="add-edu-modal-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="add-edu-modal-label">Add an education level</h5>
-        </div>
-        <div class="modal-body">
-          <form hx-post="{% url 'administration:add-education-level' %}" 
-                hx-target="#edu_levels_list_body">
-            {% csrf_token %}
-            <div class="input-group">
-                <input type="text" class="form-control" name="edu_text" placeholder="Education level">
-                <button type="submit" class="btn btn-teal">Add</button>
-                <activate hx-trigger="update_edu_level_options from:body" hx-get="{% url 'administration:edu-level-options' %}" hx-target="#edu_levels_select"  hx-swap="morph:innerHTML" />
-            </div>
-            <div id="add_edu_msg" class="m-2"></div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
+<div class="modal fade admin-modal" id="add-edu-modal" tabindex="-1" aria-labelledby="add-edu-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add-edu-modal-label">Add education level</h5>
+      </div>
+      <div class="modal-body admin-modal__form">
+        <form hx-post="{% url 'administration:add-education-level' %}" hx-target="#edu_levels_list_body">
+          {% csrf_token %}
+          <label for="edu_text">Name</label>
+          <div class="admin-org-inline-form">
+            <input type="text" class="form-control" id="edu_text" name="edu_text" placeholder="Education level" required>
+            <button type="submit" class="admin-manage-btn admin-manage-btn--primary">Add</button>
+            <activate
+              hx-trigger="update_edu_level_options from:body"
+              hx-get="{% url 'administration:edu-level-options' %}"
+              hx-target="#edu_levels_select"
+              hx-swap="morph:innerHTML"
+            ></activate>
+          </div>
+          <div id="add_edu_msg" class="admin-org-msg"></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>

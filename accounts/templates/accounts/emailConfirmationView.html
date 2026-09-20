@@ -1,16 +1,41 @@
 {% extends "accounts/base.html" %}
 {% block title %}Email Confirmation{% endblock %}
 {% block content %}
+<div class="auth-register">
+  <div class="auth-register-shell">
+    <section class="auth-register-card" style="text-align:center;">
+      <h1>Account created</h1>
 
+      {% if email_sent %}
+      <p>
+        An activation email was sent to <strong>{{ to_email }}</strong>.
+        Open that email and click the link to finish registration.
+      </p>
+      {% elif using_console %}
+      <p>
+        Local development does not send real email.
+        Use the activation button below to activate
+        <strong>{{ to_email }}</strong>.
+      </p>
+      {% else %}
+      <p>
+        We could not send email to <strong>{{ to_email }}</strong>
+        (Gmail rejected SMTP login). Your account was still created —
+        activate it with the button below.
+      </p>
+      {% endif %}
 
-<div class="row justify-content-center px-5">
-    <div class="col-sm-8 col-xs-6 border-1 mt-5 p-4">
-        <div class="text-center">
-            <h1>Email sent</h1>
-        </div>
-        <div class="text-center">
-            <p>Please confirm your email address to complete the registration</p>
-        </div>
-    </div>
+      {% if activation_url %}
+      <div style="margin-top:1.5rem;">
+        <a href="{{ activation_url }}" class="btn btn-teal auth-register-submit" style="display:inline-block; width:auto; padding:0.85rem 1.5rem;">
+          Activate account
+        </a>
+        <p class="auth-register-lead" style="margin-top:1rem; word-break:break-all;">
+          Or open: <a href="{{ activation_url }}" class="link-teal">{{ activation_url }}</a>
+        </p>
+      </div>
+      {% endif %}
+    </section>
+  </div>
 </div>
 {% endblock %}

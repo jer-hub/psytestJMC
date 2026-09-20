@@ -1,33 +1,36 @@
 {% load static %}
+{% load iq_extras %}
 
-<form action="{% url 'iqtest:test-container' %}" method="post" id="submit_form">
-  {% csrf_token %} 
+<form action="{% url 'iqtest:test-container' %}" method="post" id="submit_form" class="iq-form">
+  {% csrf_token %}
   {% for question in questions %}
-  <div>
-    <div class="row my-2">
-      <div class="col-1">
-        <span>{{forloop.counter}}.)&emsp;</span>
-      </div>
-      <div class="col-11">{{question.question.html|safe}}</div>
+  <section class="iq-question" aria-labelledby="q-{{ question.id }}-label">
+    <div class="iq-question-prompt" id="q-{{ question.id }}-label">
+      <span class="iq-question-number">{{ forloop.counter }}.</span>
+      <div class="iq-question-content">{{ question.question.html|lazy_images }}</div>
     </div>
-    {% for choice in question.choices.all %}
-    <div class="form-check mx-4">
-      <input
-        class="form-check-input"
-        type="radio"
-        name="{{question.id}}"
-        id="{{choice.id}}"
-        value="{{choice.id}}:{{choice.is_answer}}"
-        required
-      />
-      <label for="{{choice.id}}">{{choice.choice.html|safe}}</label>
-    </div>
-    {% endfor %}
-  </div>
+
+    <fieldset class="iq-choices">
+      <legend class="visually-hidden">Choices for question {{ forloop.counter }}</legend>
+      {% for choice in question.choices.all %}
+      <label class="iq-choice" for="choice-{{ choice.id }}">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="{{ question.id }}"
+          id="choice-{{ choice.id }}"
+          value="{{ choice.id }}:{{ choice.is_answer }}"
+          required
+        />
+        <span class="iq-choice-body">{{ choice.choice.html|lazy_images }}</span>
+      </label>
+      {% endfor %}
+    </fieldset>
+  </section>
   {% endfor %}
-  <hr />
-  <div class="d-flex flex-column p-2 justify-content-center">
-    <input type="submit" class="btn btn-teal btn-lg btn-block" value="Submit" />
+
+  <div class="iq-submit">
+    <input type="submit" class="btn btn-teal btn-lg" value="Submit" />
   </div>
 </form>
 

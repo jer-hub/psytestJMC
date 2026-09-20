@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .
+      target: production
+    container_name: psytest-web-prod
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DJANGO_SETTINGS_MODULE: psytests.settings.dev
+      DEBUG: "0"
+      PORT: "8000"
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: ${DB_NAME:-psytest_db}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-123}
+      SITE_ID: "2"
+      SITE_DOMAIN: ${SITE_DOMAIN:-localhost:8000}
+      SITE_NAME: ${SITE_NAME:-psytestJMC}
+      SEED_DATA: ${SEED_DATA:-0}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,127.0.0.1,web,psytest-web-prod}
+    ports:
+      - "${WEB_PORT:-8000}:8000"
+    volumes: []

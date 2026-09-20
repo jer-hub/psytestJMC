@@ -37,6 +37,7 @@ class IQStatForm(ModelForm):
     use_required_attribute = False
     
     def __init__(self, *args, **kwargs):
+        kwargs.setdefault("auto_id", "iq_%s")
         super(IQStatForm, self).__init__(*args, **kwargs)
         self.fields.update(ProfileForm().fields)
 
@@ -55,6 +56,7 @@ class PersonalityStatForm(ModelForm):
     use_required_attribute = False
     
     def __init__(self, *args, **kwargs):
+        kwargs.setdefault("auto_id", "personality_%s")
         super(PersonalityStatForm, self).__init__(*args, **kwargs)
         self.fields.update(ProfileForm().fields)
            
@@ -73,6 +75,7 @@ class CareerStatForm(ModelForm):
     use_required_attribute = False
     
     def __init__(self, *args, **kwargs):
+        kwargs.setdefault("auto_id", "career_%s")
         super(CareerStatForm, self).__init__(*args, **kwargs)
         self.fields.update(ProfileForm().fields)
            

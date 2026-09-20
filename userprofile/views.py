@@ -40,14 +40,14 @@ class UserStats(LoginRequiredMixin, UserDetailViewMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(UserStats, self).get_context_data(**kwargs)
         context["form"] = ContactForm()
-        obj = Profile.objects.get(user__username=self.kwargs.get("username"))
-        context["profile"] = obj
+        profile = Profile.objects.get(user__username=self.kwargs.get("username"))
+        context["profile"] = profile
 
         try:
             context["riasec_result"] = CareerResult.objects.filter(
                 user__id=self.kwargs.get("pk")
             ).last()
-            obj = (
+            career_scores = (
                 CareerResult.objects.filter(
                     user__username=self.kwargs.get("username"),
                 )
@@ -61,9 +61,9 @@ class UserStats(LoginRequiredMixin, UserDetailViewMixin, TemplateView):
                 )
                 .first()
             )
-            if obj is not None:
+            if career_scores is not None:
                 objects = dict(
-                    sorted(obj.items(), key=lambda item: item[1], reverse=True)
+                    sorted(career_scores.items(), key=lambda item: item[1], reverse=True)
                 )
                 top1 = {}
                 top2 = {}
@@ -104,19 +104,22 @@ class UserStats(LoginRequiredMixin, UserDetailViewMixin, TemplateView):
             ).last()
         except PersonalityResult.DoesNotExist:
             pass
-        iq_result = IQResult.objects.filter(user__id=self.kwargs.get("pk")).last()
+        iq_result = IQResult.objects.filter(user=profile).last()
         context["iq_result"] = iq_result
 
         if iq_result:
-            if iq_result.result in range(36, 41):
+            score = iq_result.result
+            if score in range(36, 41):
                 result_desc = "Exceptional"
-            if iq_result.result in range(25, 31):
+            elif score in range(31, 36):
+                result_desc = "Excellent"
+            elif score in range(25, 31):
                 result_desc = "Very Good"
-            if iq_result.result in range(19, 25):
+            elif score in range(19, 25):
                 result_desc = "Good"
-            if iq_result.result in range(15, 19):
+            elif score in range(15, 19):
                 result_desc = "Average"
-            if iq_result.result in range(0, 15):
+            else:
                 result_desc = "Poor"
             context["iqresult_desc"] = result_desc
         context["recommended_programs"] = RecommendedProgram.objects.filter(
@@ -186,6 +189,7 @@ class EditProfile(LoginRequiredMixin, TemplateView):
                 )
             )
         else:
+            context["profile_form"] = form
             context["profile_form_errors"] = form.errors
             return render(self.request, self.template_name, context)
 

@@ -1,55 +1,72 @@
-<!-- alert -->
 {% if messages %}
-{% for message in messages %}
-<div id="id_alert" class="alert alert-{{message.extra_tags}} my-2">
+<div class="admin-manage-alert">
+  {% for message in messages %}
+  <div id="id_alert" class="alert alert-{{ message.extra_tags }} mb-0">
     <span>{{ message }}</span>
+  </div>
+  {% endfor %}
 </div>
-{% endfor %}
 {% endif %}
 
-<hr>
-
-{% for question in questions %}
-<div class="d-flex justify-content-between mb-2">
-    <div>
-        <span>{{ forloop.counter0|add:page_obj.start_index }}.)</span>
-        <span>{{question.get_category_display}} - {{question|capfirst}}</span>
+<div class="admin-q-list">
+  {% for question in questions %}
+  <article class="admin-q-row">
+    <div class="admin-q-row__main">
+      <span class="admin-q-row__index">{{ forloop.counter0|add:page_obj.start_index }}</span>
+      <div class="admin-q-row__body">
+        <div class="admin-q-meta">
+          <span class="admin-q-badge">{{ question.get_category_display }}</span>
+          {% if question.get_key_display %}
+          <span class="admin-q-badge admin-q-badge--muted">{{ question.get_key_display }}</span>
+          {% endif %}
+        </div>
+        <p class="admin-q-row__text">{{ question|capfirst }}</p>
+      </div>
     </div>
     {% include 'personality/partials/update_question_modal.html' %}
-    <div class="d-flex align-items-center gap-2">
-        <span class="me-2">{{question.get_key_display}}</span>
-        <a hx-get='{% url "administration:update-personality-question" question.id %}'
-            hx-target="#modal-body-{{question.id}}" hx-swap="innerHTML" class="text-secondary" style="cursor: pointer;"
-            data-bs-toggle="modal" data-bs-target="#update_question_{{question.id}}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                class="bi bi-pencil-square" viewBox="0 0 16 16">
-                <path
-                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path fill-rule="evenodd"
-                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-            </svg>
-        </a>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="{{question.id}}" name="marked">
-        </div>
+    <div class="admin-q-row__actions">
+      <a
+        hx-get='{% url "administration:update-personality-question" question.id %}'
+        hx-target="#modal-body-{{ question.id }}"
+        hx-swap="innerHTML"
+        class="admin-q-edit"
+        data-bs-toggle="modal"
+        data-bs-target="#update_question_{{ question.id }}"
+        aria-label="Edit question {{ forloop.counter0|add:page_obj.start_index }}"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg>
+      </a>
+      <div class="form-check admin-q-check">
+        <input class="form-check-input" type="checkbox" value="{{ question.id }}" name="marked" aria-label="Select question {{ forloop.counter0|add:page_obj.start_index }}">
+      </div>
     </div>
+  </article>
+  {% empty %}
+  <p class="admin-manage-lead mb-0">No questions yet. Use Add to create the first item.</p>
+  {% endfor %}
 </div>
-{% endfor %}
 
 {% if is_paginated %}
-<nav aria-label="Page navigation" class="mt-5" id="pagination">
-    <ul class="pagination justify-content-end m-0">
-        {% if page_obj.has_previous %}
-        <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-        {% endif %}
-        {% for i in page_obj.paginator.page_range %}
-        <li class="page-item {% if page_obj.number == i %}disabled{% endif %}"><a class="page-link"
-                href="?page={{ i }}">{{i}}</a></li>
-        {% endfor %}
-        {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT
-                &raquo;</a></li>
-        {% endif %}
-    </ul>
+<nav aria-label="Page navigation" class="admin-manage-pager" id="pagination">
+  <ul class="pagination justify-content-end m-0">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; Prev</a>
+    </li>
+    {% endif %}
+    {% for i in page_obj.paginator.page_range %}
+    <li class="page-item {% if page_obj.number == i %}active{% endif %}">
+      <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+    </li>
+    {% endfor %}
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next &raquo;</a>
+    </li>
+    {% endif %}
+  </ul>
 </nav>
 {% endif %}

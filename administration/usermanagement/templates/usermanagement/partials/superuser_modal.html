@@ -1,0 +1,32 @@
+{% load has_group %}
+<div class="modal fade admin-modal" id="superuser{{ user.pk }}" tabindex="-1" aria-labelledby="superuser{{ user.pk }}Label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="superuser{{ user.pk }}Label">
+          {% if not user|has_group:"Counselor" %}Make counselor{% else %}Remove counselor{% endif %}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% if not user|has_group:"Counselor" %}
+        <p class="admin-modal__message">
+          Grant counselor access to <strong>{{ user.first_name }} {{ user.last_name }}</strong>?
+        </p>
+        {% else %}
+        <p class="admin-modal__message">
+          Remove counselor access from <strong>{{ user.first_name }} {{ user.last_name }}</strong>?
+        </p>
+        {% endif %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Cancel</button>
+        {% if not user|has_group:"Counselor" %}
+        <a class="admin-manage-btn admin-manage-btn--primary" href="{% url 'administration:makesuperuser' user.pk %}">Confirm</a>
+        {% else %}
+        <a class="admin-manage-btn admin-manage-btn--danger" href="{% url 'administration:unsuperuser' user.pk %}">Confirm</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

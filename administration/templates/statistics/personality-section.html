@@ -1,84 +1,87 @@
-<div class="tab-pane fade show" id="v-pills-personality" role="tabpanel" aria-labelledby="v-pills-personality-tab">
-  <div class="my-2">
-    <form hx-get="{% url 'administration:personality-stats' %}" hx-trigger="change" hx-swap="outerHTML" hx-target="#personality_script">
-      <div class="d-flex flex-wrap m-1">
-        <label for="" class="m-2">Sex</label>
-        <div>{{ iqStatForm.sex }}</div>
-        <label for="" class="m-2">Education Level</label>
-        <div>{{ iqStatForm.educationlevel }}</div>
-        <label for="" class="m-2">Year Level</label>
-        <div>{{ iqStatForm.year }}</div>
+<div class="tab-pane fade" id="v-pills-personality" role="tabpanel" aria-labelledby="v-pills-personality-tab">
+  <section class="admin-stats-panel">
+    <form
+      class="admin-stats-filters"
+      hx-get="{% url 'administration:personality-stats' %}"
+      hx-trigger="change"
+      hx-swap="outerHTML"
+      hx-target="#personality_script"
+    >
+      <div class="admin-stats-filter-grid">
+        <div class="admin-stats-field">
+          <label for="{{ personalityStatForm.sex.id_for_label }}">Sex</label>
+          {{ personalityStatForm.sex }}
+        </div>
+        <div class="admin-stats-field">
+          <label for="{{ personalityStatForm.educationlevel.id_for_label }}">Education Level</label>
+          {{ personalityStatForm.educationlevel }}
+        </div>
+        <div class="admin-stats-field">
+          <label for="{{ personalityStatForm.year.id_for_label }}">Year Level</label>
+          {{ personalityStatForm.year }}
+        </div>
+        <div class="admin-stats-field">
+          <label for="{{ personalityStatForm.department.id_for_label }}">Department</label>
+          {{ personalityStatForm.department }}
+        </div>
+        <div class="admin-stats-field">
+          <label for="{{ personalityStatForm.program.id_for_label }}">Program</label>
+          {{ personalityStatForm.program }}
+        </div>
       </div>
-      <div class="d-flex flex-wrap m-1">
-        <label for="" class="m-2">Department</label>
-        <div>{{ iqStatForm.department }}</div>
-        <label for="" class="m-2">Program</label>
-        <div>{{ iqStatForm.program }}</div>
-      </div>
-      <div class="d-flex flex-wrap m-1">
-        <label for="" class="m-2">Start Date</label>
-        <div class="d-flex">{{ iqStatForm.start_date }}</div>
-        <label for="" class="m-2">End Date</label>
-        <div class="d-flex">{{ iqStatForm.end_date }}</div>
+      <div class="admin-stats-date-grid">
+        <div class="admin-stats-field">
+          <label>Start Date</label>
+          <div class="admin-stats-date">{{ personalityStatForm.start_date }}</div>
+        </div>
+        <div class="admin-stats-field">
+          <label>End Date</label>
+          <div class="admin-stats-date">{{ personalityStatForm.end_date }}</div>
+        </div>
       </div>
     </form>
-  </div>
 
-  <div id="personality-section">
-    {% include 'statistics/partials/personality_stat.html' %}
-  </div>
+    <div id="personality-section">
+      {% include 'statistics/partials/personality_stat.html' %}
+    </div>
+  </section>
 </div>
 
 {% block personality_script %}
 <script id="personality_script">
   $(document).ready(() => {
-
-    const count = $('#personality_count')
-    count.text("total of: {{ personality_count|default:0 }}")
+    const count = $('#personality_count');
+    count.text("total of: {{ personality_count|default:0 }}");
 
     var $data = [{% for avg in personality_avg_list %}'{{avg}}',{% endfor %}];
     var $labels = [{% for label in personality_labels %}'{{label}}',{% endfor %}];
 
-    let IQChart = new Chart(personalityChart, {
-      type: "line", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    let personalityChartCanvas = document.getElementById('personalityChart');
+    if (!personalityChartCanvas) return;
+    if (window.personalityChartInstance) {
+      window.personalityChartInstance.destroy();
+    }
+    window.personalityChartInstance = new Chart(personalityChartCanvas, {
+      type: "line",
       data: {
         labels: $labels,
-        datasets: [
-          {
-            data: $data,
-            backgroundColor: [
-              "rgba(66, 141, 239, 0.6)",
-              "rgba(54, 162, 235, 0.6)",
-              "rgba(255, 206, 86, 0.6)",
-              "rgba(75, 192, 192, 0.6)",
-              "rgba(153, 102, 255, 0.6)",
-              "rgba(255, 159, 64, 0.6)",
-              "rgba(255, 99, 132, 0.6)",
-            ],
-            borderWidth: 1,
-            borderColor: "#777",
-            hoverBorderWidth: 3,
-            hoverBorderColor: "#000",
-          },
-        ],
+        datasets: [{
+          data: $data,
+          backgroundColor: "rgba(13, 148, 136, 0.18)",
+          borderColor: "#0d9488",
+          borderWidth: 2,
+          pointBackgroundColor: "#0d9488",
+          pointRadius: 4,
+          lineTension: 0.25,
+        }],
       },
       options: {
         maintainAspectRatio: false,
         responsive: true,
-        legend: {
-          display: false,
-        },
-        tooltips: {
-          enabled: true,
-        },
+        legend: { display: false },
+        tooltips: { enabled: true },
         scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
+          yAxes: [{ ticks: { beginAtZero: true } }],
         },
       },
     });

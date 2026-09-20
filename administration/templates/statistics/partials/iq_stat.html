@@ -1,32 +1,21 @@
 {% load static %}
-<div class="row mb-5">
-  <div class="col-sm-3 col-xs-6 align-self-center">
-    <div class="m-3">
+<div class="admin-stats-results">
+  <aside class="admin-stats-summary">
+    <div class="admin-stats-summary-head">
+      <h2>IQ Bands</h2>
       {% block iq_count %}
-      <small class="text-muted p-0 m-0" id="iq_count"></small>
+      <p class="admin-stats-count" id="iq_count"></p>
       {% endblock %}
     </div>
-    <ul class="list-group">
-      <li class="list-group-item" id="li_exceptional">
-        <span class="bg-color-a p-2">Exceptional</span> = {{ iq_exceptional|default:0 }}
-      </li>
-      <li class="list-group-item" id="li_excellent">
-        <span class="bg-color-b p-2">Excellent</span> = {{ iq_excellent|default:0 }}
-      </li>
-      <li class="list-group-item" id="li_verygood">
-        <span class="bg-color-c p-2">Very Good</span> = {{ iq_verygood|default:0 }}
-      </li>
-      <li class="list-group-item" id="li_good">
-        <span class="bg-color-d p-2">Good</span> = {{ iq_good|default:0 }}
-      </li>
-      <li class="list-group-item" id="li_poor">
-        <span class="bg-color-e p-2">Poor</span> = {{ iq_poor|default:0 }}
-      </li>
+    <ul class="admin-stats-score-list">
+      <li id="li_exceptional"><span class="bg-color-a score-pill">Exceptional</span> {{ iq_exceptional|default:0 }}</li>
+      <li id="li_excellent"><span class="bg-color-b score-pill">Excellent</span> {{ iq_excellent|default:0 }}</li>
+      <li id="li_verygood"><span class="bg-color-c score-pill">Very Good</span> {{ iq_verygood|default:0 }}</li>
+      <li id="li_good"><span class="bg-color-d score-pill">Good</span> {{ iq_good|default:0 }}</li>
+      <li id="li_poor"><span class="bg-color-e score-pill">Poor</span> {{ iq_poor|default:0 }}</li>
     </ul>
-  </div>
-  <div class="col-sm-9 col-xs-6 py-3">
-    <div class="chart-container mx-auto" style="height: 400px; width: 100%">
-      <canvas id="iqChart"></canvas>
-    </div>
+  </aside>
+  <div class="admin-stats-chart">
+    <canvas id="iqChart" aria-label="IQ statistics chart"></canvas>
   </div>
 </div>

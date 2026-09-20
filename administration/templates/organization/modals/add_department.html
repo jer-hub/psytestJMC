@@ -1,28 +1,27 @@
-<div class="modal fade" id="add-department" tabindex="-1" aria-labelledby="add-department-label" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="add-department-label">Add a Department</h5>
-        </div>
-        <div class="modal-body">
-          <form id="add_department_form">
-            {% csrf_token %}
-            <div class="input-group m-2">
-                <span class="input-group-text">Name: </span>
-                <input type="text" class="form-control" id="department_name" required>
-            </div>
-            <div class="input-group m-2">
-                <span class="input-group-text">Code: </span>
-                <input type="text" class="form-control" id="department_code" required>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <div id="add_department_msg">
-          </div>
-          <button  id="add_department_btn" form="#add_department_form" class="btn btn-teal">Add</button>
-          <button  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
+<div class="modal fade admin-modal" id="add-department" tabindex="-1" aria-labelledby="add-department-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add-department-label">Add department</h5>
+      </div>
+      <div class="modal-body admin-modal__form">
+        <form id="add_department_form">
+          {% csrf_token %}
+          <p>
+            <label for="department_name">Name</label>
+            <input type="text" class="form-control" id="department_name" required>
+          </p>
+          <p>
+            <label for="department_code">Code</label>
+            <input type="text" class="form-control" id="department_code" required>
+          </p>
+        </form>
+        <div id="add_department_msg" class="admin-org-msg"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Close</button>
+        <button id="add_department_btn" type="button" class="admin-manage-btn admin-manage-btn--primary">Add</button>
       </div>
     </div>
   </div>
+</div>

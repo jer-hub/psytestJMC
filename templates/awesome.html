@@ -1,100 +1,115 @@
 {% extends 'base.html' %}
-{% load static %} 
+{% load static %}
 
-{% block title %} Well done!{%endblock %} 
+{% block title %}Well done!{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/assessment.css' %}?v=2">
+<link rel="stylesheet" type="text/css" href="{% static 'css/awesome.css' %}?v=1">
+{% endblock %}
 
 {% block content %}
-<header>{% include 'partials/_navbar.html' %}</header>
+<header>
+  {% include 'partials/_navbar.html' %}
+</header>
 
-<main class="container center">
-  <div class="text-center mx-auto">
-    <div class="text-center">
-      {% if personality and riasec and iq %}
-      <div class="text-center mt-5 pt-5">
-        <img src="{% static 'images/congrats.svg' %}" alt="" class="logo-150" />
-        <h3 class="mt-4">
-          Congratulations! You completed all tests.
-          <span
-            ><a
-              href="{% url 'profile:user-stats' request.user.username request.user.id 'profile' %}"
-              class="link-teal"
-              >
-              <u>
-                See profile
-              </u>
-              </a>
-              </span
-          >
-        </h3>      </div>
-      {% else %}
-      <p class="fs-20">
-        <span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
-            fill="#008080"
-            class="bi bi-check-circle"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-            />
-            <path
-              d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"
-            />
-          </svg>
-        </span>
-        You completed the {{typeOfTest}}!
-      </p>
-      <div>
-        <div class="text-center m-3">
-          <h3>Choose your next test</h3>
-        </div>
-        <div class="d-flex justify-content-center">
-          {% if not personality %}
-          <div class="border-2-round-box p-4 m-2">
-            <a
-              href="{% url 'consent' 'personality' %}"
-              class="text-center link-teal"
-            >
-              <div>
-                <img
-                  src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/120/000000/external-psychology-university-courses-wanicon-lineal-color-wanicon.png"
-                />
-              </div>
-              <div>Personality Test</div>
-            </a>
-          </div>
-          {% endif %} {% if not riasec %}
-          <div class="border-2-round-box p-4 m-2">
-            <a
-              href="{% url 'consent' 'career' %}"
-              class="text-center link-teal"
-            >
-              <div>
-                <img
-                  src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/120/000000/external-skills-business-recruitment-itim2101-lineal-color-itim2101-1.png"
-                />
-              </div>
-              <div>Career Test</div>
-            </a>
-          </div>
-          {% endif %} {% if not iq %}
-          <div class="border-2-round-box p-4 m-2">
-            <a href="{% url 'consent' 'iq' %}" class="text-center link-teal">
-              <div>
-                <img
-                  src="https://img.icons8.com/external-filled-outline-geotatah/120/null/external-brain-genius-color-filled-outline-geotatah.png"
-                />
-              </div>
-              <div>IQ Test</div>
-            </a>
-          </div>
-          {% endif %}
-        </div>
+<main class="awesome-page">
+  <div class="awesome-shell">
+    {% if personality and riasec and iq %}
+    <section class="awesome-panel awesome-panel-complete" aria-labelledby="awesome-complete-title">
+      <img
+        src="{% static 'images/congrats.svg' %}"
+        alt=""
+        class="awesome-congrats-art"
+        width="150"
+        height="150"
+      />
+      <h1 id="awesome-complete-title">Congratulations!</h1>
+      <p class="awesome-lead">You completed all assessments.</p>
+      <a
+        href="{% url 'profile:user-stats' request.user.username request.user.id 'profile' %}"
+        class="btn btn-teal awesome-cta"
+      >
+        See profile
+      </a>
+      <a href="{% url 'assessment' %}" class="awesome-secondary-link link-teal">Back to assessment hub</a>
+    </section>
+    {% else %}
+    <section class="awesome-panel" aria-labelledby="awesome-next-title">
+      <div class="awesome-success" role="status">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="awesome-success-icon" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+        <p>You completed the {{ typeOfTest }}!</p>
       </div>
-    </div>
+
+      <header class="awesome-header">
+        <h1 id="awesome-next-title">Choose your next test</h1>
+        <p>Pick another assessment to continue. You can review finished results from your profile anytime.</p>
+      </header>
+
+      <div class="awesome-grid">
+        {% if not personality %}
+        <article class="awesome-card">
+          <a href="{% url 'consent' 'personality' %}" class="awesome-card-link">
+            <img
+              src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/120/000000/external-psychology-university-courses-wanicon-lineal-color-wanicon.png"
+              alt=""
+              width="96"
+              height="96"
+              loading="lazy"
+            />
+            <h2>Personality Test</h2>
+            <span class="awesome-card-cta">Start</span>
+          </a>
+        </article>
+        {% endif %}
+
+        {% if not riasec %}
+        <article class="awesome-card">
+          <a href="{% url 'consent' 'career' %}" class="awesome-card-link">
+            <img
+              src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/120/000000/external-skills-business-recruitment-itim2101-lineal-color-itim2101-1.png"
+              alt=""
+              width="96"
+              height="96"
+              loading="lazy"
+            />
+            <h2>Career Test</h2>
+            <span class="awesome-card-cta">Start</span>
+          </a>
+        </article>
+        {% endif %}
+
+        {% if not iq %}
+        <article class="awesome-card">
+          <a href="{% url 'consent' 'iq' %}" class="awesome-card-link">
+            <img
+              src="https://img.icons8.com/external-filled-outline-geotatah/120/null/external-brain-genius-color-filled-outline-geotatah.png"
+              alt=""
+              width="96"
+              height="96"
+              loading="lazy"
+            />
+            <h2>IQ Test</h2>
+            <span class="awesome-card-cta">Start</span>
+          </a>
+        </article>
+        {% endif %}
+      </div>
+
+      <div class="awesome-footer-links">
+        <a href="{% url 'assessment' %}" class="link-teal">Back to assessment hub</a>
+        <a
+          href="{% url 'profile:user-stats' request.user.username request.user.id 'profile' %}"
+          class="link-teal"
+        >
+          View profile
+        </a>
+      </div>
+    </section>
+    {% endif %}
   </div>
 </main>
-{% endif %} {% endblock %}
+{% endblock %}

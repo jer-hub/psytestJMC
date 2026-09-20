@@ -1,48 +1,75 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light px-5 justify-content-between">
-    <a class="brand-text fs-20 d-flex align-items-center me-3" href="{% url 'homepage' %}"><img
-        src="{% static 'icons/favicon.ico' %}" alt="" class="favicon-30"><span>PSYTEST</span></a>
-    <!-- collapse btn -->
+<nav class="site-nav" aria-label="Primary">
+  <div class="site-nav__inner">
+    <a class="site-nav__brand" href="{% url 'homepage' %}">
+      <img src="{% static 'icons/favicon.ico' %}" alt="" class="site-nav__logo" width="28" height="28">
+      <span class="site-nav__name">PSYTEST</span>
+    </a>
+
     {% if request.user.is_authenticated %}
-    <div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <button
+      class="site-nav__toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#siteNavPanel"
+      aria-controls="siteNavPanel"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="site-nav__toggler-bars" aria-hidden="true"></span>
+    </button>
+
+    <div class="collapse site-nav__panel" id="siteNavPanel">
+      <div class="site-nav__links">
+        <a
+          href="{% url 'assessment' %}"
+          class="site-nav__link{% if request.resolver_match.url_name == 'assessment' %} is-active{% endif %}"
+        >Tests</a>
+        {% if is_counselor %}
+        <a
+          href="{% url 'administration:home' %}"
+          class="site-nav__link{% if request.resolver_match.namespace == 'administration' %} is-active{% endif %}"
+        >Admin</a>
+        {% endif %}
+      </div>
+
+      <div class="dropdown site-nav__account">
+        <button
+          type="button"
+          class="site-nav__account-btn"
+          id="siteNavAccount"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          title="{{ request.user.email }}"
+        >
+          <span class="site-nav__avatar" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            </svg>
+          </span>
+          <span class="site-nav__email">{{ request.user.email }}</span>
+          <svg class="site-nav__caret" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          </svg>
         </button>
-    </div>
-    <!-- collapse -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="d-flex me-auto flex-grow-1">
-            <!-- Assessment -->
-            {% if request.user.is_authenticated %}
-            <div class="nav-item align-self-center me-auto">
-                <a href="{% url 'assessment' %}" class="navlink py-3">
-                    <span>Assessment</span>
-                </a>
-            </div>
-            {% endif %}
-            <!-- user btn grp -->
-            <div class="btn-group">
-                <button type="button" class="btn nav-user ms-auto px-2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                        class="bi bi-person-fill color-teal" viewBox="0 0 16 16">
-                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
-                    <span style="font-size:small" class="color-teal d-none d-sm-inline" data-toggle="tooltip" title="{{request.user.email}}">{{request.user.email}}</span>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="{% url 'profile:user-stats' user.username user.id 'profile' %}">Profile</a></li>
-                    {% if is_counselor %}
-                    <li><a class="dropdown-item" href="{% url 'administration:home' %}">Admin</a></li>
-                    {% endif %}
-                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Log out</a></li>
-                </ul>
-            </div>
-        </div>
+        <ul class="dropdown-menu dropdown-menu-end site-nav__dropdown" aria-labelledby="siteNavAccount">
+          <li>
+            <a class="dropdown-item" href="{% url 'profile:user-stats' user.username user.id 'profile' %}">Profile</a>
+          </li>
+          {% if is_counselor %}
+          <li>
+            <a class="dropdown-item" href="{% url 'administration:home' %}">Administration</a>
+          </li>
+          {% endif %}
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item site-nav__logout" href="{% url 'accounts:logout' %}">Log out</a>
+          </li>
+        </ul>
+      </div>
     </div>
     {% else %}
-    <div>
-        <a class="btn btn-teal" href="{% url 'accounts:login' %}"><strong>Login / Sign Up</strong></a>
-    </div>
+    <a class="site-nav__cta" href="{% url 'accounts:login' %}">Login / Sign Up</a>
     {% endif %}
+  </div>
 </nav>

@@ -1,14 +1,21 @@
-<div class="modal fade" id="edu_levels_delete_modal" aria-labelledby="edu_levels_delete_modal-label" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <p>Are you sure do you want to delete?</p>
-        </div>
-        <div class="modal-footer border-0">
-          <button id="delete_edu_levels_btn" class="btn btn-danger" data-bs-dismiss="modal">Yes</button>
-          <activate hx-trigger="edu_level_options from:body" hx-get="{% url 'administration:edu-level-options' %}" hx-target="#edu_levels_select"/>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        </div>
+<div class="modal fade admin-modal" id="edu_levels_delete_modal" aria-labelledby="edu_levels_delete_modal-label" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edu_levels_delete_modal-label">Delete education levels</h5>
+      </div>
+      <div class="modal-body">
+        <p class="admin-modal__message">Delete the selected education levels? This cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Cancel</button>
+        <button id="delete_edu_levels_btn" type="button" class="admin-manage-btn admin-manage-btn--danger" data-bs-dismiss="modal">Delete</button>
+        <activate
+          hx-trigger="edu_level_options from:body"
+          hx-get="{% url 'administration:edu-level-options' %}"
+          hx-target="#edu_levels_select"
+        ></activate>
       </div>
     </div>
   </div>
+</div>

@@ -1,33 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}
-Privacy Consent
+{% block title %}Privacy Consent{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/privacy_consent.css' %}?v=1">
 {% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center p-3">
-    <div class="col-sm-6 col-xs-12 border-1 m-t-75 p-3">
-        <div class="text-center">
-            <h2>Data Privacy Consent</h2>
-        </div>
-        <div class="text-left p-3">
-            <p>In submitting this form I agree to my details being used for the purposes of psychological test and
-                analysis. The information will only be accessed by necessary
-                staff in-charge. I understand my data will be held securely and will not be distributed to third
-                parties. I understand that when this information is
-                no longer required for this purpose, official administration procedure will be followed to dispose of my
-                data.
-            </p>
-        </div>
-        <div class="text-center m-t-30">
-            <a href="{% url 'assessment' %}" class="btn btn-secondary">Back</a>
-            <a href="
-            {% if test == 'personality' %}{% url 'personalityTest:test' %}{% endif %}
-            {% if test == 'career' %}{% url 'riasec:test' %}{% endif %}
-            {% if test == 'iq' %}{% url 'iqtest:test' %}{% endif %}"
-            class="btn btn-teal">Agree</a>
-        </div>
-    </div>
-</div>
+<header>
+  {% include 'partials/_navbar.html' %}
+</header>
+
+<main class="consent-page">
+  <div class="consent-shell">
+    <article class="consent-card" aria-labelledby="consent-title">
+      <header class="consent-card-header">
+        <p class="consent-eyebrow">Before you begin</p>
+        <h1 id="consent-title">Data Privacy Consent</h1>
+        {% if test == 'personality' %}
+        <p class="consent-subtitle">Personality assessment</p>
+        {% elif test == 'career' %}
+        <p class="consent-subtitle">Career interest assessment</p>
+        {% elif test == 'iq' %}
+        <p class="consent-subtitle">IQ assessment</p>
+        {% endif %}
+      </header>
+
+      <div class="consent-body">
+        <p>
+          In submitting this form I agree to my details being used for the
+          purposes of psychological test and analysis. The information will
+          only be accessed by necessary staff in-charge.
+        </p>
+        <p>
+          I understand my data will be held securely and will not be
+          distributed to third parties. I understand that when this
+          information is no longer required for this purpose, official
+          administration procedure will be followed to dispose of my data.
+        </p>
+      </div>
+
+      <div class="consent-actions">
+        <a href="{% url 'assessment' %}" class="consent-btn consent-btn-back">Back</a>
+        {% if test == 'personality' %}
+        <a href="{% url 'personalityTest:test' %}" class="consent-btn consent-btn-agree">Agree</a>
+        {% elif test == 'career' %}
+        <a href="{% url 'riasec:test' %}" class="consent-btn consent-btn-agree">Agree</a>
+        {% elif test == 'iq' %}
+        <a href="{% url 'iqtest:test' %}" class="consent-btn consent-btn-agree">Agree</a>
+        {% else %}
+        <a href="{% url 'assessment' %}" class="consent-btn consent-btn-agree">Agree</a>
+        {% endif %}
+      </div>
+    </article>
+  </div>
+</main>
 {% endblock %}

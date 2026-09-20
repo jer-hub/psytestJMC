@@ -3,49 +3,77 @@
 {% load mathfilters %}
 {% block title %}User Statistics{% endblock %}
 
-
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/stats.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/stats.css' %}?v=3">
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin-stats.css' %}?v=1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 {% endblock %}
 
+{% block breadcrumbs %}
+<li class="admin-breadcrumb__item">
+  <a href="{% url 'administration:home' %}" class="admin-breadcrumb__link">Administration</a>
+</li>
+<li class="admin-breadcrumb__item" aria-current="page">
+  <span class="admin-breadcrumb__current">Statistics</span>
+</li>
+{% endblock %}
+
 {% block content %}
-<main class="container mt-3">
-    <button type="button" class="btn btn-teal btn-floating btn-lg" id="btn-back-to-top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="34px" fill="currentColor" class="bi bi-arrow-up"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-        </svg>
-    </button>
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link active" id="v-pills-career-tab" data-bs-toggle="tab"
-                data-bs-target="#v-pills-career" type="button" role="tab" aria-controls="v-pills-career"
-                aria-selected="false">Career
-            </button>
-            <button class="nav-link" id="v-pills-personality-tab" data-bs-toggle="tab"
-                data-bs-target="#v-pills-personality" type="button" role="tab" aria-controls="v-pills-personality"
-                aria-selected="false">Personality
-            </button>
-            <button class="nav-link" id="v-pills-iq-tab" data-bs-toggle="tab"
-                data-bs-target="#v-pills-iq" type="button" role="tab" aria-controls="v-pills-iq"
-                aria-selected="false">IQ
-            </button>
-        </div>
+<main class="admin-stats-page">
+  <div class="admin-stats-shell">
+    <header class="admin-stats-header">
+      <p class="admin-stats-eyebrow">Insights</p>
+      <h1>User Statistics</h1>
+      <p class="admin-stats-lead">
+        Filter and compare aggregated Career, Personality, and IQ results.
+      </p>
+    </header>
+
+    <nav class="admin-stats-tabs" aria-label="Statistics categories">
+      <div class="nav nav-tabs admin-stats-tablist" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="v-pills-career-tab" data-bs-toggle="tab"
+          data-bs-target="#v-pills-career" type="button" role="tab"
+          aria-controls="v-pills-career" aria-selected="true">
+          Career
+        </button>
+        <button class="nav-link" id="v-pills-personality-tab" data-bs-toggle="tab"
+          data-bs-target="#v-pills-personality" type="button" role="tab"
+          aria-controls="v-pills-personality" aria-selected="false">
+          Personality
+        </button>
+        <button class="nav-link" id="v-pills-iq-tab" data-bs-toggle="tab"
+          data-bs-target="#v-pills-iq" type="button" role="tab"
+          aria-controls="v-pills-iq" aria-selected="false">
+          IQ
+        </button>
+      </div>
     </nav>
-    <div class="tab-content" id="v-pills-tabContent">
-    <!-- career tab -->
-    {% include 'statistics/career-section.html' %}
-    <!-- Personality Tab -->
-    {% include 'statistics/personality-section.html' %}
-    <!-- IQ Tab -->
-    {% include 'statistics/iq-section.html' %}
-            
+
+    <div class="tab-content admin-stats-tab-content" id="v-pills-tabContent">
+      {% include 'statistics/career-section.html' %}
+      {% include 'statistics/personality-section.html' %}
+      {% include 'statistics/iq-section.html' %}
     </div>
+  </div>
+
+  <button type="button" class="btn btn-teal btn-floating btn-lg admin-stats-back-top" id="btn-back-to-top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16" aria-hidden="true">
+      <path fill-rule="evenodd"
+        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+    </svg>
+  </button>
 </main>
 {% endblock %}
 
 {% block scripts %}
 <script src="{% static 'scripts/backToTop.js' %}"></script>
+<script>
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach((tab) => {
+    tab.addEventListener('shown.bs.tab', () => {
+      [window.careerChartInstance, window.personalityChartInstance, window.iqChartInstance].forEach((chart) => {
+        if (chart && typeof chart.resize === 'function') chart.resize();
+      });
+    });
+  });
+</script>
 {% endblock %}

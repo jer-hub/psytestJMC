@@ -1,70 +1,72 @@
 {% extends "userprofile/base.html" %}
 {% load static %}
-{% block title %}{{profile.user.first_name}} {{profile.user.last_name}}{% endblock %}
+{% block title %}{{ profile.user.first_name }} {{ profile.user.last_name }}{% endblock %}
 
 {% block content %}
 <header>
-    {% include 'partials/_navbar.html' %}
+  {% include 'partials/_navbar.html' %}
 </header>
-<main class="container mt-2">
-    <!-- message alert -->
-    <div class="d-flex justify-content-center  align-items-center">
-        {% include 'administration/partials/alert.html' %}
+
+<main class="profile-page">
+  <div class="profile-shell">
+    <div class="profile-alert">
+      {% include 'administration/partials/alert.html' %}
     </div>
-    <button type="button" class="btn btn-teal btn-floating btn-lg" id="btn-back-to-top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="34px" fill="currentColor" class="bi bi-arrow-up"
-            viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
-        </svg>
-    </button>
-    <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-            <button class="nav-link {% if tab == 'profile' %}active{% endif %}" id="v-pills-profile-tab"
-                data-bs-toggle="tab" data-bs-target="#v-pills-profile" type="button" role="tab"
-                aria-controls="v-pills-profile" aria-selected="true">Profile</button>
 
-            <button class="nav-link {% if tab == 'career' %}active{% endif %}" id="v-pills-career-tab"
-                data-bs-toggle="tab" data-bs-target="#v-pills-career" type="button" role="tab"
-                aria-controls="v-pills-career" aria-selected="false">Career</button>
-
-            <button class="nav-link {% if tab == 'personality' %}active{% endif %}" id="v-pills-personality-tab"
-                data-bs-toggle="tab" data-bs-target="#v-pills-personality" type="button" role="tab"
-                aria-controls="v-pills-personality" aria-selected="false">Personality</button>
-
-            <button class="nav-link {% if tab == 'iq' %}active{% endif %}" id="v-pills-iq-tab"
-                data-bs-toggle="tab" data-bs-target="#v-pills-iq" type="button" role="tab"
-                aria-controls="v-pills-iq" aria-selected="false">IQ</button>
-        </div>
+    <nav class="profile-tabs" aria-label="Profile sections">
+      <div class="nav nav-tabs profile-tablist" id="nav-tab" role="tablist">
+        <button class="nav-link {% if tab == 'profile' %}active{% endif %}" id="v-pills-profile-tab"
+          data-bs-toggle="tab" data-bs-target="#v-pills-profile" type="button" role="tab"
+          aria-controls="v-pills-profile" aria-selected="{% if tab == 'profile' %}true{% else %}false{% endif %}">
+          Profile
+        </button>
+        <button class="nav-link {% if tab == 'career' %}active{% endif %}" id="v-pills-career-tab"
+          data-bs-toggle="tab" data-bs-target="#v-pills-career" type="button" role="tab"
+          aria-controls="v-pills-career" aria-selected="{% if tab == 'career' %}true{% else %}false{% endif %}">
+          Career
+        </button>
+        <button class="nav-link {% if tab == 'personality' %}active{% endif %}" id="v-pills-personality-tab"
+          data-bs-toggle="tab" data-bs-target="#v-pills-personality" type="button" role="tab"
+          aria-controls="v-pills-personality" aria-selected="{% if tab == 'personality' %}true{% else %}false{% endif %}">
+          Personality
+        </button>
+        <button class="nav-link {% if tab == 'iq' %}active{% endif %}" id="v-pills-iq-tab"
+          data-bs-toggle="tab" data-bs-target="#v-pills-iq" type="button" role="tab"
+          aria-controls="v-pills-iq" aria-selected="{% if tab == 'iq' %}true{% else %}false{% endif %}">
+          IQ
+        </button>
+      </div>
     </nav>
 
-
-    <div class="tab-content" id="v-pills-tabContent">
-        <!-- profile tab -->
-        <div class="tab-pane fade {% if tab == 'profile' %}show active{% endif %}" id="v-pills-profile" role="tabpanel"
-            aria-labelledby="v-pills-profile-tab">
-            {% include 'userprofile/partials/tab-profile.html' %}
-        </div>
-        <!-- career tab -->
-        <div class="tab-pane fade {% if tab == 'career' %}show active{% endif %}" id="v-pills-career" role="tabpanel"
-            aria-labelledby="v-pills-career-tab">
-            {% include 'userprofile/partials/tab-career.html' %}
-        </div>
-        <!-- Personality Tab -->
-        <div class="tab-pane fade {% if tab == 'personality' %}show active{% endif %}" id="v-pills-personality"
-            role="tabpanel" aria-labelledby="v-pills-personality-tab">
-            {% include 'userprofile/partials/tab-personality.html' %}
-        </div>
-        <!-- IQ Tab -->
-        <div class="tab-pane fade {% if tab == 'iq' %}show active{% endif %}" id="v-pills-iq"
-        role="tabpanel" aria-labelledby="v-pills-iq-tab">
+    <div class="tab-content profile-tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade {% if tab == 'profile' %}show active{% endif %}" id="v-pills-profile" role="tabpanel"
+        aria-labelledby="v-pills-profile-tab">
+        {% include 'userprofile/partials/tab-profile.html' %}
+      </div>
+      <div class="tab-pane fade {% if tab == 'career' %}show active{% endif %}" id="v-pills-career" role="tabpanel"
+        aria-labelledby="v-pills-career-tab">
+        {% include 'userprofile/partials/tab-career.html' %}
+      </div>
+      <div class="tab-pane fade {% if tab == 'personality' %}show active{% endif %}" id="v-pills-personality"
+        role="tabpanel" aria-labelledby="v-pills-personality-tab">
+        {% include 'userprofile/partials/tab-personality.html' %}
+      </div>
+      <div class="tab-pane fade {% if tab == 'iq' %}show active{% endif %}" id="v-pills-iq" role="tabpanel"
+        aria-labelledby="v-pills-iq-tab">
         {% include 'userprofile/partials/tab-iq.html' %}
+      </div>
     </div>
-    </div>
+  </div>
 
-
+  <button type="button" class="btn btn-teal btn-floating btn-lg profile-back-top" id="btn-back-to-top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16" aria-hidden="true">
+      <path fill-rule="evenodd"
+        d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+    </svg>
+  </button>
 </main>
 {% endblock %}
+
 {% block scripts %}
 <script src="{% static 'scripts/administration/userprofile.js' %}" defer></script>
 {% endblock %}

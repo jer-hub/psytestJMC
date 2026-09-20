@@ -1,21 +1,17 @@
-<div class="modal fade" id="update_question_modal" aria-labelledby="update_question_modal" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="update_question_{{question.id}}_modal_title">Update question</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <!-- form -->
-            <div id="id_alert">
-            </div>
-            <div class="modal-body d-flex flex-column gap-2">
-                <div id="update_question_field">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
+<div class="modal fade admin-modal" id="update_question_modal" tabindex="-1" aria-labelledby="update_question_modal_title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="update_question_modal_title">Update question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id="id_alert" class="admin-modal__alert"></div>
+      <div class="modal-body admin-modal__form d-flex flex-column gap-2">
+        <div id="update_question_field"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
 </div>

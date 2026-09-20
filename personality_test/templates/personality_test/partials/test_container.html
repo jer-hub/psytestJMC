@@ -1,39 +1,85 @@
 {% load static %}
-<form id="submit_form" action="{% url 'personalityTest:submit-test' %}" method="post">
-    {% csrf_token %}
-    {% for question in questions %}
-    <p id="question_{{forloop.counter}}" class="mt-5">{{forloop.counter}}. {{question.question}}</p>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="{{question.id}}" id="strongly_disagree_{{question.id}}" value="1"
-            required>
-        <label for="strongly_disagree_{{question.id}}">Strongly Disagree</label>
+<form id="submit_form" class="pt-form" action="{% url 'personalityTest:submit-test' %}" method="post">
+  {% csrf_token %}
+  {% for question in questions %}
+  <fieldset class="pt-question" id="question_{{ forloop.counter }}">
+    <legend class="pt-question-prompt">
+      <span class="pt-question-number">{{ forloop.counter }}.</span>
+      <span class="pt-question-text">{{ question.question }}</span>
+    </legend>
+
+    <div class="pt-likert" role="group" aria-label="Response for question {{ forloop.counter }}">
+      <label class="pt-likert-option" for="strongly_disagree_{{ question.id }}">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="{{ question.id }}"
+          id="strongly_disagree_{{ question.id }}"
+          value="1"
+          required
+        >
+        <span class="pt-likert-score">1</span>
+        <span class="pt-likert-label">Strongly Disagree</span>
+      </label>
+
+      <label class="pt-likert-option" for="disagree_{{ question.id }}">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="{{ question.id }}"
+          id="disagree_{{ question.id }}"
+          value="2"
+          required
+        >
+        <span class="pt-likert-score">2</span>
+        <span class="pt-likert-label">Disagree</span>
+      </label>
+
+      <label class="pt-likert-option" for="neutral_{{ question.id }}">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="{{ question.id }}"
+          id="neutral_{{ question.id }}"
+          value="3"
+          required
+        >
+        <span class="pt-likert-score">3</span>
+        <span class="pt-likert-label">Neutral</span>
+      </label>
+
+      <label class="pt-likert-option" for="agree_{{ question.id }}">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="{{ question.id }}"
+          id="agree_{{ question.id }}"
+          value="4"
+          required
+        >
+        <span class="pt-likert-score">4</span>
+        <span class="pt-likert-label">Agree</span>
+      </label>
+
+      <label class="pt-likert-option" for="strongly_agree_{{ question.id }}">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="{{ question.id }}"
+          id="strongly_agree_{{ question.id }}"
+          value="5"
+          required
+        >
+        <span class="pt-likert-score">5</span>
+        <span class="pt-likert-label">Strongly Agree</span>
+      </label>
     </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="{{question.id}}" id="disagree_{{question.id}}"
-            value="2" required>
-        <label for="disagree_{{question.id}}">Disagree</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="{{question.id}}" id="neutral_{{question.id}}" value="3"
-            required>
-        <label for="neutral_{{question.id}}">Neutral</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="{{question.id}}" id="agree_{{question.id}}"
-            value="4" required>
-        <label for="agree_{{question.id}}">Agree</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="{{question.id}}" id="strongly_agree_{{question.id}}" value="5"
-            required>
-        <label for="strongly_agree_{{question.id}}">Strongly Agree</label>
-    </div>
-    <br>
-    <hr>
-    {% endfor %}
-    <div class="d-flex flex-column p-2 justify-content-center">
-        <input type="submit" class="btn pt-btn btn-lg btn-block" value="Submit"/>
-    </div>
+  </fieldset>
+  {% endfor %}
+
+  <div class="pt-submit">
+    <input type="submit" class="btn pt-btn btn-lg" value="Submit" />
+  </div>
 </form>
 
 <script src="{% static 'scripts/personality_test_timer.js' %}"></script>

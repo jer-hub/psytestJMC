@@ -1,96 +1,90 @@
-<div
-  class="tab-pane fade show"
-  id="v-pills-iq"
-  role="tabpanel"
-  aria-labelledby="v-pills-iq-tab"
->
-  <div class="my-2">
+<div class="tab-pane fade" id="v-pills-iq" role="tabpanel" aria-labelledby="v-pills-iq-tab">
+  <section class="admin-stats-panel">
     <form
+      class="admin-stats-filters"
       hx-get="{% url 'administration:iq-stats' %}"
       hx-trigger="change"
       hx-swap="outerHTML"
       hx-target="#iq_scripts"
     >
-      <div class="d-flex flex-wrap m-1">
-        <label for="" class="m-2">Sex</label>
-        <div>{{iqStatForm.sex}}</div>
-        <label for="" class="m-2">Education Level</label>
-        <div>{{iqStatForm.educationlevel}}</div>
-        <label for="" class="m-2">Year Level</label>
-        <div>{{iqStatForm.year}}</div>
+      <div class="admin-stats-filter-grid">
+        <div class="admin-stats-field">
+          <label for="{{ iqStatForm.sex.id_for_label }}">Sex</label>
+          {{ iqStatForm.sex }}
+        </div>
+        <div class="admin-stats-field">
+          <label for="{{ iqStatForm.educationlevel.id_for_label }}">Education Level</label>
+          {{ iqStatForm.educationlevel }}
+        </div>
+        <div class="admin-stats-field">
+          <label for="{{ iqStatForm.year.id_for_label }}">Year Level</label>
+          {{ iqStatForm.year }}
+        </div>
+        <div class="admin-stats-field">
+          <label for="{{ iqStatForm.department.id_for_label }}">Department</label>
+          {{ iqStatForm.department }}
+        </div>
+        <div class="admin-stats-field">
+          <label for="{{ iqStatForm.program.id_for_label }}">Program</label>
+          {{ iqStatForm.program }}
+        </div>
       </div>
-      <div class="d-flex flex-wrap m-1">
-        <label for="" class="m-2">Department</label>
-        <div>{{iqStatForm.department}}</div>
-        <label for="" class="m-2">Program</label>
-        <div>{{iqStatForm.program}}</div>
-      </div>
-      <div class="d-flex flex-wrap m-1">
-        <label for="" class="m-2">Start Date</label>
-        <div class="d-flex">{{iqStatForm.start_date}}</div>
-        <label for="" class="m-2">End Date</label>
-        <div class="d-flex">{{iqStatForm.end_date}}</div>
+      <div class="admin-stats-date-grid">
+        <div class="admin-stats-field">
+          <label>Start Date</label>
+          <div class="admin-stats-date">{{ iqStatForm.start_date }}</div>
+        </div>
+        <div class="admin-stats-field">
+          <label>End Date</label>
+          <div class="admin-stats-date">{{ iqStatForm.end_date }}</div>
+        </div>
       </div>
     </form>
-  </div>
 
-  <div id="iq-section">{% include 'statistics/partials/iq_stat.html' %}</div>
+    <div id="iq-section">
+      {% include 'statistics/partials/iq_stat.html' %}
+    </div>
+  </section>
 </div>
 
 {% block iq_scripts %}
 <script id="iq_scripts">
   $(document).ready(() => {
-
-    const count = $('#iq_count')
-    count.text("total of: {{ iq_count|default:0 }}")
+    const count = $('#iq_count');
+    count.text("total of: {{ iq_count|default:0 }}");
 
     var $data = [{% for avg in iq_avg %}'{{avg}}',{% endfor %}];
     var $labels = [{% for label in iq_labels %}'{{label}}',{% endfor %}];
 
-    let IQChart = new Chart(iqChart, {
-      type: "line", // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+    let iqChartCanvas = document.getElementById('iqChart');
+    if (!iqChartCanvas) return;
+    if (window.iqChartInstance) {
+      window.iqChartInstance.destroy();
+    }
+    window.iqChartInstance = new Chart(iqChartCanvas, {
+      type: "line",
       data: {
         labels: $labels,
-        datasets: [
-          {
-            data: $data,
-            backgroundColor: [
-              "rgba(66, 141, 239, 0.6)",
-              "rgba(54, 162, 235, 0.6)",
-              "rgba(255, 206, 86, 0.6)",
-              "rgba(75, 192, 192, 0.6)",
-              "rgba(153, 102, 255, 0.6)",
-              "rgba(255, 159, 64, 0.6)",
-              "rgba(255, 99, 132, 0.6)",
-            ],
-            borderWidth: 1,
-            borderColor: "#777",
-            hoverBorderWidth: 3,
-            hoverBorderColor: "#000",
-          },
-        ],
+        datasets: [{
+          data: $data,
+          backgroundColor: "rgba(13, 148, 136, 0.18)",
+          borderColor: "#0d9488",
+          borderWidth: 2,
+          pointBackgroundColor: "#0d9488",
+          pointRadius: 4,
+          lineTension: 0.25,
+        }],
       },
       options: {
         maintainAspectRatio: false,
         responsive: true,
-        legend: {
-          display: false,
-        },
-        tooltips: {
-          enabled: true,
-        },
+        legend: { display: false },
+        tooltips: { enabled: true },
         scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
+          yAxes: [{ ticks: { beginAtZero: true } }],
         },
       },
     });
   });
 </script>
-
 {% endblock %}

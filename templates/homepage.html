@@ -1,65 +1,59 @@
-{% extends "base.html" %} {% load static %} {% block title %}Home{% endblock %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
 {% block content %}
 <header>{% include 'partials/_navbar.html' %}</header>
-<main>
+
+<main class="home-page">
   {% if messages %}
-  <div class="bg-success text-white text-center">
-    {% for message in messages %} {{message}} {% endfor %}
+  <div class="home-flash" role="status">
+    {% for message in messages %}{{ message }}{% endfor %}
   </div>
   {% endif %}
-  <!-- Banner -->
-  <div class="row m-0 bg-main">
-    <section class="p-5 m-0">
-      <div class="d-flex justify-content-center align-self-center">
-        <div class="text-center">
-          <img
-            src="{% static 'images/jmcseal.png' %}"
-            alt=""
-            class="logo-100"
-          />
-          <img src="{% static 'images/cite.png' %}" alt="" class="logo-100" />
-          <img
-            src="{% static 'images/psychology.png' %}"
-            alt=""
-            class="logo-100"
-          />
-          <div class="text-center">
-            <header>
-              <h1 class="fs-60 color-teal">Welcome!</h1>
-            </header>
-            <p class="fs-17 color-teal">Take a psychological test</p>
-            <a href="{% url 'assessment' %}" class="btn btn-teal mt-3"
-              >Click here</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
 
-  <section class="banner px-5 py-3" style="background-color: #f5f5dc">
-    <span class="image object">
-      <img class="p-3" src="{% static 'images/decision.svg' %}" alt="" />
-    </span>
-    <div class="content d-flex align-self-center justify-content-center">
-      <h5 class="">
-        Learn what <span style="color: #0b3b5a">career</span> suites you
-      </h5>
+  <section class="home-hero" aria-labelledby="home-hero-title">
+    <div class="home-hero__media" aria-hidden="true"></div>
+    <div class="home-hero__inner">
+      <p class="home-hero__brand">PSYTEST</p>
+      <h1 id="home-hero-title">Welcome</h1>
+      <p class="home-hero__lead">Take a psychological test and discover insights about your career path and personality.</p>
+      <a href="{% url 'assessment' %}" class="btn btn-teal home-hero__cta">Start assessment</a>
+      <ul class="home-hero__partners" aria-label="Partner institutions">
+        <li><img src="{% static 'images/jmcseal.png' %}" alt="Jose Maria College seal" width="56" height="56"></li>
+        <li><img src="{% static 'images/cite.png' %}" alt="CITE" width="56" height="56"></li>
+        <li><img src="{% static 'images/psychology.png' %}" alt="Psychology" width="56" height="56"></li>
+      </ul>
     </div>
   </section>
-  <section class="banner px-5" style="background-color: #f5f5f5">
-    <span class="image object">
-      <img class="p-3" src="{% static 'images/personality.svg' %}" alt="" />
-    </span>
-    <div class="content d-flex align-self-center justify-content-center">
-      <div>
-        <h5 class="">
-          Learn what <span style="color: #0b3b5a">personality</span> attributes
-          you have
-        </h5>
+
+  <section class="home-feature home-feature--career" aria-labelledby="home-career-title">
+    <div class="home-feature__inner">
+      <div class="home-feature__visual">
+        <img src="{% static 'images/decision.svg' %}" alt="" width="480" height="360" loading="lazy">
+      </div>
+      <div class="home-feature__copy">
+        <p class="home-feature__eyebrow">Career</p>
+        <h2 id="home-career-title">Learn what career suits you</h2>
+        <p>Explore interests and strengths that point toward roles and fields that fit you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-feature home-feature--personality" aria-labelledby="home-personality-title">
+    <div class="home-feature__inner home-feature__inner--reverse">
+      <div class="home-feature__visual">
+        <img src="{% static 'images/personality.svg' %}" alt="" width="480" height="360" loading="lazy">
+      </div>
+      <div class="home-feature__copy">
+        <p class="home-feature__eyebrow">Personality</p>
+        <h2 id="home-personality-title">Learn what personality attributes you have</h2>
+        <p>Understand traits that shape how you think, relate, and approach everyday decisions.</p>
       </div>
     </div>
   </section>
 </main>
-<footer>{% include 'partials/footer.html' %}</footer>
+
+<footer class="home-footer">{% include 'partials/footer.html' %}</footer>
 {% endblock %}

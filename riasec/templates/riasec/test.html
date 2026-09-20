@@ -1,40 +1,57 @@
 {% extends 'riasec/base.html' %}
+{% load static %}
 
 {% block title %}Career Test{% endblock %}
 
-
 {% block content %}
-<div class="sticky-top p-3 bg-white d-flex justify-content-center">
-    <div class="col-9">
-        <div class="d-flex justify-content-between">
-            <h5>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-arrow-left color-teal" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                </svg>
-                <a href="{% url 'assessment' %}" class="back-link">Back</a>
-            </h5>
-            <div>
-                <p class="text-center">Time:</p>
-                <p id="countdown"></p>
-            </div>
-        </div>
+<div class="ct-page">
+  <header class="ct-toolbar sticky-top">
+    <div class="ct-shell">
+      <a href="{% url 'assessment' %}" class="ct-back back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          class="bi bi-arrow-left" viewBox="0 0 16 16" aria-hidden="true">
+          <path fill-rule="evenodd"
+            d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+        </svg>
+        Back
+      </a>
+      <div class="ct-timer" aria-live="polite">
+        <span class="ct-timer-label">Time</span>
+        <span id="countdown" class="ct-timer-value">—</span>
+      </div>
     </div>
-</div>
-<main class="d-flex justify-content-center">
-    <div class="container-test">
+  </header>
+
+  <main class="ct-shell">
+    <article class="ct-panel">
+      <header class="ct-panel-intro">
+        <p class="ct-eyebrow">RIASEC interests</p>
         <h1>Career Test</h1>
-        <p class="p-2">
-            Rate each task by how much you would enjoy performing them on a scale of <b>(1) Strongly Disagree (2) Disagree (3) Neutral (4) Agree (5) Strongly Agree</b>. You will have a limit of 10 minutes to complete the test. Please answer as honestly as possible for an accurate result.
+        <p class="ct-instructions">
+          Rate how much you would enjoy each activity on a scale of
+          <strong>(1) Strongly Disagree</strong>,
+          <strong>(2) Disagree</strong>,
+          <strong>(3) Neutral</strong>,
+          <strong>(4) Agree</strong>,
+          <strong>(5) Strongly Agree</strong>.
+          You have <strong>10 minutes</strong> to finish. Answer honestly for the most accurate result.
         </p>
-        <hr>
-        <div id="test_container">
-            <div class="d-flex justify-content-center">
-                <button class="btn btn-teal btn-lg" hx-get="{% url 'riasec:test-container' %}"
-                    hx-target="#test_container" id="start_test">Start Test</button>
-            </div>
+      </header>
+
+      <div id="test_container" class="ct-test-body">
+        <div class="ct-start">
+          <button
+            class="btn btn-teal btn-lg ct-start-btn"
+            type="button"
+            hx-get="{% url 'riasec:test-container' %}"
+            hx-target="#test_container"
+            id="start_test"
+          >
+            Start Test
+          </button>
         </div>
-    </div>
-</main>
+      </div>
+    </article>
+  </main>
+</div>
 {% endblock %}

@@ -4,115 +4,150 @@
 
 {% block title %}Register{% endblock %}
 
-{% block content%}
-<main class="container-fluid">
-    <div class="row justify-content-center mt-3">
-        <div class="col-sm-8 col-xs-6 p-4 border-1-round-box">
-            <h3 class="mb-4">Register</h3>
+{% block content %}
+<div class="auth-register">
+  <div class="auth-register-shell">
+    <header class="auth-register-header">
+      <div>
+        <p class="auth-register-eyebrow">Create account</p>
+        <h1>Register</h1>
+        <p class="auth-register-lead">
+          Fill in your profile details to start taking assessments.
+        </p>
+      </div>
+      <a href="{% url 'accounts:login' %}" class="auth-register-login-link">Already have an account? Login</a>
+    </header>
 
-            <form method="post" id="registerForm" data-profile-url="{% url 'accounts:register' %}">
-                {% csrf_token %}
-                <div class="row">
-                    <div class="col-sm-4 col-xs-6">
-                        <label for="id_first_name">First Name</label>
-                        {{form.first_name}}
-                        {{form.first_name.errors}}
-                    </div>
-                    <div class="col-sm-4 col-xs-6">
-                        <label for="id_middle_name">Middle Name</label>
-                        {{form.middle_name}}
-                        {{form.middle_name.errors}}
-                    </div>
-                    <div class="col-sm-4 col-xs-6">
-                        <label for="id_last_name">Last Name</label>
-                        {{form.last_name}}
-                        {{form.last_name.errors}}
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-4 col-xs-6">
-                        <label for="id_sex">Sex</label>
-                        {{form.sex}}
-                        {{form.sex.errors}}
-                    </div>
-                    <div class="col-sm-4 col-xs-6">
-                        <label for="id_contactNumber">Contact Number</label>
-                        <small class="text-muted">(e.g 09057833023)</small>
-                        {{form.contactNumber}}
-                        {{form.contactNumber.errors}}
-                    </div>
-                    <div class="col-sm-4 col-xs-6">
-                        <label for="id_date_of_birth">Birthdate</label>
-                        <div class="d-flex">
-                            {{form.date_of_birth}}
-                            {{form.date_of_birth.errors}}
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-6 col-xs-6">
-                        <label for="id_educationlevel">Education Level</label>
-                        {% render_field form.educationlevel class='form-select' hx-get="years/" hx-target="#id_year" %}
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-                        <label for="id_department">Department</label>
-                        <activate hx-get="departments/" hx-include="[name='educationlevel']" hx-target="#id_department" hx-trigger="change from:#id_educationlevel" ></activate>
-                        {% render_field form.department class="form-select" %}
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-                        <label for="id_program">Program / Track</label>
-                        <activate hx-get="programs/" hx-include="[name='department']" hx-target="#id_program" hx-trigger="change from:#id_department"></activate>
-                        <activate hx-get="programs/" hx-target="#id_program" hx-trigger="change from:#id_educationlevel"></activate>
-                        {% render_field form.program class="form-select" %}
+    <section class="auth-register-card">
+      <form method="post" id="registerForm" class="auth-register-form" data-profile-url="{% url 'accounts:register' %}">
+        {% csrf_token %}
 
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-                        <label for="id_year">Year</label>
-                        {% render_field form.year class='form-select' %}
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-6 col-xs-6">
-                        <label for="id_username">Username</label>
-                        {{form.username}}
-                        {{form.username.errors}}
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-                        <label for="id_email">Email</label>
-                        {{form.email}}
-                        {{form.email.errors}}
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-6 col-xs-6">
-                        <label for="id_password1">Password</label>
-                        {{form.password1}}
-                        {{form.password1.errors}}
-                    </div>
-                    <div class="col-sm-6 col-xs-6">
-                        <label for="id_password2">Confirm Password</label>
-                        {{form.password2}}
-                        {{form.password2.errors}}
-                    </div>
-                </div>
-                {% if form.password1.errors %}
-                <div class="alert alert-secondary">
-                    <ul>
-                        <li>Should have at least one number.</li>
-                        <li>Should have at least one uppercase and one lowercase character.</li>
-                        <li>Should be minimum of 8 characters.</li>
-                    </ul>
-                </div>
-                {% endif %}
-                <div class="d-flex justify-content-center">
-                    <input type="submit" value="Submit" class="btn btn-teal w-100 mt-3">
-                </div>
-            </form>
+        <fieldset class="auth-register-section">
+          <legend>Personal information</legend>
+          <div class="auth-register-grid auth-register-grid-3">
+            <div class="auth-field">
+              <label for="id_first_name">First Name</label>
+              {{ form.first_name }}
+              {{ form.first_name.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_middle_name">Middle Name</label>
+              {{ form.middle_name }}
+              {{ form.middle_name.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_last_name">Last Name</label>
+              {{ form.last_name }}
+              {{ form.last_name.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_sex">Sex</label>
+              {{ form.sex }}
+              {{ form.sex.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_contactNumber">
+                Contact Number
+                <span class="auth-field-hint">(e.g. 09057833023)</span>
+              </label>
+              {{ form.contactNumber }}
+              {{ form.contactNumber.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_date_of_birth_month">Birthdate</label>
+              <div class="auth-birthdate">
+                {{ form.date_of_birth }}
+              </div>
+              {{ form.date_of_birth.errors }}
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="auth-register-section">
+          <legend>Education</legend>
+          <div class="auth-register-grid auth-register-grid-2">
+            <div class="auth-field">
+              <label for="id_educationlevel">Education Level</label>
+              {% render_field form.educationlevel class='form-select' hx-get="years/" hx-target="#id_year" %}
+              {{ form.educationlevel.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_department">Department</label>
+              <div
+                hx-get="departments/"
+                hx-include="[name='educationlevel']"
+                hx-target="#id_department"
+                hx-trigger="change from:#id_educationlevel"
+              ></div>
+              {% render_field form.department class="form-select" %}
+              {{ form.department.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_program">Program / Track</label>
+              <div
+                hx-get="programs/"
+                hx-include="[name='department']"
+                hx-target="#id_program"
+                hx-trigger="change from:#id_department"
+              ></div>
+              <div
+                hx-get="programs/"
+                hx-target="#id_program"
+                hx-trigger="change from:#id_educationlevel"
+              ></div>
+              {% render_field form.program class="form-select" %}
+              {{ form.program.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_year">Year</label>
+              {% render_field form.year class='form-select' %}
+              {{ form.year.errors }}
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="auth-register-section">
+          <legend>Account credentials</legend>
+          <div class="auth-register-grid auth-register-grid-2">
+            <div class="auth-field">
+              <label for="id_username">Username</label>
+              {{ form.username }}
+              {{ form.username.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_email">Email</label>
+              {{ form.email }}
+              {{ form.email.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_password1">Password</label>
+              {{ form.password1 }}
+              {{ form.password1.errors }}
+            </div>
+            <div class="auth-field">
+              <label for="id_password2">Confirm Password</label>
+              {{ form.password2 }}
+              {{ form.password2.errors }}
+            </div>
+          </div>
+
+          {% if form.password1.errors %}
+          <div class="auth-register-hint" role="note">
+            <p>Password should:</p>
+            <ul>
+              <li>Include at least one number</li>
+              <li>Include at least one uppercase and one lowercase letter</li>
+              <li>Be at least 8 characters</li>
+            </ul>
+          </div>
+          {% endif %}
+        </fieldset>
+
+        <div class="auth-register-actions">
+          <button type="submit" class="btn btn-teal auth-register-submit">Submit</button>
         </div>
-    </div>
-</main>
+      </form>
+    </section>
+  </div>
+</div>
 {% endblock %}

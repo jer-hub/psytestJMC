@@ -1,27 +1,31 @@
-<div class="modal fade" id="edu_level_list" aria-labelledby="edu_level_list-label" aria-hidden="true" tabindex="-1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="edu_level_list-label">All Education Levels</h5>
-        </div>
-        <div class="modal-body">
-          <table class="table">
+<div class="modal fade admin-modal" id="edu_level_list" aria-labelledby="edu_level_list-label" aria-hidden="true" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edu_level_list-label">All education levels</h5>
+      </div>
+      <div class="modal-body">
+        <div class="admin-org-table-wrap">
+          <table class="admin-org-table admin-org-table--compact">
             <thead>
-              <td>Education Level Name</td>
-              <td class="text-center">
-                <button href="#edu_levels_delete_modal" class="btn btn-danger btn-sm" data-bs-toggle="modal">
-                  Delete
-                </button>
-              </td>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col" class="admin-org-table__check">
+                  <button type="button" class="admin-manage-btn admin-manage-btn--danger admin-org-btn-sm" data-bs-toggle="modal" data-bs-target="#edu_levels_delete_modal">
+                    Delete
+                  </button>
+                </th>
+              </tr>
             </thead>
             <tbody id="edu_levels_list_body">
               {% include 'organization/partials/edu_levels_list_body.html' %}
             </tbody>
           </table>
         </div>
-        <div class="modal-footer border-0">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
+</div>

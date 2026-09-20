@@ -1,22 +1,20 @@
-<div class="modal fade" id="add_question" aria-labelledby="add_question" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="add_question">Add a question</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                </button>
-            </div>
-            <!-- form -->
-            <form hx-post="{% url 'administration:add-personality-question' %}" hx-target='#questions'>
-                {% csrf_token %}
-                <div class="modal-body">
-                    {{add_form.as_p}}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-teal me-3">Add</button>
-                </div>
-            </form>
+<div class="modal fade admin-modal" id="add_question" tabindex="-1" aria-labelledby="add_question_title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="add_question_title">Add a question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form hx-post="{% url 'administration:add-personality-question' %}" hx-target="#questions">
+        {% csrf_token %}
+        <div class="modal-body admin-modal__form">
+          {{ add_form.as_p }}
         </div>
+        <div class="modal-footer">
+          <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="admin-manage-btn admin-manage-btn--primary">Add</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>

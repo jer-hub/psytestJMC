@@ -1,0 +1,49 @@
+<div class="modal fade admin-modal" id="program_modal" tabindex="-1" aria-labelledby="program_modal_label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="program_modal_label">Add program</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body admin-modal__form">
+        <form id="add-form">
+          {{ addOfferedProgramForm.as_p }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Cancel</button>
+        <button
+          type="button"
+          hx-post="{% url 'administration:add-interest' %}"
+          class="admin-manage-btn admin-manage-btn--primary"
+          hx-include="#add-form"
+          data-bs-dismiss="modal"
+        >Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade admin-modal" id="delete_modal" tabindex="-1" aria-labelledby="delete_modal_label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete_modal_label">Delete programs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="admin-modal__message">Delete the selected programs? This cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="admin-manage-btn admin-manage-btn--ghost" data-bs-dismiss="modal">Cancel</button>
+        <button
+          type="button"
+          id="delete_interest_btn"
+          class="admin-manage-btn admin-manage-btn--danger"
+          data-bs-dismiss="modal"
+          data-url="{% url 'administration:delete-interest' %}"
+        >Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

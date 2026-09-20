@@ -32,7 +32,7 @@ DATABASES = {
     'PASSWORD': os.environ.get('DB_PASSWORD', '123'),
     'HOST': os.environ.get('DB_HOST', 'localhost'),
     'PORT': os.environ.get('DB_PORT', '5432'),
-    # 'OPTIONS': {'sslmode': 'require'}, 
+    # 'OPTIONS': {'sslmode': 'require'},
   }
 }
 
@@ -40,3 +40,20 @@ USE_TZ=True
 SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SECURE = False
 SECURE_SSL_REDIRECT = False
+
+# Serve source static files directly in development (skip hashed manifest)
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+# Gmail SMTP often rejects local/dev logins (WebLoginRequired / no App Password).
+# Print emails to the console/logs unless EMAIL_BACKEND is explicitly set.
+EMAIL_BACKEND = os.environ.get(
+    "EMAIL_BACKEND",
+    "django.core.mail.backends.console.EmailBackend",
+)

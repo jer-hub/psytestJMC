@@ -1,24 +1,20 @@
 {% for edu_level in edu_levels %}
-    <tr>
-        <td>{{edu_level.name}}</td>
-        <td>
-            <div class="text-center">
-                <input type="checkbox" name="edu_level" class="form-check-input" value="{{edu_level.id}}">
-            </div>
-        </td>
-    </tr>
+<tr>
+  <td data-label="Education level">{{ edu_level.name }}</td>
+  <td data-label="Select" class="admin-org-table__check">
+    <input type="checkbox" name="edu_level" class="form-check-input" value="{{ edu_level.id }}">
+  </td>
+</tr>
 {% endfor %}
 
-
-{% if success %}    
-<div id="add_edu_msg" class="m-2 fade-me-in-out" hx-swap-oob="true">
-    <p class="text-success">added</p>
+{% if success %}
+<div id="add_edu_msg" class="admin-org-msg admin-org-msg--ok fade-me-in-out" hx-swap-oob="true">
+  <p>Added</p>
 </div>
 {% endif %}
 
 {% if failed %}
-<div id="add_edu_msg" class="m-2 fade-me-in-out" hx-swap-oob="true">
-    <p class="text-success">Already Existed</p>
+<div id="add_edu_msg" class="admin-org-msg admin-org-msg--error fade-me-in-out" hx-swap-oob="true">
+  <p>Already existed</p>
 </div>
 {% endif %}
-

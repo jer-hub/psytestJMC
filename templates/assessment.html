@@ -1,222 +1,195 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Assessment{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/assessment.css' %}?v=1">
+{% endblock %}
 
 {% block content %}
 <header>
-    {% include 'partials/_navbar.html' %}
+  {% include 'partials/_navbar.html' %}
 </header>
-<main class="container-fluid my-2">
-    <!-- message alert -->
-    <div class="row justify-content-center ">
-        <!-- main section -->
-        <div class="col-sm-2 col-xs-6">
-            <div class="border-1-round-box p-3 m-2">
-                <div>
-                    <h3>Status:</h3>
-                    <p>
-                        Personality Test
-                        {% if personality_result %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="green" class="bi bi-check"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                        </svg>
-                        {% else %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="red" class="bi bi-x"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                        {% endif %}
-                    </p>
-                    <p>
-                        Career Test
-                        {% if career_result %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="green" class="bi bi-check"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                        </svg>
-                        {% else %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="red" class="bi bi-x"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                        {% endif %}
-                    </p>
-                    <p>
-                        IQ Test
-                        {% if iq_result %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="green" class="bi bi-check"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                        </svg>
-                        {% else %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="red" class="bi bi-x"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                        </svg>
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-xs-6">
-            <div class="d-flex justify-content-center align-items-center">
-                {% include 'administration/partials/alert.html' %}
-            </div>
-            <div class="row justify-content-center border-1-round-box p-4 m-2">
 
-                <div class="text-center mb-5">
-                    <h3>Choose a test</h3>
-                </div>
-                <!-- Personality Test -->
-                <div class="col">
-                    <a href="{% url 'consent' 'personality' %}"
-                        class="text-center link-teal {% if personality_result %}disabled-links{% endif %}">
-                        <div>
-                            <img
-                                src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/120/000000/external-psychology-university-courses-wanicon-lineal-color-wanicon.png" />
-                        </div>
-                        <div {% if personality_result %} class="text-muted" {% endif %}>
-                            Personality Test
-                        </div>
-                    </a>
-                    {% if personality_result %}
-                    <div class="mt-2 text-center">
-                        <a class="btn btn-teal btn-sm"
-                            href="{% url 'profile:user-stats' profile.user.username profile.user.id 'personality' %}">view
-                            result</a>
-                    </div>
-                    {% endif %}
-                </div>
-                <!-- Career Test -->
-                <div class="col">
-                    <a href="{% url 'consent' 'career' %}"
-                        class="text-center link-teal {% if career_result %}disabled-links{% endif %}">
-                        <div>
-                            <img
-                                src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/120/000000/external-skills-business-recruitment-itim2101-lineal-color-itim2101-1.png" />
-                        </div>
-                        <div {% if career_result %} class="text-muted" {% endif %}>
-                            Career Test
-                        </div>
-                    </a>
-                    {% if career_result %}
-                    <div class="mt-2 text-center">
-                        <a class="btn btn-teal btn-sm"
-                            href="{% url 'profile:user-stats' profile.user.username profile.user.id 'career' %}">view
-                            result</a>
-                    </div>
-                    {% endif %}
-                </div>
-                <!-- IQ Test -->
-                <div class="col">
-                    <a href="{% url 'consent' 'iq' %}"
-                        class="text-center link-teal {% if iq_result %}disabled-links{% endif %}">
-                        <div>
-                            <img
-                                src="https://img.icons8.com/external-filled-outline-geotatah/120/null/external-brain-genius-color-filled-outline-geotatah.png" />
-                        </div>
-                        <div {% if iq_result %} class="text-muted" {% endif %}>
-                            IQ Test
-                        </div>
-                    </a>
-                    {% if iq_result %}
-                    <div class="mt-2 text-center">
-                        <a class="btn btn-teal btn-sm"
-                            href="{% url 'profile:user-stats' profile.user.username profile.user.id 'iq' %}">view
-                            result</a>
-                    </div>
-                    {% endif %}
-                </div>
-                <div class="m-t-50">
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                            class="bi bi-exclamation-circle text-primary" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                            <path
-                                d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
-                        </svg>
-                        <strong>Note:</strong>
-                    </p>
-                    <ul>
-                        <!-- <li>The three test are needed inorder to validate result.</li> -->
-                        <li>Understand and answer each questions honestly.</li>
-                    </ul>
-
-                </div>
-                {% if personality_result and career_result %}
-                <div>
-                    <div class="m-t-25">
-                        <div class="text-center">
-                            <!-- <hr>
-                            <div>
-                                <p>Help us improve by giving us feedback <a href="{% url 'evaluation:view' %}"
-                                        class="link-teal">here</a></p>
-                            </div> -->
-                            <hr>
-                            <!-- <div class="text-center">
-                                <h5>For donation:</h5>
-                                <div style="background-color:#70BAF7">
-                                    <p>Send us gcash here</p>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center p-3">
-                                    <img src="{% static 'images/gcash/logo.png' %}" alt="Gcash logo" width="20%">
-                                    <div class="text-start ms-3">
-                                        <p>Gcash Number: 097833050</p>
-                                        <p>Name: J***** C****n</p>
-                                    </div>
-                                </div>
-                            </div> 
-                            <hr>-->
-                            <div class="mt-3">
-                                <br>
-                                <h5>Looking for a game to play?</h5>
-                                <p>Download and play the first ever JMC CITE's Philippine History-Based offline visual
-                                    novel game created by
-                                    VICARY INC.</p>
-                                <div class="d-flex justify-content-center flex-wrap mt-4">
-                                    <div>
-                                        <img src="{% static 'images/cite.png' %}" alt="" class="w-100-auto m-1">
-                                    </div>
-                                    <div>
-                                        <img src="{% static 'images/vicary.png' %}" alt="" class="w-175-auto m-1">
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <p>Visit the page <a
-                                            href="https://vicaryinc.itch.io/hiraya?fbclid=IwAR3f8XSicPnRGHlsjgK8Su90rUxXqpVHbJbxVIobUuwivylaX7S6ff5123Q"
-                                            class="link-teal" target="_blank">here</a></p>
-                                </div>
-                            </div>
-
-                        </div>
-                        <hr>
-                        <div class="text-center">
-                            <div>
-                                <div class="mt-3">
-                                    <h5>Contact us here for more information</h5>
-                                </div>
-                                <img src="{% static 'icons/gmail.png' %}" alt="email icon" class="svg-22">
-                                <span>
-                                    psytest.jmcfi@jmc.edu.ph
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% endif %}
-
-            </div>
-        </div>
+<main class="assessment-page">
+  <div class="assessment-shell">
+    <div class="assessment-alert">
+      {% include 'administration/partials/alert.html' %}
     </div>
+
+    <section class="assessment-status" aria-label="Test completion status">
+      <h2 class="assessment-status-title">Status</h2>
+      <ul class="assessment-status-list">
+        <li class="assessment-status-item {% if personality_result %}is-done{% else %}is-pending{% endif %}">
+          <span>Personality Test</span>
+          {% if personality_result %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+          </svg>
+          <span class="visually-hidden">completed</span>
+          {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+          <span class="visually-hidden">not completed</span>
+          {% endif %}
+        </li>
+        <li class="assessment-status-item {% if career_result %}is-done{% else %}is-pending{% endif %}">
+          <span>Career Test</span>
+          {% if career_result %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+          </svg>
+          <span class="visually-hidden">completed</span>
+          {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+          <span class="visually-hidden">not completed</span>
+          {% endif %}
+        </li>
+        <li class="assessment-status-item {% if iq_result %}is-done{% else %}is-pending{% endif %}">
+          <span>IQ Test</span>
+          {% if iq_result %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+          </svg>
+          <span class="visually-hidden">completed</span>
+          {% else %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg>
+          <span class="visually-hidden">not completed</span>
+          {% endif %}
+        </li>
+      </ul>
+    </section>
+
+    <section class="assessment-panel">
+      <header class="assessment-panel-header">
+        <h1>Choose a test</h1>
+        <p>Pick an assessment to begin. Completed tests stay available under View result.</p>
+      </header>
+
+      <div class="assessment-grid">
+        <article class="assessment-card {% if personality_result %}is-complete{% endif %}">
+          <a href="{% url 'consent' 'personality' %}"
+             class="assessment-card-link {% if personality_result %}disabled-links{% endif %}">
+            <img
+              src="https://img.icons8.com/external-wanicon-lineal-color-wanicon/120/000000/external-psychology-university-courses-wanicon-lineal-color-wanicon.png"
+              alt=""
+              width="96"
+              height="96"
+              loading="lazy"
+            />
+            <h2>Personality Test</h2>
+          </a>
+          <div class="assessment-card-action">
+            {% if personality_result %}
+            <a class="btn btn-teal btn-sm"
+               href="{% url 'profile:user-stats' profile.user.username profile.user.id 'personality' %}">
+              View result
+            </a>
+            {% else %}
+            <span class="assessment-card-spacer" aria-hidden="true"></span>
+            {% endif %}
+          </div>
+        </article>
+
+        <article class="assessment-card {% if career_result %}is-complete{% endif %}">
+          <a href="{% url 'consent' 'career' %}"
+             class="assessment-card-link {% if career_result %}disabled-links{% endif %}">
+            <img
+              src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/120/000000/external-skills-business-recruitment-itim2101-lineal-color-itim2101-1.png"
+              alt=""
+              width="96"
+              height="96"
+              loading="lazy"
+            />
+            <h2>Career Test</h2>
+          </a>
+          <div class="assessment-card-action">
+            {% if career_result %}
+            <a class="btn btn-teal btn-sm"
+               href="{% url 'profile:user-stats' profile.user.username profile.user.id 'career' %}">
+              View result
+            </a>
+            {% else %}
+            <span class="assessment-card-spacer" aria-hidden="true"></span>
+            {% endif %}
+          </div>
+        </article>
+
+        <article class="assessment-card {% if iq_result %}is-complete{% endif %}">
+          <a href="{% url 'consent' 'iq' %}"
+             class="assessment-card-link {% if iq_result %}disabled-links{% endif %}">
+            <img
+              src="https://img.icons8.com/external-filled-outline-geotatah/120/null/external-brain-genius-color-filled-outline-geotatah.png"
+              alt=""
+              width="96"
+              height="96"
+              loading="lazy"
+            />
+            <h2>IQ Test</h2>
+          </a>
+          <div class="assessment-card-action">
+            {% if iq_result %}
+            <a class="btn btn-teal btn-sm"
+               href="{% url 'profile:user-stats' profile.user.username profile.user.id 'iq' %}">
+              View result
+            </a>
+            {% else %}
+            <span class="assessment-card-spacer" aria-hidden="true"></span>
+            {% endif %}
+          </div>
+        </article>
+      </div>
+
+      <aside class="assessment-note">
+        <div class="assessment-note-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+          </svg>
+          <strong>Note</strong>
+        </div>
+        <p>Understand and answer each question honestly.</p>
+      </aside>
+
+      {% if personality_result and career_result %}
+      <section class="assessment-promo">
+        <h3>Looking for a game to play?</h3>
+        <p>
+          Download and play the first ever JMC CITE Philippine History-based offline
+          visual novel game created by VICARY INC.
+        </p>
+        <div class="assessment-promo-logos">
+          <img src="{% static 'images/cite.png' %}" alt="CITE" class="assessment-logo assessment-logo-sm">
+          <img src="{% static 'images/vicary.png' %}" alt="Vicary Inc" class="assessment-logo assessment-logo-lg">
+        </div>
+        <p>
+          Visit the page
+          <a href="https://vicaryinc.itch.io/hiraya"
+             class="link-teal"
+             target="_blank"
+             rel="noopener noreferrer">here</a>.
+        </p>
+        <hr>
+        <div class="assessment-contact">
+          <h3>Contact us for more information</h3>
+          <p>
+            <img src="{% static 'icons/gmail.png' %}" alt="" class="svg-22" width="22" height="22">
+            <a href="mailto:psytest.jmcfi@jmc.edu.ph" class="link-teal">psytest.jmcfi@jmc.edu.ph</a>
+          </p>
+        </div>
+      </section>
+      {% endif %}
+    </section>
+  </div>
 </main>
 {% endblock %}
+
 {% block scripts %}
 <script src="{% static 'scripts/psytest/assessment.js' %}"></script>
 {% endblock %}

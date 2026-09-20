@@ -1,34 +1,20 @@
 {% load static %}
-<div class="row mb-5">
-    <div class="col-sm-3 col-xs-6 align-self-center">
-        <div class="m-3">
-            <h4>College Category</h4>
-            <small class="text-muted p-0 m-0" id="career_count"></small>
-        </div>
-        <ul class="list-group">
-            <li class="list-group-item">
-                <span class="bg-color-a p-2">Realistic</span> = {{ career_avg.realistic__avg|floatformat:1|default:0}}
-            </li>
-            <li class="list-group-item">
-                <span class="bg-color-b p-2">Investigative</span> = {{career_avg.investigative__avg|floatformat:1|default:0}}
-            </li>
-            <li class="list-group-item">
-                <span class="bg-color-c p-2">Artistic</span> = {{ career_avg.artistic__avg|floatformat:1|default:0}}
-            </li>
-            <li class="list-group-item">
-                <span class="bg-color-d p-2">Social</span> = {{ career_avg.social__avg|floatformat:1|default:0}}
-            </li>
-            <li class="list-group-item">
-                <span class="bg-color-e p-2">Enterprising</span> = {{career_avg.enterprising__avg|floatformat:1|default:0}}
-            </li>
-            <li class="list-group-item">
-                <span class="bg-color-f p-2">Conventional</span> = {{career_avg.conventional__avg|floatformat:1|default:0}}
-            </li>
-        </ul>
+<div class="admin-stats-results">
+  <aside class="admin-stats-summary">
+    <div class="admin-stats-summary-head">
+      <h2>College Category</h2>
+      <p class="admin-stats-count" id="career_count"></p>
     </div>
-    <div class="col-sm-9 col-xs-6 py-3">
-        <div class="chart-container mx-auto" style="height: 400px; width: 100%">
-            <canvas id="careerChart"></canvas>
-        </div>
-    </div>
+    <ul class="admin-stats-score-list">
+      <li><span class="bg-color-a score-pill">Realistic</span> {{ career_avg.realistic__avg|floatformat:1|default:0 }}</li>
+      <li><span class="bg-color-b score-pill">Investigative</span> {{ career_avg.investigative__avg|floatformat:1|default:0 }}</li>
+      <li><span class="bg-color-c score-pill">Artistic</span> {{ career_avg.artistic__avg|floatformat:1|default:0 }}</li>
+      <li><span class="bg-color-d score-pill">Social</span> {{ career_avg.social__avg|floatformat:1|default:0 }}</li>
+      <li><span class="bg-color-e score-pill">Enterprising</span> {{ career_avg.enterprising__avg|floatformat:1|default:0 }}</li>
+      <li><span class="bg-color-f score-pill">Conventional</span> {{ career_avg.conventional__avg|floatformat:1|default:0 }}</li>
+    </ul>
+  </aside>
+  <div class="admin-stats-chart">
+    <canvas id="careerChart" aria-label="Career statistics chart"></canvas>
+  </div>
 </div>
