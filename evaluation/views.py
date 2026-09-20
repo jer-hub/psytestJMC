@@ -29,7 +29,6 @@ class EvaluationView(LoginRequiredMixin, TemplateView):
             answer = self.request.POST[f"essay_{essay.id}"]
             essay_answers.append(answer)
 
-        print("PRINT", essay_answers)
         obj = UserFeedback.objects.create(
             user=user,
             q_1=rate_answers[0],

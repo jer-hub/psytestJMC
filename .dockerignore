@@ -1,12 +1,13 @@
+### Git / IDE ###
+.git
+.cursor
+.vscode
+.idea
 
 ### Python ###
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
-
-# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -25,29 +26,16 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+Pipfile
+Pipfile.lock
 
-# Environments
+### Environments ###
 .env
+**/.env
 .venv
 env/
 venv/
@@ -55,16 +43,21 @@ ENV/
 env.bak/
 venv.bak/
 
-# mkdocs documentation
-/site
+### Django / local ###
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
 
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
+### Docs / design tooling (not needed in image) ###
+design-system/
+docs/
+README.md
 
-# Pipenv
-Pipfile
-Pipfile.lock
-
-# End of https://www.toptal.com/developers/gitignore/api/python
+### Docker / Vercel ###
+.dockerignore
+docker-compose*.yml
+.vercelignore
+vercel.json
+vercel_build.py

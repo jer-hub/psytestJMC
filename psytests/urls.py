@@ -33,7 +33,7 @@ urlpatterns = [
     path('evaluation/', include('evaluation.urls')),
     path('auth/', include('accounts.urls')), #Connects to psytest folder urls.py
     path('career/',include('riasec.urls')), #Connects to riasec folder urls.py
-    path('personality/',include('personalityTest.urls')), #Connects to personalityTest folder urls.py
+    path('personality/',include('personality_test.urls')),
     path('iq/', include('iqtest.urls')),
     path('accounts/', include('allauth.urls')),
     path('administration/', include('administration.urls')),

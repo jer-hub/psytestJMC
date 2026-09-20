@@ -11,9 +11,9 @@ from .forms import UpdateProfileForm
 
 from accounts.models import Profile
 from riasec.models import OfferedProgram, Result as CareerResult
-from personalityTest.models import RecommendedProgram, Result as PersonalityResult
+from personality_test.models import RecommendedProgram, Result as PersonalityResult
 from iqtest.models import Result as IQResult
-from administration.views import Is_Counselor
+from administration.permissions import Is_Counselor
 from psytests.forms import ContactForm
 
 

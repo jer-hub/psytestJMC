@@ -7,7 +7,7 @@ from accounts.models import Profile
 from django.contrib import messages
 from django.shortcuts import render
 from django.db.models import Q
-from personalityTest.models import Result as PResult
+from personality_test.models import Result as PResult
 from riasec.models import Result as RResult
 from iqtest.models import Result as IQResult
 from psytests.forms import ContactForm

@@ -1,5 +1,5 @@
 from django import forms
-from personalityTest.models import Question
+from personality_test.models import Question
 
 class AddPQuestionsForm(forms.ModelForm):
     class Meta:

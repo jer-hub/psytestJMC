@@ -6,9 +6,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import user_passes_test
 
 from .forms import AddPQuestionsForm
-from administration.views import Is_Counselor
+from administration.permissions import Is_Counselor
 
-from personalityTest.models import Question
+from personality_test.models import Question
 
 class PersonalityView(LoginRequiredMixin, Is_Counselor, ListView):
     model = Question

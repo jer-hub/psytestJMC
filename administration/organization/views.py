@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from accounts.models import Department, Program
 from administration.organization.forms import AddDepartmentForm, AddProgramForm
-from administration.views import Is_Counselor
+from administration.permissions import Is_Counselor
 from accounts.models import EducationLevel, Department, Year
 from django_htmx.http import trigger_client_event
 

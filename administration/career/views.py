@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic import ListView, TemplateView
 from django.contrib import messages
-from administration.views import Is_Counselor
+from administration.permissions import Is_Counselor
 from riasec.models import OfferedProgram
 from accounts.models import Program
 

@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import user_passes_test
 from .forms import AddIQQuestionForm, AddIQChoiceForm
-from administration.views import Is_Counselor
+from administration.permissions import Is_Counselor
 from django.utils.html import strip_tags
 from iqtest.models import Question, Choice
 from django.core.paginator import Paginator

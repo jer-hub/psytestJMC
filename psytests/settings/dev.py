@@ -1,8 +1,17 @@
+import os
+
 from .common import *
 
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "1") == "1"
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get(
+        "ALLOWED_HOSTS",
+        "localhost,127.0.0.1,0.0.0.0,web,psytest-web,psytest-app",
+    ).split(",")
+    if host.strip()
+]
 # DEBUG_PROPAGATE_EXCEPTIONS = True
-# ALLOWED_HOSTS = ["127.0.0.1"]
 
 SECRET_KEY = 'django-insecure-enn_1_qy&r1^^fqcus4@s^mb5&5%bg1--mogq=b**8be^w)l$0'
 
@@ -18,11 +27,11 @@ SITE_ID = 2
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'psytest_db',
-    'USER': 'postgres',
-    'PASSWORD': '123',
-    'HOST': 'localhost',
-    'PORT': '5432',
+    'NAME': os.environ.get('DB_NAME', 'psytest_db'),
+    'USER': os.environ.get('DB_USER', 'postgres'),
+    'PASSWORD': os.environ.get('DB_PASSWORD', '123'),
+    'HOST': os.environ.get('DB_HOST', 'localhost'),
+    'PORT': os.environ.get('DB_PORT', '5432'),
     # 'OPTIONS': {'sslmode': 'require'}, 
   }
 }

@@ -8,7 +8,7 @@ from django.contrib.auth import get_user_model
 from .forms import AdminSearchForm
 from .filters import UserFilter
 
-from administration.views import Is_Counselor
+from administration.permissions import Is_Counselor
 User = get_user_model()
 
 

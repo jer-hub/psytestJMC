@@ -6,10 +6,10 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from personalityTest.models import Result as PersonalityResult
+from personality_test.models import Result as PersonalityResult
 from riasec.models import Result as CareerResult
 from iqtest.models import Result as IQResult
-from administration.views import Is_Counselor
+from administration.permissions import Is_Counselor
 from .forms import IQStatForm, PersonalityStatForm, CareerStatForm
 import datetime
 from django.http import HttpResponse

@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from accounts.models import Profile
 from iqtest.models import Result as IQResult
-from personalityTest.models import Result as PersonalityResult
+from personality_test.models import Result as PersonalityResult
 from riasec.models import Result as CareerResult
 from django import forms
 from django.utils import timezone

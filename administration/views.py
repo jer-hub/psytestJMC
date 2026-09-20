@@ -1,11 +1,7 @@
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 
-
-# Create your views here.
-class Is_Counselor(UserPassesTestMixin):
-    def test_func(self):
-        return self.request.user.groups.filter(name="Counselor").exists()
+from administration.permissions import Is_Counselor
 
 
 class Home(LoginRequiredMixin, Is_Counselor, TemplateView):

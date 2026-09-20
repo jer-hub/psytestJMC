@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import Home
-from .helpers import (
+from .actions import (
     approve_user,
     delete_career,
     delete_personality,
@@ -24,6 +24,5 @@ urlpatterns = [
     path("<int:user_pk>/unapprove/", unapprove_user, name="unapprove-result"),
     path("career/<int:pk>/delete/", delete_career, name="delete-career"),
     path("personality/<int:pk>/delete/", delete_personality, name="delete-personality"),
-    path("alert/", handle_alert, name="alert-userschedules"),   
-
+    path("alert/", handle_alert, name="alert"),
 ]

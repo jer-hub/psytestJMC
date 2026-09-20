@@ -22,22 +22,23 @@ It combines multiple assessments (career interest, personality, and IQ), profile
 - **App server:** Gunicorn
 - **Static file serving:** WhiteNoise
 - **ML/Data libraries:** scikit-learn, pandas, joblib
-- **Deployment targets:** Vercel (documented), plus Docker/Procfile support
+- **Runtime:** Docker Compose (recommended) or local Python 3.10; Vercel documented for serverless deploy
 
 ## Project structure
 
-Top-level Django apps and modules:
-
-- `psytests/` - project configuration, shared views, settings, URL routing
-- `accounts/` - authentication, registration, profile bootstrap, activation flow
-- `userprofile/` - profile editing and user stats pages
-- `riasec/` - career-interest test questions, answers, and results
-- `personalityTest/` - personality test, scoring, recommendation logic
-- `iqtest/` - IQ questions, choices, answers, and result scoring
-- `evaluation/` - feedback/rating questionnaire after assessments
-- `administration/` - admin-facing modules (organization, users, career, personality, IQ, statistics)
-- `models/` - serialized ML models (`.sav`) used for recommendations
-- `templates/`, `static/`, `staticfiles/` - UI templates and assets
+- `psytests/` — project configuration, shared views, settings, URL routing
+- `accounts/` — authentication, registration, profile bootstrap, activation flow
+- `userprofile/` — profile editing and user stats pages
+- `riasec/` — career-interest test questions, answers, and results
+- `personality_test/` — personality test, scoring, recommendation logic (Django app label `personalityTest`)
+- `iqtest/` — IQ questions, choices, answers, and result scoring
+- `evaluation/` — feedback/rating questionnaire after assessments
+- `administration/` — admin-facing modules (organization, users, career, personality, IQ, statistics)
+- `ml_artifacts/` — serialized ML model used for program recommendations
+- `data/fixtures/`, `data/csv/`, `data/sql/` — seed data and SQL helpers
+- `templates/`, `static/` — project UI templates and assets
+- `docker/`, `docker-compose.yml` — container runtime
+- `docs/deployment.md` — Docker and Vercel deployment details
 
 ## Request flow (high-level)
 
@@ -48,76 +49,54 @@ Top-level Django apps and modules:
 5. Personality results are passed to a trained model to recommend programs.
 6. User sees consolidated outcomes through `/assessment/` and summary pages.
 
-## Local development setup
+## Local development (Docker)
 
-> Recommended Python version is aligned with the project dependency set and deployment runtime (3.9/3.10).
+```bash
+cp .env.example .env
+docker compose up --build -d
+```
+
+App: http://127.0.0.1:8000/  
+Default superuser (compose): `admin` / `admin123`
+
+### Local development (venv)
+
+> Use Python 3.10 to match `requirements.txt` / Docker image.
 
 1. Clone the repository and enter it.
 2. Create and activate a virtual environment.
-3. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-4. Configure database settings for development (`psytests/settings/dev.py`) and ensure PostgreSQL is running.
-5. Apply migrations:
-
-```bash
-python manage.py migrate
-```
-
-6. (Optional) Create admin user:
-
-```bash
-python manage.py createsuperuser
-```
-
-7. Run the server:
-
-```bash
-python manage.py runserver
-```
+3. `pip install -r requirements.txt`
+4. Copy `.env.example` to `.env` and configure Postgres (`DB_*` in `psytests/settings/dev.py`).
+5. `python manage.py migrate`
+6. Optionally: `sh scripts/seed_data.sh` and `python manage.py createsuperuser`
+7. `python manage.py runserver`
 
 ## Validation commands
-
-Run these before committing changes:
 
 ```bash
 python manage.py check
 python manage.py test
 ```
 
-## Configuration and settings
+## Configuration
 
-- Default local settings module is `psytests.settings.dev` (see `manage.py`)
-- Vercel production settings module is `psytests.settings.vercel`
-- WSGI auto-selects Vercel settings when `VERCEL` environment variable is present
+- Default settings: `psytests.settings.dev` (`manage.py`)
+- Vercel settings: `psytests.settings.vercel` when `VERCEL` is set
+- Env file: project-root `.env` (see `.env.example`)
 
-Important environment variables used in production:
+## Deployment
 
-- `SECRET_KEY`
-- `PGDATABASE`, `PGUSER`, `PGPASSWORD`, `PGHOST`, `PGPORT`
-- `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`
-- `GOOGLE_CLIENT_ID`, `GOOGLE_SECRET_KEY`
-- `FB_CLIENT_ID`, `FB_SECRET_KEY`
-
-## Deployment notes
-
-- See `README-DEPLOYMENT.md` and `DEPLOYMENT.md` for full Vercel setup.
-- `vercel.json`, `build_files.sh`, and `psytests/settings/vercel.py` contain deployment-specific configuration.
-- `Dockerfile` and `Procfile` are included for container/Gunicorn-based deployment workflows.
+See [docs/deployment.md](docs/deployment.md) for Docker and Vercel.
 
 ## Useful URLs
 
 - Home: `/`
 - Admin: `/admin/`
 - Health check: `/health/`
-- Auth: `/auth/`
+- Auth: `/auth/login/`
 - Profile: `/profile/`
 - Career test: `/career/test/`
 - Personality test: `/personality/test/`
 - IQ test: `/iq/`
 - Evaluation: `/evaluation/`
 - Administration: `/administration/`
-

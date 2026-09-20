@@ -1,10 +1,10 @@
 from pathlib import Path
 from dotenv import load_dotenv
 import os
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+load_dotenv(BASE_DIR / ".env")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     "administration.apps.AdministrationConfig",
     "riasec.apps.RiasecConfig",
     "userprofile.apps.UserprofileConfig",
-    "personalityTest.apps.PersonalitytestConfig",
+    "personality_test.apps.PersonalityTestConfig",
     "evaluation.apps.EvaluationConfig",
     "iqtest.apps.IqtestConfig",
     # allauth
@@ -104,15 +104,7 @@ TEMPLATES = [
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
             BASE_DIR / "templates",
-            BASE_DIR / "administration" / "organization" / "templates",
-            BASE_DIR / "administration" / "usermanagement" / "templates",
-            BASE_DIR / "administration" / "userstocheck" / "templates",
-            BASE_DIR / "administration" / "userschedules" / "templates",
-            BASE_DIR / "administration" / "statistics" / "templates",
-            BASE_DIR / "administration" / "career" / "templates",
-            BASE_DIR / "administration" / "personality" / "templates", 
-            BASE_DIR / "administration" / "iq" / "templates",
-            ],
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
