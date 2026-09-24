@@ -38,10 +38,16 @@ docker compose up --build -d
 
 Stop: `docker compose down`
 
+## About
+
+PsytestJMC (PSYTEST) supports student career, personality, and IQ assessments for academic advising.  
+Read more in [docs/about.md](docs/about.md).
+
 ## Documentation
 
 | Guide | Description |
 |-------|-------------|
+| [About](docs/about.md) | Purpose, audiences, and contact |
 | [Architecture](docs/architecture.md) | Apps, request flow, data model overview |
 | [Development](docs/development.md) | Local setup (Docker & venv), seeding, checks |
 | [Configuration](docs/configuration.md) | Environment variables and settings modules |

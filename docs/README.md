@@ -4,6 +4,7 @@ Extended guides for PsytestJMC.
 
 | Document | Audience |
 |----------|----------|
+| [About](about.md) | Everyone |
 | [Architecture](architecture.md) | Developers |
 | [Development](development.md) | Developers |
 | [Configuration](configuration.md) | Developers / operators |
