@@ -5,7 +5,8 @@ import os
 DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', '.now.sh']
 
-SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-enn_1_qy&r1^^fqcus4@s^mb5&5%bg1--mogq=b**8be^w)l$0")
+# Always set SECRET_KEY in the Vercel project environment.
+SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-vercel-set-SECRET_KEY")
 
 SITE_ID = 1
 

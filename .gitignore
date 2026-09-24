@@ -2,9 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
 
 ### Distribution / packaging ###
-.vscode
 .Python
 build/
 develop-eggs/
@@ -23,7 +23,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
 *.manifest
 *.spec
 
@@ -36,15 +35,28 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 staticfiles/
+media/
+**/media/
 
 ### Environments ###
 .env
+.env.*
+!.env.example
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+
+### IDE / OS ###
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini
 
 ### Tooling / generated ###
 .cursor/
@@ -53,6 +65,17 @@ __pypackages__/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
 Pipfile
 Pipfile.lock
 /site
+
+### Local dumps / secrets (never commit) ###
+cookies.txt
+headers.txt
+*.pem
+*.key
+secrets/

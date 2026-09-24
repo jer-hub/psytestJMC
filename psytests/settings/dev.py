@@ -13,7 +13,10 @@ ALLOWED_HOSTS = [
 ]
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 
-SECRET_KEY = 'django-insecure-enn_1_qy&r1^^fqcus4@s^mb5&5%bg1--mogq=b**8be^w)l$0'
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-insecure-dev-only-change-me",
+)
 
 SITE_ID = 2
 

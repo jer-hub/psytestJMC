@@ -1,102 +1,112 @@
 # PsytestJMC
 
-PsytestJMC is a Django-based psychological assessment platform for students.  
-It combines multiple assessments (career interest, personality, and IQ), profile management, and administrative analytics in one system.
+Django platform for student psychological assessments: career interest (RIASEC), Big Five personality, and IQ testing — plus profiles, counselor administration, and analytics.
 
-## What the system does
+[![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/downloads/)
+[![Django](https://img.shields.io/badge/Django-4.2-green.svg)](https://www.djangoproject.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791.svg)](https://www.postgresql.org/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-- User registration/login with email activation
-- Social login support (Google and Facebook)
-- Student profile and educational background management
-- Career assessment (RIASEC)
-- Personality assessment (Big Five) with program recommendation
-- IQ assessment with scored results
-- Post-assessment user evaluation/feedback
-- Administrative pages for organization, user management, test management, and statistics
-- Health endpoint for deployment monitoring (`/health/`)
+## Features
 
-## Tech stack
+- Email registration with activation, password reset, and optional Google / Facebook login
+- Student profiles (education level, department, program, year)
+- **Career (RIASEC)** interest assessment and results
+- **Personality (Big Five)** assessment with ML-assisted program recommendations
+- **IQ** assessment with scored outcomes
+- Post-test evaluation / feedback questionnaire
+- Administration: organization structure, users/counselors, question banks, statistics
+- Docker Compose for local/dev and Gunicorn production-style runs
+- Health check endpoint for monitoring (`/health/`)
 
-- **Backend:** Django 4.2
-- **Database:** PostgreSQL
-- **App server:** Gunicorn
-- **Static file serving:** WhiteNoise
-- **ML/Data libraries:** scikit-learn, pandas, joblib
-- **Runtime:** Docker Compose (recommended) or local Python 3.10; Vercel documented for serverless deploy
+## Quick start (Docker)
 
-## Project structure
-
-- `psytests/` — project configuration, shared views, settings, URL routing
-- `accounts/` — authentication, registration, profile bootstrap, activation flow
-- `userprofile/` — profile editing and user stats pages
-- `riasec/` — career-interest test questions, answers, and results
-- `personality_test/` — personality test, scoring, recommendation logic (Django app label `personalityTest`)
-- `iqtest/` — IQ questions, choices, answers, and result scoring
-- `evaluation/` — feedback/rating questionnaire after assessments
-- `administration/` — admin-facing modules (organization, users, career, personality, IQ, statistics)
-- `ml_artifacts/` — serialized ML model used for program recommendations
-- `data/fixtures/`, `data/csv/`, `data/sql/` — seed data and SQL helpers
-- `templates/`, `static/` — project UI templates and assets
-- `docker/`, `docker-compose.yml` — container runtime
-- `docs/deployment.md` — Docker and Vercel deployment details
-
-## Request flow (high-level)
-
-1. User registers/logs in and completes profile information.
-2. User takes one or more assessments (`/career/`, `/personality/`, `/iq/`).
-3. Answers are persisted in app-specific `Answer` models.
-4. Scores are computed and saved in app-specific `Result` models.
-5. Personality results are passed to a trained model to recommend programs.
-6. User sees consolidated outcomes through `/assessment/` and summary pages.
-
-## Local development (Docker)
+Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker Engine + Compose).
 
 ```bash
+git clone https://github.com/jer-hub/psytestJMC.git
+cd psytestJMC
 cp .env.example .env
 docker compose up --build -d
 ```
 
-App: http://127.0.0.1:8000/  
-Default superuser (compose): `admin` / `admin123`
+| Resource | URL / value |
+|----------|-------------|
+| App | http://127.0.0.1:8000/ |
+| Django admin | http://127.0.0.1:8000/admin/ |
+| Default superuser | `admin` / `admin123` (from `.env`) |
 
-### Local development (venv)
+Stop: `docker compose down`
 
-> Use Python 3.10 to match `requirements.txt` / Docker image.
+## Documentation
 
-1. Clone the repository and enter it.
-2. Create and activate a virtual environment.
-3. `pip install -r requirements.txt`
-4. Copy `.env.example` to `.env` and configure Postgres (`DB_*` in `psytests/settings/dev.py`).
-5. `python manage.py migrate`
-6. Optionally: `sh scripts/seed_data.sh` and `python manage.py createsuperuser`
-7. `python manage.py runserver`
+| Guide | Description |
+|-------|-------------|
+| [Architecture](docs/architecture.md) | Apps, request flow, data model overview |
+| [Development](docs/development.md) | Local setup (Docker & venv), seeding, checks |
+| [Configuration](docs/configuration.md) | Environment variables and settings modules |
+| [Deployment](docs/deployment.md) | Docker production-style and Vercel |
+| [Administration](docs/administration.md) | Counselor / admin console overview |
+| [Contributing](CONTRIBUTING.md) | How to propose changes |
+| [Security](SECURITY.md) | Reporting vulnerabilities |
 
-## Validation commands
+## Tech stack
+
+| Layer | Choice |
+|-------|--------|
+| Backend | Django 4.2 |
+| Database | PostgreSQL 15 |
+| Auth | django-allauth + social-auth |
+| App server | Gunicorn (production image) |
+| Static files | WhiteNoise |
+| Front-end | Bootstrap 5, HTMX, Chart.js |
+| ML | scikit-learn, pandas, joblib (`ml_artifacts/`) |
+| Containers | Docker multi-stage build + Compose |
+
+## Project layout
+
+```text
+psytests/          # Project settings, URLs, shared views
+accounts/          # Registration, login, activation
+userprofile/       # Profile & personal stats
+riasec/            # Career (RIASEC) test
+personality_test/  # Big Five test (app label: personalityTest)
+iqtest/            # IQ test
+evaluation/        # Post-assessment feedback
+administration/    # Admin modules (org, users, tests, stats)
+ml_artifacts/      # Trained recommendation model
+data/              # Fixtures, CSV, SQL helpers
+templates/         # Project-level templates
+static/            # CSS, JS, images, icons
+docker/            # Entrypoint and container helpers
+docs/              # Extended documentation
+scripts/           # Seed and utility scripts
+```
+
+## Useful URLs
+
+| Path | Purpose |
+|------|---------|
+| `/` | Home |
+| `/assessment/` | Assessment hub |
+| `/auth/login/` | Login |
+| `/profile/` | Student profile |
+| `/career/test/` | Career test |
+| `/personality/test/` | Personality test |
+| `/iq/` | IQ test |
+| `/evaluation/` | Feedback |
+| `/administration/` | Staff console |
+| `/admin/` | Django admin |
+| `/health/` | Liveness check |
+
+## Validation
 
 ```bash
+# Host (venv) or: docker compose exec web …
 python manage.py check
 python manage.py test
 ```
 
-## Configuration
+## License
 
-- Default settings: `psytests.settings.dev` (`manage.py`)
-- Vercel settings: `psytests.settings.vercel` when `VERCEL` is set
-- Env file: project-root `.env` (see `.env.example`)
-
-## Deployment
-
-See [docs/deployment.md](docs/deployment.md) for Docker and Vercel.
-
-## Useful URLs
-
-- Home: `/`
-- Admin: `/admin/`
-- Health check: `/health/`
-- Auth: `/auth/login/`
-- Profile: `/profile/`
-- Career test: `/career/test/`
-- Personality test: `/personality/test/`
-- IQ test: `/iq/`
-- Evaluation: `/evaluation/`
-- Administration: `/administration/`
+MIT — see [LICENSE](LICENSE).
